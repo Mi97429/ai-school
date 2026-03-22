@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="nl-BE">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI in de vakken — Masterclass AI 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+<style>
+:root{--bg:#f8f7f4;--bg-alt:#f0ede8;--white:#ffffff;--ink:#1a1a1a;--ink-2:#3d3d3d;--ink-3:#767676;--border:#e0dbd4;--petrol:#0f4c5c;--petrol-l:#e8f2f4;--petrol-m:#1a6b80;--serif:'Lora',Georgia,serif;--sans:system-ui,-apple-system,sans-serif;--mono:'Courier New',monospace;--r:6px;--ease:cubic-bezier(0.25,0,0,1);--content:720px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+:focus-visible{outline:2px solid var(--petrol);outline-offset:3px}
+a{color:var(--petrol)}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--white);border-bottom:1px solid var(--border);height:56px;display:flex;align-items:center;padding:0 5%;gap:0}
+.topbar-logo{font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol);text-decoration:none;white-space:nowrap;margin-right:2.5rem}
+.progress-steps{display:flex;align-items:center;flex:1;gap:0;overflow-x:auto;scrollbar-width:none}
+.progress-steps::-webkit-scrollbar{display:none}
+.ps-item{display:flex;align-items:center;text-decoration:none;flex-shrink:0}
+.ps-step{display:flex;align-items:center;gap:.45rem;padding:.3rem .7rem;border-radius:4px;font-size:.78rem;color:var(--ink-3);transition:color .15s,background .15s;white-space:nowrap}
+.ps-step .n{font-family:var(--serif);font-size:.7rem;font-weight:600;color:var(--petrol);opacity:.5}
+.ps-item:hover .ps-step{color:var(--petrol);background:var(--petrol-l)}
+.ps-item.active .ps-step{color:var(--petrol);font-weight:500;background:var(--petrol-l)}
+.ps-item.active .ps-step .n{opacity:1}
+.ps-arrow{color:var(--border);font-size:.8rem;margin:0 .1rem;flex-shrink:0}
+.page{margin-top:56px;max-width:var(--content);margin-left:auto;margin-right:auto;padding:0 5% 6rem}
+.page.wide{--content:900px}
+.page-head{padding:3.5rem 0 2.5rem;border-bottom:1px solid var(--border);margin-bottom:2.5rem}
+.page-kicker{font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--petrol);display:block;margin-bottom:.8rem}
+.page-title{font-family:var(--serif);font-size:clamp(2.2rem,4vw,3.4rem);font-weight:600;line-height:1.1;color:var(--ink);letter-spacing:-.02em;margin-bottom:1rem}
+.page-title em{font-style:italic}
+.page-intro{font-size:1.05rem;line-height:1.85;color:var(--ink-2);max-width:60ch}
+.toc{margin-bottom:3rem}
+.toc-label{font-size:.62rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:.8rem}
+.toc-items{display:flex;flex-wrap:wrap;gap:.5rem}
+.toc-link{display:inline-flex;align-items:center;padding:.42rem .9rem;background:var(--white);border:1px solid var(--border);border-radius:100px;font-size:.83rem;color:var(--ink-2);text-decoration:none;transition:all .18s var(--ease)}
+.toc-link:hover{background:var(--petrol);color:var(--white);border-color:var(--petrol)}
+.sect{padding:3rem 0;border-bottom:1px solid var(--border);scroll-margin-top:76px}
+.sect:last-of-type{border-bottom:none}
+.sect-label{font-size:.62rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--petrol);display:block;margin-bottom:.6rem}
+.sect-title{font-family:var(--serif);font-size:1.5rem;font-weight:600;color:var(--ink);letter-spacing:-.01em;margin-bottom:.5rem;line-height:1.25}
+.sect-lead{font-size:.97rem;color:var(--ink-2);line-height:1.8;max-width:66ch;margin-bottom:1.6rem}
+.steps{list-style:none;display:flex;flex-direction:column;gap:.8rem;margin-bottom:1.4rem}
+.steps li{display:flex;align-items:flex-start;gap:1rem;font-size:.95rem;color:var(--ink-2);line-height:1.7}
+.steps li .n{font-family:var(--serif);font-size:.85rem;font-weight:600;color:var(--petrol);flex-shrink:0;width:1.5rem;padding-top:.1rem}
+.steps li strong{color:var(--ink);font-weight:600}
+.callout{border-left:3px solid var(--petrol);padding:.9rem 1.3rem;background:var(--petrol-l);border-radius:0 var(--r) var(--r) 0;margin-bottom:1.5rem}
+.callout p{font-size:.9rem;color:var(--ink-2);line-height:1.75}
+.callout strong{color:var(--petrol);font-weight:600}
+.prompt-wrap{margin-top:1.8rem;margin-bottom:.5rem}
+.prompt-head{display:flex;align-items:center;justify-content:space-between;background:var(--petrol);padding:.55rem 1rem;border-radius:var(--r) var(--r) 0 0}
+.prompt-head-label{font-size:.68rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.75)}
+.btn-copy{font-family:var(--sans);font-size:.72rem;font-weight:500;background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:4px;padding:.2rem .65rem;cursor:pointer;transition:all .15s}
+.btn-copy:hover{background:rgba(255,255,255,.25)}
+.btn-copy.ok{background:rgba(255,255,255,.3)}
+.prompt-body{font-family:var(--mono);font-size:.83rem;line-height:1.85;color:#c8dce8;background:#0d1a24;border:1px solid #1e3040;border-top:none;border-radius:0 0 var(--r) var(--r);padding:1.2rem 1.3rem;white-space:pre-wrap}
+.pv{color:#7ecfe0;font-weight:600}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin-bottom:1.5rem}
+.card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.2rem 1.3rem;text-decoration:none;display:flex;flex-direction:column;transition:box-shadow .2s,border-color .2s,transform .2s}
+.card:hover{box-shadow:0 3px 16px rgba(15,76,92,.09);border-color:var(--petrol-m);transform:translateY(-1px)}
+.card-name{font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.2rem}
+.card-url{font-size:.75rem;color:var(--petrol);margin-bottom:.45rem;opacity:.8}
+.card-desc{font-size:.82rem;color:var(--ink-3);line-height:1.65;flex:1}
+.card-tags{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.7rem}
+.card-tag{font-size:.65rem;padding:.12rem .45rem;background:var(--bg-alt);color:var(--ink-3);border-radius:3px}
+.gem-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1.1rem;margin-bottom:1.4rem}
+.gem{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.3rem;transition:box-shadow .2s,border-color .2s}
+.gem:hover{box-shadow:0 2px 14px rgba(15,76,92,.08);border-color:var(--petrol-m)}
+.gem-head{display:flex;align-items:center;gap:.7rem;margin-bottom:.6rem}
+.gem-icon{width:32px;height:32px;border-radius:var(--r);background:var(--petrol-l);color:var(--petrol);display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0}
+.gem-name{font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--ink)}
+.gem-doel{font-size:.8rem;color:var(--ink-3);line-height:1.6;font-style:italic;margin-bottom:.8rem}
+.gem-instructie{font-family:var(--mono);font-size:.74rem;line-height:1.65;color:var(--ink-2);background:#0d1a24;color:#c8dce8;border-left:2px solid var(--petrol);padding:.6rem .8rem;white-space:pre-wrap;border-radius:0 4px 4px 0}
+.page-nav{display:flex;justify-content:space-between;align-items:center;padding-top:2.5rem;border-top:1px solid var(--border);margin-top:3rem;flex-wrap:wrap;gap:1rem}
+.page-nav a{display:flex;align-items:center;gap:.5rem;font-size:.88rem;color:var(--petrol);text-decoration:none;padding:.5rem .9rem;border:1px solid var(--border);border-radius:var(--r);transition:all .18s}
+.page-nav a:hover{background:var(--petrol-l);border-color:var(--petrol-m)}
+.deel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem}
+.deel-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.8rem 2rem;text-decoration:none;display:flex;flex-direction:column;position:relative;overflow:hidden;transition:box-shadow .2s,transform .2s,border-color .2s}
+.deel-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--petrol);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}
+.deel-card:hover{box-shadow:0 4px 24px rgba(15,76,92,.10);transform:translateY(-2px);border-color:transparent}
+.deel-card:hover::before{transform:scaleX(1)}
+.deel-num{font-family:var(--serif);font-size:.75rem;font-weight:600;color:var(--petrol);margin-bottom:.8rem;opacity:.6}
+.deel-title{font-family:var(--serif);font-size:1.2rem;font-weight:600;color:var(--ink);margin-bottom:.5rem;line-height:1.3}
+.deel-sub{font-size:.85rem;color:var(--ink-3);line-height:1.65;flex:1}
+.deel-arrow{margin-top:1.4rem;font-size:.8rem;color:var(--petrol);opacity:.4;transition:opacity .2s,transform .2s;align-self:flex-start}
+.deel-card:hover .deel-arrow{opacity:1;transform:translateX(4px)}
+.vak-groep{margin-bottom:2.2rem}
+.vak-groep-label{font-size:.68rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.7rem;display:block}
+.vak-pills{display:flex;flex-wrap:wrap;gap:.5rem}
+.vak-pill{display:inline-flex;align-items:center;gap:.5rem;padding:.45rem 1rem;background:var(--white);border:1px solid var(--border);border-radius:100px;font-size:.84rem;color:var(--ink-2);text-decoration:none;transition:all .18s var(--ease)}
+.vak-pill:hover{background:var(--petrol);color:#fff;border-color:var(--petrol)}
+.narrative{background:var(--petrol-l);border-left:4px solid var(--petrol);padding:1.4rem 1.8rem;border-radius:0 var(--r) var(--r) 0;margin-bottom:2rem}
+.narrative p{font-size:1rem;line-height:1.85;color:var(--ink-2);max-width:68ch}
+.narrative strong{color:var(--petrol)}
+.hl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:2rem}
+.hl{padding:1.6rem;background:var(--white);border:1px solid var(--border);border-radius:var(--r)}
+.hl-icon{width:38px;height:38px;border-radius:var(--r);background:var(--petrol-l);color:var(--petrol);display:flex;align-items:center;justify-content:center;font-size:1rem;margin-bottom:1rem}
+.hl-title{font-family:var(--serif);font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:.4rem}
+.hl-text{font-size:.88rem;color:var(--ink-3);line-height:1.7}
+.hero{background:var(--petrol);padding:7rem 0 6rem;position:relative;overflow:hidden;margin-top:56px}
+.hero::before{content:'';position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(circle,rgba(255,255,255,.04) 1px,transparent 1px);background-size:28px 28px}
+.hero-inner{max-width:900px;margin:0 auto;padding:0 5%;position:relative}
+.hero-kicker{display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:1.5rem}
+.hero-title{font-family:var(--serif);font-size:clamp(2.8rem,5.5vw,5rem);font-weight:600;line-height:1.1;color:#fff;letter-spacing:-.025em;margin-bottom:1.8rem;max-width:14ch}
+.hero-title em{font-style:italic;font-weight:400;color:rgba(255,255,255,.75)}
+.hero-sub{font-size:1.1rem;font-weight:400;line-height:1.8;color:rgba(255,255,255,.7);max-width:54ch;margin-bottom:2.5rem}
+.hero-cta{display:flex;gap:.75rem;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:.5rem;font-size:.9rem;font-weight:500;padding:.7rem 1.5rem;border-radius:var(--r);text-decoration:none;transition:all .2s var(--ease);cursor:pointer;border:none;font-family:var(--sans)}
+.btn-white{background:#fff;color:var(--petrol)}
+.btn-white:hover{background:var(--bg);transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,0,0,.15)}
+.btn-outline{background:transparent;color:rgba(255,255,255,.85);border:1px solid rgba(255,255,255,.3)}
+.btn-outline:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.5)}
+.section-block{padding:5rem 0;border-bottom:1px solid var(--border)}
+.section-block:last-of-type{border-bottom:none}
+.section-inner{max-width:900px;margin:0 auto;padding:0 5%}
+.section-label{font-size:.7rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--petrol);display:block;margin-bottom:.8rem}
+.section-title{font-family:var(--serif);font-size:clamp(1.7rem,2.8vw,2.6rem);font-weight:600;line-height:1.2;color:var(--ink);letter-spacing:-.02em;margin-bottom:.8rem}
+.section-title em{font-style:italic;font-weight:400}
+.section-lead{font-size:1.05rem;font-weight:400;line-height:1.8;color:var(--ink-2);max-width:62ch;margin-bottom:2.5rem}
+.yt-block{display:flex;align-items:center;gap:1rem;background:var(--white);border:1px solid var(--border);padding:1rem 1.3rem;border-radius:var(--r);margin-top:1rem}
+.yt-icon{width:36px;height:36px;background:#ff0000;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff;font-size:1rem}
+.yt-text{flex:1}
+.yt-text strong{display:block;font-size:.88rem;color:var(--ink)}
+.yt-text span{font-size:.78rem;color:var(--ink-3)}
+.yt-btn{background:var(--ink);color:#fff;font-family:var(--sans);font-size:.75rem;font-weight:600;padding:.4rem .8rem;border-radius:2px;text-decoration:none;flex-shrink:0;transition:background .15s}
+.yt-btn:hover{background:var(--petrol)}
+.r{opacity:0;transform:translateY(16px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.r.on{opacity:1;transform:none}
+.r.d1{transition-delay:.07s}.r.d2{transition-delay:.14s}.r.d3{transition-delay:.21s}.r.d4{transition-delay:.28s}.r.d5{transition-delay:.35s}
+footer{background:var(--petrol);padding:2rem 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+footer p{font-size:.8rem;color:rgba(255,255,255,.55)}
+footer strong{color:rgba(255,255,255,.85);font-weight:500}
+@media(max-width:860px){.hl-grid{grid-template-columns:1fr}.deel-grid{grid-template-columns:1fr}}
+@media(max-width:700px){.progress-steps{display:none}.card-grid,.gem-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <a class="topbar-logo" href="index.html">Masterclass AI</a>
+  <nav class="progress-steps" aria-label="Programmanavigatie">
+    <a class="ps-item" href="index.html"><div class="ps-step"><span class="n">Home</span></div></a>
+    <span class="ps-arrow">›</span>
+    <a class="ps-item" href="deel1.html"><div class="ps-step"><span class="n">01</span> Wat is AI?</div></a>
+    <span class="ps-arrow">›</span>
+    <a class="ps-item" href="deel2.html"><div class="ps-step"><span class="n">02</span> Prompting</div></a>
+    <span class="ps-arrow">›</span>
+    <a class="ps-item" href="deel3.html"><div class="ps-step"><span class="n">03</span> AI-tools</div></a>
+    <span class="ps-arrow">›</span>
+    <a class="ps-item" href="deel4.html"><div class="ps-step"><span class="n">04</span> Evaluatie</div></a>
+    <span class="ps-arrow">›</span>
+    <a class="ps-item active" href="vakken.html"><div class="ps-step"><span class="n">05</span> Vakken</div></a>
+    <span class="ps-arrow">›</span>
+    <a class="ps-item" href="deel6.html"><div class="ps-step"><span class="n">06</span> Geletterdheid</div></a>
+  </nav>
+</header>
+<main class="page wide"><header class="page-head r"><span class="page-kicker">Stap 05</span><h1 class="page-title">AI in de <em>vakken</em></h1><p class="page-intro">Kies je vak en vind kant-en-klare tools, prompts en Gems. Elke pagina bevat concrete toepassingen speciaal voor jouw leerplaninhoud.</p></header><div class="vak-groep r"><span class="vak-groep-label">Taalvakken</span><div class="card-grid" style="grid-template-columns:repeat(auto-fill,minmax(200px,1fr))"><a class="card r" href="nederlands.html"><div class="card-name">Nederlands</div><div class="card-desc">Schrijven, lezen, taalbeschouwing — AI als coach die nooit moe wordt van herlezen.</div></a><a class="card r" href="engels.html"><div class="card-name">Engels</div><div class="card-desc">Luisteren, spreken, schrijven — AI als altijd beschikbare taalpartner.</div></a><a class="card r" href="frans.html"><div class="card-name">Frans</div><div class="card-desc">Conversation, grammaire, Francophonie — AI comme partenaire linguistique.</div></a></div></div><div class="vak-groep r"><span class="vak-groep-label">Humane wetenschappen</span><div class="card-grid" style="grid-template-columns:repeat(auto-fill,minmax(200px,1fr))"><a class="card r" href="geschiedenis.html"><div class="card-name">Geschiedenis</div><div class="card-desc">Broncritiek, paleografie, dialoog met het verleden, tijdlijnen.</div></a><a class="card r" href="aardrijkskunde.html"><div class="card-name">Aardrijkskunde</div><div class="card-desc">Klimaatanalyse, GIS, teledetectie en ecologie.</div></a><a class="card r" href="filosofie.html"><div class="card-name">Filosofie</div><div class="card-desc">Argumenteren, logica, ethiek en kennisleer.</div></a><a class="card r" href="psychologie.html"><div class="card-name">Psychologie</div><div class="card-desc">Gedragsanalyse, casusstudies, ethiek.</div></a><a class="card r" href="mawe.html"><div class="card-name">MaWe</div><div class="card-desc">Zorg, sociaal onderzoek, diversiteit.</div></a><a class="card r" href="tsg.html"><div class="card-name">TSG</div><div class="card-desc">Pedagogiek, recht, communicatie.</div></a></div></div><div class="vak-groep r"><span class="vak-groep-label">Exacte wetenschappen</span><div class="card-grid" style="grid-template-columns:repeat(auto-fill,minmax(200px,1fr))"><a class="card r" href="wiskunde.html"><div class="card-name">Wiskunde</div><div class="card-desc">GeoGebra, Desmos, Wolfram Alpha — AI als geduldige tutor.</div></a><a class="card r" href="statistiek.html"><div class="card-name">Statistiek</div><div class="card-desc">Beschrijvende statistiek, kansrekening, data-analyse.</div></a><a class="card r" href="fysica.html"><div class="card-name">Fysica</div><div class="card-desc">Kinematica, circuits, golven — PhET en AI gecombineerd.</div></a><a class="card r" href="chemie.html"><div class="card-name">Chemie</div><div class="card-desc">Practica, stoichiometrie, molecuulmodellen.</div></a><a class="card r" href="biologie.html"><div class="card-name">Biologie</div><div class="card-desc">Cel, genetica, ecologie — van AlphaFold tot iNaturalist.</div></a><a class="card r" href="zorg.html"><div class="card-name">Zorg &amp; Anatomie</div><div class="card-desc">Orgaanstelsels, pathologie, klinisch redeneren.</div></a></div></div><div class="vak-groep r"><span class="vak-groep-label">Economie &amp; handel</span><div class="card-grid" style="grid-template-columns:repeat(auto-fill,minmax(200px,1fr))"><a class="card r" href="bedrijfswetenschappen.html"><div class="card-name">Bedrijfswetenschappen</div><div class="card-desc">Economische analyse, boekhouding, strategie.</div></a><a class="card r" href="bedrijfsorganisatie.html"><div class="card-name">Bedrijfsorganisatie</div><div class="card-desc">HR, logistiek, zakelijk schrijven.</div></a><a class="card r" href="commercieel.html"><div class="card-name">Commerciële Organisatie</div><div class="card-desc">Marketing, e-commerce, businessplan.</div></a><a class="card r" href="sales.html"><div class="card-name">Sales</div><div class="card-desc">Verkoopgesprekken, klachten, kassasimulaties.</div></a><a class="card r" href="onthaal.html"><div class="card-name">Onthaal, Org &amp; Sales</div><div class="card-desc">Onthaal, agendabeheer, correspondentie.</div></a><a class="card r" href="logistiek.html"><div class="card-name">Logistiek</div><div class="card-desc">Magazijn, transport, voorraadbeheer.</div></a></div></div><nav class="page-nav r"><a href="deel4.html">&larr; Stap 04 — Evaluatie</a><a href="deel6.html">Stap 06 — Geletterdheid &rarr;</a></nav></main>
+<footer>
+  <p><strong>Masterclass AI 2026</strong> · Secundair Onderwijs Vlaanderen · Don Bosco</p>
+</footer>
+<script>
+const ro=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting){en.target.classList.add('on');ro.unobserve(en.target);}});},{threshold:0.07});
+document.querySelectorAll('.r').forEach(el=>ro.observe(el));
+function copy(btn){
+  const text=btn.closest('.prompt-wrap').querySelector('.prompt-body').innerText;
+  navigator.clipboard.writeText(text).then(()=>{
+    btn.textContent='Gekopieerd ✓';btn.classList.add('ok');
+    setTimeout(()=>{btn.textContent='Kopiëren';btn.classList.remove('ok');},2000);
+  });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+/* ══════════════════════════════════════════════
+   MASTERCLASS AI 2026 — Gedeelde stijl
+   ══════════════════════════════════════════════ */
+:root {
+  --bg:       #f8f7f4;
+  --bg-alt:   #f0ede8;
+  --white:    #ffffff;
+  --ink:      #1a1a1a;
+  --ink-2:    #3d3d3d;
+  --ink-3:    #767676;
+  --border:   #e0dbd4;
+  --petrol:   #0f4c5c;
+  --petrol-l: #e8f2f4;
+  --petrol-m: #1a6b80;
+  --serif:    'Lora', Georgia, serif;
+  --sans:     system-ui, -apple-system, sans-serif;
+  --mono:     'Courier New', monospace;
+  --r:        6px;
+  --ease:     cubic-bezier(0.25, 0, 0, 1);
+  --content:  720px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+:focus-visible{outline:2px solid var(--petrol);outline-offset:3px}
+a{color:var(--petrol)}

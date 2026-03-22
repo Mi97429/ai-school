@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="nl-BE">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI-tools voor leraren — Masterclass AI 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+<style>
+:root{--bg:#f8f7f4;--bg-alt:#f0ede8;--white:#ffffff;--ink:#1a1a1a;--ink-2:#3d3d3d;--ink-3:#767676;--border:#e0dbd4;--petrol:#0f4c5c;--petrol-l:#e8f2f4;--petrol-m:#1a6b80;--serif:'Lora',Georgia,serif;--sans:system-ui,-apple-system,sans-serif;--r:6px;--ease:cubic-bezier(0.25,0,0,1);--content:900px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+:focus-visible{outline:2px solid var(--petrol);outline-offset:3px}
+a{color:var(--petrol)}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--white);border-bottom:1px solid var(--border);height:56px;display:flex;align-items:center;padding:0 5%;gap:0}
+.topbar-logo{font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol);text-decoration:none;white-space:nowrap;margin-right:2.5rem}
+.progress-steps{display:flex;align-items:center;flex:1;gap:0;overflow-x:auto;scrollbar-width:none}
+.progress-steps::-webkit-scrollbar{display:none}
+.ps-item{display:flex;align-items:center;text-decoration:none;flex-shrink:0}
+.ps-step{display:flex;align-items:center;gap:.45rem;padding:.3rem .7rem;border-radius:4px;font-size:.78rem;color:var(--ink-3);transition:color .15s,background .15s;white-space:nowrap}
+.ps-step .n{font-family:var(--serif);font-size:.7rem;font-weight:600;color:var(--petrol);opacity:.5}
+.ps-item:hover .ps-step{color:var(--petrol);background:var(--petrol-l)}
+.ps-item.active .ps-step{color:var(--petrol);font-weight:500;background:var(--petrol-l)}
+.ps-item.active .ps-step .n{opacity:1}
+.ps-arrow{color:var(--border);font-size:.6rem;margin:0 .1rem}
+.page{margin-top:56px;max-width:var(--content);margin-left:auto;margin-right:auto;padding:0 5% 6rem}
+.page-head{padding:3.5rem 0 2.5rem;border-bottom:1px solid var(--border);margin-bottom:2.5rem}
+.page-kicker{font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--petrol);display:block;margin-bottom:.8rem}
+.page-title{font-family:var(--serif);font-size:clamp(2.2rem,4vw,3.4rem);font-weight:600;line-height:1.1;color:var(--ink);letter-spacing:-.02em;margin-bottom:1rem}
+.page-title em{font-style:italic}
+.page-intro{font-size:1.05rem;line-height:1.85;color:var(--ink-2);max-width:62ch}
+.search-wrap{margin-bottom:2.5rem}
+.search-input{width:100%;padding:.75rem 1.1rem .75rem 2.8rem;font-family:var(--sans);font-size:.95rem;background:var(--white);border:1px solid var(--border);border-radius:var(--r);color:var(--ink);transition:border-color .2s,box-shadow .2s;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23767676' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:.85rem center}
+.search-input:focus{outline:none;border-color:var(--petrol-m);box-shadow:0 0 0 3px var(--petrol-l)}
+.search-input::placeholder{color:var(--ink-3)}
+.toc{margin-bottom:2.8rem}
+.toc-label{font-size:.62rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:.8rem}
+.toc-items{display:flex;flex-wrap:wrap;gap:.5rem}
+.toc-link{display:inline-flex;align-items:center;padding:.4rem .9rem;background:var(--white);border:1px solid var(--border);border-radius:100px;font-size:.82rem;color:var(--ink-2);text-decoration:none;transition:all .18s var(--ease)}
+.toc-link:hover{background:var(--petrol);color:var(--white);border-color:var(--petrol)}
+.cat-group{margin-bottom:3rem;scroll-margin-top:76px}
+.cat-head{display:flex;align-items:baseline;gap:1rem;margin-bottom:1.2rem;padding-bottom:.7rem;border-bottom:1px solid var(--border)}
+.cat-title{font-family:var(--serif);font-size:1.25rem;font-weight:600;color:var(--ink)}
+.cat-count{font-size:.75rem;color:var(--ink-3)}
+.tool-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.85rem}
+.tool-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.1rem 1.2rem;text-decoration:none;display:flex;flex-direction:column;transition:box-shadow .2s,border-color .2s,transform .2s}
+.tool-card:hover{box-shadow:0 3px 16px rgba(15,76,92,.09);border-color:var(--petrol-m);transform:translateY(-1px)}
+.tool-card[hidden]{display:none}
+.tool-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:.3rem;gap:.5rem}
+.tool-name{font-weight:600;font-size:.92rem;color:var(--ink)}
+.tool-badge{font-size:.6rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:.15rem .4rem;border-radius:3px;flex-shrink:0;background:var(--petrol-l);color:var(--petrol)}
+.tool-badge.gratis{background:#edf7f0;color:#1a6b3a}
+.tool-badge.school{background:#fdf3e8;color:#7a4a10}
+.tool-url{font-size:.75rem;color:var(--petrol);margin-bottom:.45rem;opacity:.8}
+.tool-desc{font-size:.82rem;color:var(--ink-3);line-height:1.65;flex:1}
+.tool-tags{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.7rem}
+.tool-tag{font-size:.65rem;padding:.12rem .45rem;background:var(--bg-alt);color:var(--ink-3);border-radius:3px}
+.no-results{display:none;text-align:center;padding:3rem 0;color:var(--ink-3);font-size:.95rem}
+.no-results.visible{display:block}
+.r{opacity:0;transform:translateY(14px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.r.on{opacity:1;transform:none}
+footer{background:var(--petrol);padding:2rem 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+footer p{font-size:.8rem;color:rgba(255,255,255,.55)}
+footer strong{color:rgba(255,255,255,.85);font-weight:500}
+@media(max-width:700px){.progress-steps{display:none}.tool-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="topbar-logo" href="index.html">Masterclass AI</a>
+  <nav class="progress-steps">
+    <a class="ps-item" href="index.html"><div class="ps-step"><span class="n">Home</span></div></a>
+    <span class="ps-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+    <a class="ps-item" href="deel1.html"><div class="ps-step"><span class="n">01</span> Wat is AI?</div></a>
+    <span class="ps-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+    <a class="ps-item" href="deel2.html"><div class="ps-step"><span class="n">02</span> Prompting</div></a>
+    <span class="ps-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+    <a class="ps-item active" href="deel3.html"><div class="ps-step"><span class="n">03</span> AI-tools</div></a>
+    <span class="ps-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+    <a class="ps-item" href="deel4.html"><div class="ps-step"><span class="n">04</span> Evaluatie</div></a>
+    <span class="ps-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+    <a class="ps-item" href="vakken.html"><div class="ps-step"><span class="n">05</span> Vakken</div></a>
+    <span class="ps-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+    <a class="ps-item" href="deel6.html"><div class="ps-step"><span class="n">06</span> Geletterdheid</div></a>
+  </nav>
+</header>
+
+<main class="page">
+
+  <header class="page-head r">
+    <span class="page-kicker">Stap 03 · AI-tools voor leraren</span>
+    <h1 class="page-title">Overzicht van alle <em>AI-tools</em></h1>
+    <p class="page-intro">Een overzicht van de meest interessante AI-tools voor het onderwijs — van tekstverwerking tot datavisualisatie, van taaltools tot wetenschappelijke simulaties. Gebruik het zoekveld om snel een tool te vinden.</p>
+  </header>
+
+  <div class="search-wrap r">
+    <input class="search-input" type="search" id="search" placeholder="Zoek op naam, beschrijving of categorie…" autocomplete="off">
+  </div>
+
+  <nav class="toc r">
+    <span class="toc-label">Categorieën</span>
+    <div class="toc-items">
+      <a class="toc-link" href="#schrijven">Schrijven &amp; taal</a>
+      <a class="toc-link" href="#onderzoek">Onderzoek &amp; bronnen</a>
+      <a class="toc-link" href="#lesvoorbereiding">Lesvoorbereiding</a>
+      <a class="toc-link" href="#visualisatie">Data &amp; visualisatie</a>
+      <a class="toc-link" href="#wetenschap">Wetenschap &amp; wiskunde</a>
+      <a class="toc-link" href="#talen">Talen leren</a>
+      <a class="toc-link" href="#media">Media &amp; ethiek</a>
+      <a class="toc-link" href="#geletterdheid">AI-geletterdheid</a>
+      <a class="toc-link" href="#economie">Economie &amp; business</a>
+      <a class="toc-link" href="#creatief">Creatief &amp; beelden</a>
+      <a class="toc-link" href="#nieuws">AI-nieuws</a>
+    </div>
+  </nav>
+
+  <div class="no-results" id="no-results">Geen tools gevonden voor deze zoekopdracht.</div>
+
+  <section class="cat-group r" id="schrijven">
+    <div class="cat-head"><h2 class="cat-title">Schrijven & taal</h2><span class="cat-count">8 tools</span></div>
+    <div class="tool-grid">
+      <a class="tool-card" href="https://gemini.google.com" target="_blank" rel="noopener" data-tags="schrijven taal feedback algemeen">
+        <div class="tool-top"><span class="tool-name">Gemini</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">gemini.google.com</div>
+        <div class="tool-desc">De AI van Google, geïntegreerd in je schoolaccount. Schrijfhulp, feedback, lesmateriaal genereren en Gems aanmaken.</div>
+        <div class="tool-tags"><span class="tool-tag">Google Workspace</span><span class="tool-tag">Gems</span></div>
+      </a>
+      <a class="tool-card" href="https://claude.ai" target="_blank" rel="noopener" data-tags="schrijven feedback analyse">
+        <div class="tool-top"><span class="tool-name">Claude</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">claude.ai</div>
+        <div class="tool-desc">AI-assistent sterk in het verwerken van lange teksten, nuanceren en stapsgewijze uitleg. Goed alternatief voor Gemini.</div>
+        <div class="tool-tags"><span class="tool-tag">Tekst</span><span class="tool-tag">Analyse</span></div>
+      </a>
+      <a class="tool-card" href="https://www.deepl.com" target="_blank" rel="noopener" data-tags="vertalen taal schrijven">
+        <div class="tool-top"><span class="tool-name">DeepL</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">deepl.com</div>
+        <div class="tool-desc">De nauwkeurigste AI-vertaler op dit moment. Vertaalt ook Word- en PDF-documenten in één klik.</div>
+        <div class="tool-tags"><span class="tool-tag">Vertalen</span><span class="tool-tag">Documenten</span></div>
+      </a>
+      <a class="tool-card" href="https://quillbot.com" target="_blank" rel="noopener" data-tags="schrijven parafraseren herformuleren">
+        <div class="tool-top"><span class="tool-name">QuillBot</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">quillbot.com</div>
+        <div class="tool-desc">Tekst herformuleren, samenvatten en grammatica controleren. Handig om leerlingen te leren herformuleren.</div>
+        <div class="tool-tags"><span class="tool-tag">Parafraseren</span><span class="tool-tag">Samenvatten</span></div>
+      </a>
+      <a class="tool-card" href="https://languagetool.org/nl" target="_blank" rel="noopener" data-tags="schrijven grammatica spelling taal">
+        <div class="tool-top"><span class="tool-name">LanguageTool</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">languagetool.org</div>
+        <div class="tool-desc">Grammatica- en stijlcontrole voor Nederlands, Frans, Engels en meer. Werkt als browserextensie.</div>
+        <div class="tool-tags"><span class="tool-tag">Grammatica</span><span class="tool-tag">Extensie</span></div>
+      </a>
+      <a class="tool-card" href="https://www.grammarly.com" target="_blank" rel="noopener" data-tags="schrijven grammatica engels">
+        <div class="tool-top"><span class="tool-name">Grammarly</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">grammarly.com</div>
+        <div class="tool-desc">AI-schrijfassistent voor Engels. Corrigeert grammatica, stijl en toon. Ideaal voor engelslessen.</div>
+        <div class="tool-tags"><span class="tool-tag">Engels</span><span class="tool-tag">Stijl</span></div>
+      </a>
+      <a class="tool-card" href="https://twee.com" target="_blank" rel="noopener" data-tags="schrijven taal oefeningen lesmateriaal">
+        <div class="tool-top"><span class="tool-name">Twee</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">twee.com</div>
+        <div class="tool-desc">AI-tool voor taaldocenten. Genereert oefeningen, leesvragen en dialoogopdrachten in seconden.</div>
+        <div class="tool-tags"><span class="tool-tag">Taalonderwijs</span><span class="tool-tag">Oefeningen</span></div>
+      </a>
+      <a class="tool-card" href="https://www.speechify.com" target="_blank" rel="noopener" data-tags="schrijven tekst lezen voorlezen">
+        <div class="tool-top"><span class="tool-name">Speechify</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">speechify.com</div>
+        <div class="tool-desc">Elke tekst laten voorlezen door een realistische AI-stem. Handig voor leerlingen met dyslexie of voor luisteroefeningen.</div>
+        <div class="tool-tags"><span class="tool-tag">Tekst naar spraak</span><span class="tool-tag">Inclusie</span></div>
+      </a>
+    </div>
+  </section>
+
+  <section class="cat-group r" id="onderzoek">
+    <div class="cat-head"><h2 class="cat-title">Onderzoek & bronnen</h2><span class="cat-count">7 tools</span></div>
+    <div class="tool-grid">
+      <a class="tool-card" href="https://perplexity.ai" target="_blank" rel="noopener" data-tags="onderzoek bronnen zoeken factcheck">
+        <div class="tool-top"><span class="tool-name">Perplexity</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">perplexity.ai</div>
+        <div class="tool-desc">AI-zoekmachine die antwoorden geeft mét bronvermeldingen. Ideaal om broncritiek te oefenen: leerlingen kunnen de bronnen controleren.</div>
+        <div class="tool-tags"><span class="tool-tag">Bronvermelding</span><span class="tool-tag">Broncritiek</span></div>
+      </a>
+      <a class="tool-card" href="https://notebooklm.google.com" target="_blank" rel="noopener" data-tags="onderzoek bronnen documenten samenvatten">
+        <div class="tool-top"><span class="tool-name">NotebookLM</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">notebooklm.google.com</div>
+        <div class="tool-desc">Upload eigen documenten en stel er vragen over. De AI antwoordt uitsluitend op basis van jouw bronnen — geen hallucinaties.</div>
+        <div class="tool-tags"><span class="tool-tag">Google</span><span class="tool-tag">Eigen bronnen</span></div>
+      </a>
+      <a class="tool-card" href="https://elicit.org" target="_blank" rel="noopener" data-tags="onderzoek wetenschap artikels">
+        <div class="tool-top"><span class="tool-name">Elicit</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">elicit.org</div>
+        <div class="tool-desc">AI-tool voor wetenschappelijk literatuuronderzoek. Zoekt relevante papers en vat de bevindingen samen.</div>
+        <div class="tool-tags"><span class="tool-tag">Wetenschap</span><span class="tool-tag">Literatuur</span></div>
+      </a>
+      <a class="tool-card" href="https://www.connectedpapers.com" target="_blank" rel="noopener" data-tags="onderzoek wetenschap papers netwerk">
+        <div class="tool-top"><span class="tool-name">Connected Papers</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">connectedpapers.com</div>
+        <div class="tool-desc">Visualiseert het netwerk van wetenschappelijke papers rond een onderwerp. Handig voor diepgaand onderzoek.</div>
+        <div class="tool-tags"><span class="tool-tag">Visualisatie</span><span class="tool-tag">Papers</span></div>
+      </a>
+      <a class="tool-card" href="https://www.semanticscholar.org" target="_blank" rel="noopener" data-tags="onderzoek wetenschap gratis">
+        <div class="tool-top"><span class="tool-name">Semantic Scholar</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">semanticscholar.org</div>
+        <div class="tool-desc">Gratis zoekmachine voor wetenschappelijke publicaties, met AI-samenvattingen per paper.</div>
+        <div class="tool-tags"><span class="tool-tag">Academisch</span><span class="tool-tag">Open access</span></div>
+      </a>
+      <a class="tool-card" href="https://www.jstor.org" target="_blank" rel="noopener" data-tags="onderzoek bronnen academisch">
+        <div class="tool-top"><span class="tool-name">JSTOR</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">jstor.org</div>
+        <div class="tool-desc">Grote bibliotheek van academische tijdschriften en boeken. Veel artikelen zijn gratis leesbaar na registratie.</div>
+        <div class="tool-tags"><span class="tool-tag">Bibliotheek</span><span class="tool-tag">Tijdschriften</span></div>
+      </a>
+      <a class="tool-card" href="https://researchrabbit.ai" target="_blank" rel="noopener" data-tags="onderzoek papers literatuur">
+        <div class="tool-top"><span class="tool-name">ResearchRabbit</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">researchrabbit.ai</div>
+        <div class="tool-desc">Ontdek gerelateerde papers en auteurs via een visueel netwerk. Zo vind je snel de meest relevante bronnen.</div>
+        <div class="tool-tags"><span class="tool-tag">Netwerk</span><span class="tool-tag">Ontdekken</span></div>
+      </a>
+    </div>
+  </section>
+
+  <section class="cat-group r" id="lesvoorbereiding">
+    <div class="cat-head"><h2 class="cat-title">Lesvoorbereiding & lesgeven</h2><span class="cat-count">6 tools</span></div>
+    <div class="tool-grid">
+      <a class="tool-card" href="https://magicschool.ai" target="_blank" rel="noopener" data-tags="lesvoorbereiding lesmateriaal tools leraar">
+        <div class="tool-top"><span class="tool-name">MagicSchool AI</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">magicschool.ai</div>
+        <div class="tool-desc">Meer dan 60 AI-tools voor leraren: lesplannen, rubrieken, differentiatie, ouderbrieven en meer — in één platform.</div>
+        <div class="tool-tags"><span class="tool-tag">Lesplan</span><span class="tool-tag">Rubriek</span><span class="tool-tag">Differentiatie</span></div>
+      </a>
+      <a class="tool-card" href="https://teachermatic.com" target="_blank" rel="noopener" data-tags="lesvoorbereiding lesmateriaal quizzen">
+        <div class="tool-top"><span class="tool-name">Teachermatic</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">teachermatic.com</div>
+        <div class="tool-desc">AI-generator voor lesmateriaal: quizzen, rubrieken, lesplannen en samenvattingen. Speciaal voor onderwijsprofessionals.</div>
+        <div class="tool-tags"><span class="tool-tag">Quiz</span><span class="tool-tag">Lesplan</span></div>
+      </a>
+      <a class="tool-card" href="https://www.canva.com" target="_blank" rel="noopener" data-tags="lesvoorbereiding presentaties ontwerp">
+        <div class="tool-top"><span class="tool-name">Canva AI</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">canva.com</div>
+        <div class="tool-desc">Presentaties, werkbladen en posters maken met AI-hulp. Gratis schoolversie met extra functies.</div>
+        <div class="tool-tags"><span class="tool-tag">Ontwerp</span><span class="tool-tag">Presentatie</span></div>
+      </a>
+      <a class="tool-card" href="https://quizizz.com" target="_blank" rel="noopener" data-tags="lesvoorbereiding quiz toets gamificatie">
+        <div class="tool-top"><span class="tool-name">Quizizz</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">quizizz.com</div>
+        <div class="tool-desc">Interactieve quizzen met AI-hulp. Leerlingen spelen op eigen tempo, leraar ziet live resultaten. Vragen importeren via AI.</div>
+        <div class="tool-tags"><span class="tool-tag">Quiz</span><span class="tool-tag">Multiplayer</span></div>
+      </a>
+      <a class="tool-card" href="https://kahoot.com" target="_blank" rel="noopener" data-tags="lesvoorbereiding quiz gamificatie klassikaal">
+        <div class="tool-top"><span class="tool-name">Kahoot!</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">kahoot.com</div>
+        <div class="tool-desc">Klassikale quizzen met pincode of QR-code. Live scorebord. Laat Gemini de vragen schrijven en plak ze erin.</div>
+        <div class="tool-tags"><span class="tool-tag">Klassikaal</span><span class="tool-tag">Pincode</span></div>
+      </a>
+      <a class="tool-card" href="https://cograder.com" target="_blank" rel="noopener" data-tags="lesvoorbereiding feedback evaluatie nakijken">
+        <div class="tool-top"><span class="tool-name">CoGrader</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">cograder.com</div>
+        <div class="tool-desc">AI-tool die open vragen beoordeelt en gerichte feedback geeft op basis van een rubriek. Bespaart nakijktijd.</div>
+        <div class="tool-tags"><span class="tool-tag">Nakijken</span><span class="tool-tag">Feedback</span></div>
+      </a>
+      <a class="tool-card" href="https://app.diffit.me" target="_blank" rel="noopener" data-tags="lesvoorbereiding differentiatie teksten niveaus aanpassen">
+        <div class="tool-top"><span class="tool-name">Diffit</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">app.diffit.me</div>
+        <div class="tool-desc">Genereert teksten, vragen en werkbladen op het juiste leesniveau. Voer een onderwerp of URL in en Diffit maakt gedifferentieerd materiaal voor verschillende niveaus.</div>
+        <div class="tool-tags"><span class="tool-tag">Differentiatie</span><span class="tool-tag">Niveaus</span></div>
+      </a>
+    </div>
+  </section>
+
+  <section class="cat-group r" id="visualisatie">
+    <div class="cat-head"><h2 class="cat-title">Data & visualisatie</h2><span class="cat-count">6 tools</span></div>
+    <div class="tool-grid">
+      <a class="tool-card" href="https://lookerstudio.google.com" target="_blank" rel="noopener" data-tags="data visualisatie dashboards statistiek">
+        <div class="tool-top"><span class="tool-name">Looker Studio</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">lookerstudio.google.com</div>
+        <div class="tool-desc">Gratis tool van Google voor interactieve dashboards. Koppelt aan Google Sheets, Analytics en meer.</div>
+        <div class="tool-tags"><span class="tool-tag">Google</span><span class="tool-tag">Dashboard</span></div>
+      </a>
+      <a class="tool-card" href="https://www.gapminder.org" target="_blank" rel="noopener" data-tags="data visualisatie werelddata statistiek">
+        <div class="tool-top"><span class="tool-name">Gapminder</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">gapminder.org</div>
+        <div class="tool-desc">Interactieve werelddata over armoede, gezondheid en onderwijs. Visualiseert trends over decennia.</div>
+        <div class="tool-tags"><span class="tool-tag">Werelddata</span><span class="tool-tag">Trends</span></div>
+      </a>
+      <a class="tool-card" href="https://ourworldindata.org" target="_blank" rel="noopener" data-tags="data visualisatie statistiek grafiek">
+        <div class="tool-top"><span class="tool-name">Our World in Data</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">ourworldindata.org</div>
+        <div class="tool-desc">Rijke databron voor mondiale uitdagingen: klimaat, energie, gezondheid. Alle grafieken zijn vrij te gebruiken.</div>
+        <div class="tool-tags"><span class="tool-tag">Open data</span><span class="tool-tag">Grafieken</span></div>
+      </a>
+      <a class="tool-card" href="https://statbel.fgov.be/nl/open-data" target="_blank" rel="noopener" data-tags="data statistiek belgie economie">
+        <div class="tool-top"><span class="tool-name">Statbel</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">statbel.fgov.be</div>
+        <div class="tool-desc">Officiële Belgische statistieken: bevolking, economie, arbeidsmarkt. Gemini helpt de data interpreteren.</div>
+        <div class="tool-tags"><span class="tool-tag">België</span><span class="tool-tag">Open data</span></div>
+      </a>
+      <a class="tool-card" href="https://timeline.knightlab.com" target="_blank" rel="noopener" data-tags="data visualisatie tijdlijn">
+        <div class="tool-top"><span class="tool-name">Timeline JS</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">timeline.knightlab.com</div>
+        <div class="tool-desc">Interactieve tijdlijnen via Google Sheets. Gemini structureert de data — tijdlijn klaar in 10 minuten.</div>
+        <div class="tool-tags"><span class="tool-tag">Tijdlijn</span><span class="tool-tag">Geschiedenis</span></div>
+      </a>
+      <a class="tool-card" href="https://analytics.google.com" target="_blank" rel="noopener" data-tags="data visualisatie marketing statistiek">
+        <div class="tool-top"><span class="tool-name">Google Analytics 4</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">analytics.google.com</div>
+        <div class="tool-desc">Websitestatistieken analyseren. Ideaal voor commerciële vakken — leerlingen analyseren echte webshopdata.</div>
+        <div class="tool-tags"><span class="tool-tag">Marketing</span><span class="tool-tag">E-commerce</span></div>
+      </a>
+    </div>
+  </section>
+
+  <section class="cat-group r" id="wetenschap">
+    <div class="cat-head"><h2 class="cat-title">Wetenschap & wiskunde</h2><span class="cat-count">8 tools</span></div>
+    <div class="tool-grid">
+      <a class="tool-card" href="https://www.geogebra.org" target="_blank" rel="noopener" data-tags="wiskunde meetkunde algebra grafiek">
+        <div class="tool-top"><span class="tool-name">GeoGebra</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">geogebra.org</div>
+        <div class="tool-desc">Interactieve wiskunde-omgeving voor meetkunde, algebra, statistiek en calculus. Met kant-en-klare lessen.</div>
+        <div class="tool-tags"><span class="tool-tag">Wiskunde</span><span class="tool-tag">Meetkunde</span></div>
+      </a>
+      <a class="tool-card" href="https://www.desmos.com/calculator" target="_blank" rel="noopener" data-tags="wiskunde grafiek functies rekenen">
+        <div class="tool-top"><span class="tool-name">Desmos</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">desmos.com</div>
+        <div class="tool-desc">Grafische rekenmachine en activiteitenbouwer. Leerlingen verkennen functies interactief.</div>
+        <div class="tool-tags"><span class="tool-tag">Functies</span><span class="tool-tag">Klassikaal</span></div>
+      </a>
+      <a class="tool-card" href="https://www.wolframalpha.com" target="_blank" rel="noopener" data-tags="wiskunde berekeningen wetenschappen">
+        <div class="tool-top"><span class="tool-name">Wolfram Alpha</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">wolframalpha.com</div>
+        <div class="tool-desc">Rekenmachine voor wiskunde en wetenschap. Toont stap-voor-stap oplossingen.</div>
+        <div class="tool-tags"><span class="tool-tag">Stap voor stap</span><span class="tool-tag">Wetenschap</span></div>
+      </a>
+      <a class="tool-card" href="https://phet.colorado.edu/nl" target="_blank" rel="noopener" data-tags="wetenschap simulatie fysica chemie biologie">
+        <div class="tool-top"><span class="tool-name">PhET Simulations</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">phet.colorado.edu</div>
+        <div class="tool-desc">Gratis interactieve simulaties voor fysica, chemie, biologie en wiskunde. In het Nederlands beschikbaar.</div>
+        <div class="tool-tags"><span class="tool-tag">Simulatie</span><span class="tool-tag">Practicum</span></div>
+      </a>
+      <a class="tool-card" href="https://symbolab.com" target="_blank" rel="noopener" data-tags="wiskunde algebra berekeningen">
+        <div class="tool-top"><span class="tool-name">Symbolab</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">symbolab.com</div>
+        <div class="tool-desc">Wiskundige berekeningen met uitgebreide stap-voor-stap uitleg voor algebra en calculus.</div>
+        <div class="tool-tags"><span class="tool-tag">Algebra</span><span class="tool-tag">Calculus</span></div>
+      </a>
+      <a class="tool-card" href="https://molview.org" target="_blank" rel="noopener" data-tags="wetenschap chemie moleculen visualisatie">
+        <div class="tool-top"><span class="tool-name">MolView</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">molview.org</div>
+        <div class="tool-desc">Moleculaire structuren visualiseren in 2D en 3D. Leerlingen bouwen en draaien moleculen in de browser.</div>
+        <div class="tool-tags"><span class="tool-tag">Chemie</span><span class="tool-tag">3D</span></div>
+      </a>
+      <a class="tool-card" href="https://alphafold.ebi.ac.uk" target="_blank" rel="noopener" data-tags="wetenschap biologie eiwitten ai">
+        <div class="tool-top"><span class="tool-name">AlphaFold</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">alphafold.ebi.ac.uk</div>
+        <div class="tool-desc">DeepMinds AI die eiwitstructuren voorspelt. Krachtig voorbeeld van AI in de wetenschap.</div>
+        <div class="tool-tags"><span class="tool-tag">Biologie</span><span class="tool-tag">AI-voorbeeld</span></div>
+      </a>
+      <a class="tool-card" href="https://www.inaturalist.org" target="_blank" rel="noopener" data-tags="wetenschap biologie natuur soorten">
+        <div class="tool-top"><span class="tool-name">iNaturalist</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">inaturalist.org</div>
+        <div class="tool-desc">Foto’s van planten en dieren uploaden — AI identificeert de soort. Leerlingen doen citizen science.</div>
+        <div class="tool-tags"><span class="tool-tag">Biologie</span><span class="tool-tag">Citizen science</span></div>
+      </a>
+    </div>
+  </section>
+
+  <section class="cat-group r" id="talen">
+    <div class="cat-head"><h2 class="cat-title">Talen leren</h2><span class="cat-count">6 tools</span></div>
+    <div class="tool-grid">
+      <a class="tool-card" href="https://www.duolingo.com" target="_blank" rel="noopener" data-tags="talen leren oefenen">
+        <div class="tool-top"><span class="tool-name">Duolingo</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">duolingo.com</div>
+        <div class="tool-desc">Taalleerprogramma met gamificatie. AI past zich aan het niveau van de leerling aan.</div>
+        <div class="tool-tags"><span class="tool-tag">Gamificatie</span><span class="tool-tag">Vocabulaire</span></div>
+      </a>
+      <a class="tool-card" href="https://gliglish.com" target="_blank" rel="noopener" data-tags="talen spreken conversatie">
+        <div class="tool-top"><span class="tool-name">Gliglish</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">gliglish.com</div>
+        <div class="tool-desc">Spreekvaardigheid oefenen met een AI-gesprekspartner. Directe feedback op uitspraak en woordkeuze.</div>
+        <div class="tool-tags"><span class="tool-tag">Spreken</span><span class="tool-tag">Feedback</span></div>
+      </a>
+      <a class="tool-card" href="https://elsaspeak.com" target="_blank" rel="noopener" data-tags="talen spreken engels">
+        <div class="tool-top"><span class="tool-name">ELSA Speak</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">elsaspeak.com</div>
+        <div class="tool-desc">AI-coach voor Engelse uitspraak. Analyseert per fonem en geeft gerichte oefeningen.</div>
+        <div class="tool-tags"><span class="tool-tag">Engels</span><span class="tool-tag">Uitspraak</span></div>
+      </a>
+      <a class="tool-card" href="https://context.reverso.net" target="_blank" rel="noopener" data-tags="talen vertalen context zinnen">
+        <div class="tool-top"><span class="tool-name">Reverso Context</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">context.reverso.net</div>
+        <div class="tool-desc">Woorden in context vertalen met echte voorbeeldzinnen. Toont hoe native speakers een woord gebruiken.</div>
+        <div class="tool-tags"><span class="tool-tag">Context</span><span class="tool-tag">Vertalen</span></div>
+      </a>
+      <a class="tool-card" href="https://forvo.com" target="_blank" rel="noopener" data-tags="talen uitspraak audio">
+        <div class="tool-top"><span class="tool-name">Forvo</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">forvo.com</div>
+        <div class="tool-desc">Uitspraaklexicon met opnames van native speakers wereldwijd.</div>
+        <div class="tool-tags"><span class="tool-tag">Uitspraak</span><span class="tool-tag">Audio</span></div>
+      </a>
+      <a class="tool-card" href="https://newsela.com" target="_blank" rel="noopener" data-tags="talen leesvaardigheid nieuws">
+        <div class="tool-top"><span class="tool-name">Newsela</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">newsela.com</div>
+        <div class="tool-desc">Nieuwsartikelen op 5 leesniveaus — hetzelfde artikel in meerdere moeilijkheidsgraden. Differentiatie.</div>
+        <div class="tool-tags"><span class="tool-tag">Differentiatie</span><span class="tool-tag">Nieuws</span></div>
+      </a>
+    </div>
+  </section>
+
+  <section class="cat-group r" id="media">
+    <div class="cat-head"><h2 class="cat-title">Media & ethiek</h2><span class="cat-count">6 tools</span></div>
+    <div class="tool-grid">
+      <a class="tool-card" href="https://www.invid-project.eu" target="_blank" rel="noopener" data-tags="media factcheck video deepfake">
+        <div class="tool-top"><span class="tool-name">InVID / WeVerify</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">invid-project.eu</div>
+        <div class="tool-desc">Browserextensie om video’s en afbeeldingen te verifiëren. Detecteert manipulaties en deepfakes.</div>
+        <div class="tool-tags"><span class="tool-tag">Deepfake</span><span class="tool-tag">Verificatie</span></div>
+      </a>
+      <a class="tool-card" href="https://www.aiornot.com" target="_blank" rel="noopener" data-tags="media ai detectie afbeelding">
+        <div class="tool-top"><span class="tool-name">AI or Not</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">aiornot.com</div>
+        <div class="tool-desc">Upload een afbeelding — schat in of het AI-gegenereerd is. Goed startpunt voor discussie over beeldmanipulatie.</div>
+        <div class="tool-tags"><span class="tool-tag">AI-detectie</span><span class="tool-tag">Afbeelding</span></div>
+      </a>
+      <a class="tool-card" href="https://scanner.deepware.ai" target="_blank" rel="noopener" data-tags="media deepfake video detectie">
+        <div class="tool-top"><span class="tool-name">Deepware Scanner</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">scanner.deepware.ai</div>
+        <div class="tool-desc">Scant video’s op deepfake-manipulaties. Geeft een betrouwbaarheidsscore per fragment.</div>
+        <div class="tool-tags"><span class="tool-tag">Deepfake</span><span class="tool-tag">Video</span></div>
+      </a>
+      <a class="tool-card" href="https://www.allsides.com" target="_blank" rel="noopener" data-tags="media bias nieuws">
+        <div class="tool-top"><span class="tool-name">AllSides</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">allsides.com</div>
+        <div class="tool-desc">Vergelijkt hoe links, centrum en rechts media hetzelfde nieuws brengen. Maakt mediabias bespreekbaar.</div>
+        <div class="tool-tags"><span class="tool-tag">Mediabias</span><span class="tool-tag">Perspectief</span></div>
+      </a>
+      <a class="tool-card" href="https://moralmachine.mit.edu" target="_blank" rel="noopener" data-tags="media ethiek ai dilemma filosofie">
+        <div class="tool-top"><span class="tool-name">Moral Machine</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">moralmachine.mit.edu</div>
+        <div class="tool-desc">MIT-experiment over ethische keuzes van zelfrijdende auto’s. Krachtige discussiestarter over AI en ethiek.</div>
+        <div class="tool-tags"><span class="tool-tag">Ethiek</span><span class="tool-tag">Discussie</span></div>
+      </a>
+      <a class="tool-card" href="https://getbadnews.com/nl" target="_blank" rel="noopener" data-tags="media desinformatie fake news spel">
+        <div class="tool-top"><span class="tool-name">Bad News</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">getbadnews.com</div>
+        <div class="tool-desc">Simulatiespel waarbij leerlingen een fake news-verspreider spelen. Ze leren de technieken van desinformatie kennen.</div>
+        <div class="tool-tags"><span class="tool-tag">Desinformatie</span><span class="tool-tag">Spel</span></div>
+      </a>
+    </div>
+  </section>
+
+  <section class="cat-group r" id="geletterdheid">
+    <div class="cat-head"><h2 class="cat-title">AI-geletterdheid</h2><span class="cat-count">9 tools</span></div>
+    <div class="tool-grid">
+      <a class="tool-card" href="https://teachablemachine.withgoogle.com" target="_blank" rel="noopener" data-tags="geletterdheid machine learning ai">
+        <div class="tool-top"><span class="tool-name">Teachable Machine</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">teachablemachine.withgoogle.com</div>
+        <div class="tool-desc">Train zelf een AI-model zonder programmeerkennis. Leerlingen begrijpen hoe machine learning werkt.</div>
+        <div class="tool-tags"><span class="tool-tag">Machine learning</span><span class="tool-tag">Google</span></div>
+      </a>
+      <a class="tool-card" href="https://quickdraw.withgoogle.com" target="_blank" rel="noopener" data-tags="geletterdheid ai tekenen herkenning">
+        <div class="tool-top"><span class="tool-name">Quick Draw!</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">quickdraw.withgoogle.com</div>
+        <div class="tool-desc">Teken iets — een AI raadt wat het is. Spelenderwijs inzicht in hoe neurale netwerken beelden herkennen.</div>
+        <div class="tool-tags"><span class="tool-tag">Spelenderwijs</span><span class="tool-tag">Neurale netwerken</span></div>
+      </a>
+      <a class="tool-card" href="https://code.org/oceans" target="_blank" rel="noopener" data-tags="geletterdheid ai leren ocean">
+        <div class="tool-top"><span class="tool-name">AI for Oceans</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">code.org/oceans</div>
+        <div class="tool-desc">Leerlingen trainen een AI om oceaanvuil te herkennen. Toegankelijke uitleg van hoe AI geleerd wordt.</div>
+        <div class="tool-tags"><span class="tool-tag">Primair</span><span class="tool-tag">Milieu</span></div>
+      </a>
+      <a class="tool-card" href="https://machinelearningforkids.co.uk" target="_blank" rel="noopener" data-tags="geletterdheid machine learning scratch">
+        <div class="tool-top"><span class="tool-name">ML for Kids</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">machinelearningforkids.co.uk</div>
+        <div class="tool-desc">Machine learning uitleggen via Scratch-projecten. Leerlingen trainen een model en maken er een spel mee.</div>
+        <div class="tool-tags"><span class="tool-tag">Scratch</span><span class="tool-tag">Programmeren</span></div>
+      </a>
+      <a class="tool-card" href="https://survivalofthebestfit.com" target="_blank" rel="noopener" data-tags="geletterdheid ai bias discriminatie spel">
+        <div class="tool-top"><span class="tool-name">Survival of the Best Fit</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">survivalofthebestfit.com</div>
+        <div class="tool-desc">Simulatiespel over AI-bias in hiring. Leerlingen ervaren hoe een AI onbewust discrimineert.</div>
+        <div class="tool-tags"><span class="tool-tag">Bias</span><span class="tool-tag">Ethiek</span></div>
+      </a>
+      <a class="tool-card" href="https://csforall.org/en-US/activities/hour-of-ai" target="_blank" rel="noopener" data-tags="geletterdheid ai activiteiten lessen hands-on hour of ai code csforall">
+        <div class="tool-top"><span class="tool-name">Hour of AI — Activiteitencatalogus</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">csforall.org/activities/hour-of-ai</div>
+        <div class="tool-desc">Meer dan 100 gratis hands-on AI-activiteiten voor alle leeftijden en niveaus — van muziek en games tot onbegeleide oefeningen zonder computer. Onderdeel van het globale Hour of AI-initiatief van CSforALL en Code.org.</div>
+        <div class="tool-tags"><span class="tool-tag">100+ activiteiten</span><span class="tool-tag">Alle leeftijden</span><span class="tool-tag">Geen account</span></div>
+      </a>
+      <a class="tool-card" href="https://csforall.org/en-US" target="_blank" rel="noopener" data-tags="geletterdheid ai informatica onderwijs curriculum">
+        <div class="tool-top"><span class="tool-name">CS for All</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">csforall.org</div>
+        <div class="tool-desc">Initiatief dat informatica- en AI-onderwijs toegankelijk maakt voor alle leerlingen. Lesmateriaal, curricula en professionele ontwikkeling voor leraren.</div>
+        <div class="tool-tags"><span class="tool-tag">Curriculum</span><span class="tool-tag">Informatica</span></div>
+      </a>
+      <a class="tool-card" href="https://cohere.com/llmu/sentence-word-embeddings" target="_blank" rel="noopener" data-tags="geletterdheid ai uitleg embeddings taalmodel stem">
+        <div class="tool-top"><span class="tool-name">Cohere LLM University</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">cohere.com/llmu</div>
+        <div class="tool-desc">Gratis cursusmateriaal over hoe grote taalmodellen werken — inclusief word embeddings en semantische zoekacties. Ideaal voor STEM-leerlingen die dieper willen gaan.</div>
+        <div class="tool-tags"><span class="tool-tag">STEM</span><span class="tool-tag">Taalmodellen</span></div>
+      </a>
+      <a class="tool-card" href="https://huggingface.co/spaces" target="_blank" rel="noopener" data-tags="geletterdheid ai modellen demos stem experimenteren">
+        <div class="tool-top"><span class="tool-name">Hugging Face Spaces</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">huggingface.co/spaces</div>
+        <div class="tool-desc">Duizenden gratis AI-demo's om mee te experimenteren: beeldherkenning, tekstgeneratie, vertaling en meer. Toont de breedte van wat AI kan.</div>
+        <div class="tool-tags"><span class="tool-tag">STEM</span><span class="tool-tag">Experimenteren</span></div>
+      </a>
+    </div>
+  </section>
+
+  <section class="cat-group r" id="economie">
+    <div class="cat-head"><h2 class="cat-title">Economie & business</h2><span class="cat-count">5 tools</span></div>
+    <div class="tool-grid">
+      <a class="tool-card" href="https://www.shopify.com" target="_blank" rel="noopener" data-tags="economie business webshop">
+        <div class="tool-top"><span class="tool-name">Shopify</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">shopify.com</div>
+        <div class="tool-desc">Webshop-platform met gratis proefversie. Leerlingen bouwen een echte webshop en leren e-commerce in de praktijk.</div>
+        <div class="tool-tags"><span class="tool-tag">E-commerce</span><span class="tool-tag">Praktijk</span></div>
+      </a>
+      <a class="tool-card" href="https://hubspot.com" target="_blank" rel="noopener" data-tags="economie business crm">
+        <div class="tool-top"><span class="tool-name">HubSpot CRM</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">hubspot.com</div>
+        <div class="tool-desc">Gratis CRM-platform voor klantbeheer, e-mailmarketing en sales. Ideaal voor commerciële vakken.</div>
+        <div class="tool-tags"><span class="tool-tag">CRM</span><span class="tool-tag">Marketing</span></div>
+      </a>
+      <a class="tool-card" href="https://neilpatel.com/ubersuggest" target="_blank" rel="noopener" data-tags="economie marketing seo">
+        <div class="tool-top"><span class="tool-name">Ubersuggest</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">neilpatel.com/ubersuggest</div>
+        <div class="tool-desc">Gratis SEO-tool voor zoekwoordenonderzoek en concurrentieanalyse. Ideaal voor marketinglessen.</div>
+        <div class="tool-tags"><span class="tool-tag">SEO</span><span class="tool-tag">Marketing</span></div>
+      </a>
+      <a class="tool-card" href="https://cesim.com" target="_blank" rel="noopener" data-tags="economie business simulatie strategie">
+        <div class="tool-top"><span class="tool-name">Cesim</span><span class="tool-badge school">School</span></div>
+        <div class="tool-url">cesim.com</div>
+        <div class="tool-desc">Business simulatiegame waarbij leerlingen een bedrijf managen — marketing, productie en financiën.</div>
+        <div class="tool-tags"><span class="tool-tag">Simulatie</span><span class="tool-tag">Management</span></div>
+      </a>
+      <a class="tool-card" href="https://lookerstudio.google.com" target="_blank" rel="noopener" data-tags="economie data visualisatie">
+        <div class="tool-top"><span class="tool-name">Looker Studio</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">lookerstudio.google.com</div>
+        <div class="tool-desc">Gratis dashboards voor data-analyse. Leerlingen visualiseren bedrijfsdata en trekken conclusies.</div>
+        <div class="tool-tags"><span class="tool-tag">Dashboard</span><span class="tool-tag">Data</span></div>
+      </a>
+    </div>
+  </section>
+
+  <section class="cat-group r" id="creatief">
+    <div class="cat-head"><h2 class="cat-title">Creatief &amp; beelden</h2><span class="cat-count">2 tools</span></div>
+    <div class="tool-grid">
+      <a class="tool-card" href="https://www.eggnog.ai/entertimeportal" target="_blank" rel="noopener" data-tags="geschiedenis creatief beelden historisch portret tijdreizen">
+        <div class="tool-top"><span class="tool-name">Eggnog AI — Time Portal</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">eggnog.ai</div>
+        <div class="tool-desc">Laad een foto op en verplaats jezelf naar een historische periode. Ideaal voor geschiedenislessen — leerlingen zien zichzelf in een andere tijd en context.</div>
+        <div class="tool-tags"><span class="tool-tag">Geschiedenis</span><span class="tool-tag">Portret</span></div>
+      </a>
+      <a class="tool-card" href="https://www.craiyon.com/en" target="_blank" rel="noopener" data-tags="creatief beeldgenerator afbeelding genereren gratis geen account">
+        <div class="tool-top"><span class="tool-name">Craiyon</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">craiyon.com</div>
+        <div class="tool-desc">Gratis AI-beeldgenerator, ook zonder account. Leerlingen genereren afbeeldingen via tekstomschrijvingen. Goed vertrekpunt voor discussie over AI en auteursrecht.</div>
+        <div class="tool-tags"><span class="tool-tag">Beeldgeneratie</span><span class="tool-tag">Geen account</span></div>
+      </a>
+    </div>
+  </section>
+
+  <section class="cat-group r" id="nieuws">
+    <div class="cat-head"><h2 class="cat-title">AI-nieuws &amp; actueel</h2><span class="cat-count">2 tools</span></div>
+    <div class="tool-grid">
+      <a class="tool-card" href="https://the-decoder.com" target="_blank" rel="noopener" data-tags="nieuws ai actueel blog artikels trends">
+        <div class="tool-top"><span class="tool-name">The Decoder</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">the-decoder.com</div>
+        <div class="tool-desc">Nieuwssite die dagelijks rapporteert over AI-ontwikkelingen. Toegankelijk geschreven, ideaal om de snelle evolutie van AI bij te houden.</div>
+        <div class="tool-tags"><span class="tool-tag">Nieuws</span><span class="tool-tag">Actueel</span></div>
+      </a>
+      <a class="tool-card" href="https://futuretools.io/news" target="_blank" rel="noopener" data-tags="nieuws ai tools overzicht nieuwe releases">
+        <div class="tool-top"><span class="tool-name">FutureTools News</span><span class="tool-badge gratis">Gratis</span></div>
+        <div class="tool-url">futuretools.io/news</div>
+        <div class="tool-desc">Overzicht van de nieuwste AI-tools en releases. Handig om nieuwe tools te ontdekken die relevant kunnen zijn voor het onderwijs.</div>
+        <div class="tool-tags"><span class="tool-tag">Nieuwe tools</span><span class="tool-tag">Ontdekken</span></div>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>Masterclass AI 2026</strong> &middot; Secundair Onderwijs Vlaanderen</p>
+  <p>Don Bosco &middot; 2026</p>
+</footer>
+
+<script>
+const ro = new IntersectionObserver(e => {
+  e.forEach(en => { if(en.isIntersecting){en.target.classList.add('on');ro.unobserve(en.target);} });
+},{threshold:0.06});
+document.querySelectorAll('.r').forEach(el=>ro.observe(el));
+
+const search = document.getElementById('search');
+const noRes  = document.getElementById('no-results');
+search.addEventListener('input', () => {
+  const q = search.value.toLowerCase().trim();
+  let n = 0;
+  document.querySelectorAll('.tool-card').forEach(c => {
+    const match = !q || (c.dataset.tags+' '+c.textContent).toLowerCase().includes(q);
+    c.hidden = !match;
+    if(match) n++;
+  });
+  document.querySelectorAll('.cat-group').forEach(g => {
+    g.style.display = [...g.querySelectorAll('.tool-card')].some(c=>!c.hidden) ? '' : 'none';
+  });
+  noRes.classList.toggle('visible', n===0 && q.length>0);
+});
+</script>
+</body>
+</html>

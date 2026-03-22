@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="nl-BE">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geschiedenis — Masterclass AI 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+<style>
+:root {
+  --bg:#f8f7f4; --bg-alt:#f0ede8; --white:#ffffff;
+  --ink:#1a1a1a; --ink-2:#3d3d3d; --ink-3:#767676; --border:#e0dbd4;
+  --petrol:#0f4c5c; --petrol-l:#e8f2f4; --petrol-m:#1a6b80;
+  --serif:'Lora',Georgia,serif; --sans:system-ui,-apple-system,sans-serif;
+  --mono:'Courier New',monospace; --r:6px;
+  --ease:cubic-bezier(0.25,0,0,1); --content:720px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+:focus-visible{outline:2px solid var(--petrol);outline-offset:3px}
+a{color:var(--petrol)}
+
+/* TOPBALK */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--white);border-bottom:1px solid var(--border);height:56px;display:flex;align-items:center;padding:0 5%;gap:0}
+.topbar-logo{font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol);text-decoration:none;white-space:nowrap;margin-right:2.5rem}
+.progress-steps{display:flex;align-items:center;flex:1;gap:0;overflow-x:auto;scrollbar-width:none}
+.progress-steps::-webkit-scrollbar{display:none}
+.ps-item{display:flex;align-items:center;text-decoration:none;flex-shrink:0}
+.ps-step{display:flex;align-items:center;gap:.45rem;padding:.3rem .7rem;border-radius:4px;font-size:.78rem;color:var(--ink-3);transition:color .15s,background .15s;white-space:nowrap}
+.ps-step .n{font-family:var(--serif);font-size:.7rem;font-weight:600;color:var(--petrol);opacity:.5}
+.ps-item:hover .ps-step{color:var(--petrol);background:var(--petrol-l)}
+.ps-item.active .ps-step{color:var(--petrol);font-weight:500;background:var(--petrol-l)}
+.ps-item.active .ps-step .n{opacity:1}
+.ps-arrow{color:var(--border);font-size:.6rem;margin:0 .1rem}
+
+/* PAGINA */
+.page{margin-top:56px;max-width:var(--content);margin-left:auto;margin-right:auto;padding:0 5% 6rem}
+
+/* HEADER */
+.page-head{padding:3.5rem 0 2.5rem;border-bottom:1px solid var(--border);margin-bottom:2.5rem}
+.page-kicker{font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--petrol);display:block;margin-bottom:.8rem}
+.page-title{font-family:var(--serif);font-size:clamp(2.2rem,4vw,3.4rem);font-weight:600;line-height:1.1;color:var(--ink);letter-spacing:-.02em;margin-bottom:1rem}
+.page-title em{font-style:italic;font-weight:600}
+.page-intro{font-size:1.05rem;line-height:1.85;color:var(--ink-2);max-width:60ch}
+
+/* INHOUDSOPGAVE */
+.toc{margin-bottom:3rem}
+.toc-label{font-size:.62rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:.8rem}
+.toc-items{display:flex;flex-wrap:wrap;gap:.5rem}
+.toc-link{display:inline-flex;align-items:center;gap:0;padding:.42rem .9rem;background:var(--white);border:1px solid var(--border);border-radius:100px;font-size:.83rem;color:var(--ink-2);text-decoration:none;transition:all .18s var(--ease)}
+.toc-link:hover{background:var(--petrol);color:var(--white);border-color:var(--petrol)}
+
+
+/* SECTIES */
+.sect{padding:3rem 0;border-bottom:1px solid var(--border);scroll-margin-top:76px}
+.sect:last-of-type{border-bottom:none}
+.sect-label{font-size:.62rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--petrol);display:block;margin-bottom:.6rem}
+.sect-title{font-family:var(--serif);font-size:1.5rem;font-weight:600;color:var(--ink);letter-spacing:-.01em;margin-bottom:.5rem;line-height:1.25}
+.sect-lead{font-size:.97rem;color:var(--ink-2);line-height:1.8;max-width:66ch;margin-bottom:1.6rem}
+
+/* TOOL-KAARTEN */
+.tool-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin-bottom:1.5rem}
+.tool-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.1rem 1.2rem;transition:box-shadow .2s,border-color .2s}
+.tool-card:hover{box-shadow:0 2px 14px rgba(15,76,92,.08);border-color:var(--petrol-m)}
+.tool-name{font-weight:600;font-size:.9rem;color:var(--ink);margin-bottom:.2rem}
+.tool-url{font-size:.75rem;margin-bottom:.5rem}
+.tool-url a{text-decoration:none}
+.tool-url a:hover{text-decoration:underline}
+.tool-desc{font-size:.82rem;color:var(--ink-3);line-height:1.65}
+
+/* STAPPEN */
+.steps{list-style:none;display:flex;flex-direction:column;gap:.8rem;margin-bottom:1.4rem}
+.steps li{display:flex;align-items:flex-start;gap:1rem;font-size:.95rem;color:var(--ink-2);line-height:1.7}
+.steps li .n{font-family:var(--serif);font-size:.85rem;font-weight:600;color:var(--petrol);flex-shrink:0;width:1.5rem;padding-top:.1rem}
+.steps li strong{color:var(--ink);font-weight:600}
+
+/* CALLOUT */
+.callout{border-left:3px solid var(--petrol);padding:.9rem 1.3rem;background:var(--petrol-l);border-radius:0 var(--r) var(--r) 0;margin-bottom:1.5rem}
+.callout p{font-size:.9rem;color:var(--ink-2);line-height:1.75}
+.callout strong{color:var(--petrol);font-weight:600}
+
+/* PROMPT */
+.prompt-wrap{margin-top:1.8rem;margin-bottom:.5rem}
+.prompt-head{display:flex;align-items:center;justify-content:space-between;background:var(--petrol);padding:.55rem 1rem;border-radius:var(--r) var(--r) 0 0}
+.prompt-head-label{font-size:.68rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.75)}
+.btn-copy{font-family:var(--sans);font-size:.72rem;font-weight:500;background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:4px;padding:.2rem .65rem;cursor:pointer;transition:all .15s}
+.btn-copy:hover{background:rgba(255,255,255,.25)}
+.btn-copy.ok{background:rgba(255,255,255,.3)}
+.prompt-body{font-family:var(--mono);font-size:.83rem;line-height:1.85;color:#c8dce8;background:#0d1a24;border:1px solid #1e3040;border-top:none;border-radius:0 0 var(--r) var(--r);padding:1.2rem 1.3rem;white-space:pre-wrap}
+.pv{color:#7ecfe0;font-weight:600}
+
+/* GEMS */
+.gems-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.1rem;margin-bottom:1.4rem}
+.gem-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.3rem;transition:box-shadow .2s,border-color .2s}
+.gem-card:hover{box-shadow:0 2px 14px rgba(15,76,92,.08);border-color:var(--petrol-m)}
+.gem-head{display:flex;align-items:center;gap:.7rem;margin-bottom:.6rem}
+.gem-icon{width:32px;height:32px;border-radius:var(--r);background:var(--petrol-l);color:var(--petrol);display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0}
+.gem-name{font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--ink)}
+.gem-doel{font-size:.8rem;color:var(--ink-3);line-height:1.6;font-style:italic;margin-bottom:.8rem}
+.gem-instructie{font-family:var(--mono);font-size:.74rem;line-height:1.65;color:var(--ink-2);background:var(--bg-alt);border-left:2px solid var(--petrol);padding:.6rem .8rem;white-space:pre-wrap;border-radius:0 4px 4px 0}
+
+/* PAGINERING */
+.page-nav{display:flex;justify-content:space-between;align-items:center;padding-top:2.5rem;border-top:1px solid var(--border);margin-top:3rem;flex-wrap:wrap;gap:1rem}
+.page-nav a{display:flex;align-items:center;gap:.5rem;font-size:.88rem;color:var(--petrol);text-decoration:none;padding:.5rem .9rem;border:1px solid var(--border);border-radius:var(--r);transition:all .18s}
+.page-nav a:hover{background:var(--petrol-l);border-color:var(--petrol-m)}
+
+/* REVEAL */
+.r{opacity:0;transform:translateY(16px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.r.on{opacity:1;transform:none}
+.r.d1{transition-delay:.07s}
+.r.d2{transition-delay:.14s}
+
+/* FOOTER */
+footer{background:var(--petrol);padding:2rem 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+footer p{font-size:.8rem;color:rgba(255,255,255,.55)}
+footer strong{color:rgba(255,255,255,.85);font-weight:500}
+
+@media(max-width:700px){.progress-steps{display:none}.tool-grid,.gems-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="topbar-logo" href="index.html">Masterclass AI</a>
+  <nav class="progress-steps" aria-label="Programmanavigatie">
+    <a class="ps-item" href="index.html"><div class="ps-step"><span class="n">Home</span></div></a>
+    <span class="ps-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+    <a class="ps-item" href="deel1.html"><div class="ps-step"><span class="n">01</span> Wat is AI?</div></a>
+    <span class="ps-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+    <a class="ps-item" href="deel2.html"><div class="ps-step"><span class="n">02</span> Prompting</div></a>
+    <span class="ps-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+    <a class="ps-item" href="deel3.html"><div class="ps-step"><span class="n">03</span> AI-tools</div></a>
+    <span class="ps-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+    <a class="ps-item" href="deel4.html"><div class="ps-step"><span class="n">04</span> Evaluatie</div></a>
+    <span class="ps-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+    <a class="ps-item active" href="vakken.html"><div class="ps-step"><span class="n">05</span> Vakken</div></a>
+    <span class="ps-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+    <a class="ps-item" href="deel6.html"><div class="ps-step"><span class="n">06</span> Geletterdheid</div></a>
+  </nav>
+</header>
+
+<main class="page">
+
+  <header class="page-head r">
+    <span class="page-kicker">Stap 05 · AI in de vakken</span>
+    <h1 class="page-title">Ge<em>schiedenis</em></h1>
+    <p class="page-intro">AI als historisch onderzoekspartner — van broncritiek tot paleografie, van dialoog met het verleden tot interactieve tijdlijnen.</p>
+  </header>
+
+  <nav class="toc r" aria-label="Op deze pagina">
+    <span class="toc-label">Op deze pagina</span>
+    <div class="toc-items">
+      <a class="toc-link" href="#tools">Tools</a>
+      <a class="toc-link" href="#bronnen">Bronnenonderzoek</a>
+      <a class="toc-link" href="#paleografie">Paleografie</a>
+      <a class="toc-link" href="#dialoog">Dialoog met het verleden</a>
+      <a class="toc-link" href="#visualisatie">Tijdlijnen &amp; kaarten</a>
+      <a class="toc-link" href="#gems">Gems</a>
+    </div>
+  </nav>
+
+  <section class="sect" id="tools">
+    <span class="sect-label">Overzicht</span>
+    <h2 class="sect-title">Tools</h2>
+    <p class="sect-lead">Gemini is het vertrekpunt. Combineer het met deze gespecialiseerde tools.</p>
+    <div class="tool-grid r">
+      <div class="tool-card"><div class="tool-name">Gemini</div><div class="tool-url"><a href="https://gemini.google.com" target="_blank" rel="noopener">gemini.google.com</a></div><div class="tool-desc">Bronnenanalyse, historische figuren, tijdlijnen en feedback op teksten.</div></div>
+      <div class="tool-card"><div class="tool-name">NotebookLM</div><div class="tool-url"><a href="https://notebooklm.google.com" target="_blank" rel="noopener">notebooklm.google.com</a></div><div class="tool-desc">Upload je syllabus of bronnen. De AI antwoordt uitsluitend op basis van jouw materiaal.</div></div>
+      <div class="tool-card"><div class="tool-name">Transkribus</div><div class="tool-url"><a href="https://www.transkribus.org" target="_blank" rel="noopener">transkribus.org</a></div><div class="tool-desc">AI-gestuurde transcriptie van handgeschreven historische documenten.</div></div>
+      <div class="tool-card"><div class="tool-name">Timeline JS</div><div class="tool-url"><a href="https://timeline.knightlab.com" target="_blank" rel="noopener">timeline.knightlab.com</a></div><div class="tool-desc">Interactieve tijdlijnen via Google Sheets. Gemini structureert de data.</div></div>
+      <div class="tool-card"><div class="tool-name">Perplexity</div><div class="tool-url"><a href="https://perplexity.ai" target="_blank" rel="noopener">perplexity.ai</a></div><div class="tool-desc">Antwoorden met bronvermeldingen — ideaal om broncritiek te oefenen.</div></div>
+      <div class="tool-card"><div class="tool-name">StoryMaps</div><div class="tool-url"><a href="https://storymaps.arcgis.com" target="_blank" rel="noopener">storymaps.arcgis.com</a></div><div class="tool-desc">Geografisch-historische verhalen met kaarten, tijdlijnen en tekst.</div></div>
+    </div>
+  </section>
+
+  <section class="sect" id="bronnen">
+    <span class="sect-label">Toepassing 1</span>
+    <h2 class="sect-title">Bronnenonderzoek &amp; broncritiek</h2>
+    <p class="sect-lead">AI stelt de vragen die leerlingen zelf nooit zouden stellen — niet als vervanger van historisch redeneren, maar als motor ervan.</p>
+    <ul class="steps r">
+      <li><span class="n">01</span><span>Leerling stuurt een historische bron — tekst, afbeelding of beschrijving — naar Gemini.</span></li>
+      <li><span class="n">02</span><span>Gemini stelt via de <strong>Broncriticus-Gem</strong> drie vragen: herkomst, perspectief en verificatie. Geen antwoorden, alleen vragen.</span></li>
+      <li><span class="n">03</span><span>Leerling beantwoordt de vragen. De Gem reageert met een vervolgvraag die dieper gaat.</span></li>
+      <li><span class="n">04</span><span>Klassikale nabespreking: welke vragen stelde de AI die jullie zelf niet stelden?</span></li>
+    </ul>
+    <div class="callout r">
+      <p><strong>Tip:</strong> gebruik Perplexity als vergelijking — dezelfde bron, maar nu met zichtbare bronvermeldingen.</p>
+    </div>
+    <div class="prompt-wrap r">
+      <div class="prompt-head">
+        <span class="prompt-head-label">Prompt — Broncritiek</span>
+        <button class="btn-copy" onclick="copy(this)">Kopiëren</button>
+      </div>
+      <div class="prompt-body">Analyseer de volgende historische bron en help mij een broncritische oefening opbouwen voor <span class="pv">[graad + vak]</span>.
+
+Bron: <span class="pv">[plak hier de tekst of beschrijf de bron]</span>
+
+Geef:
+1. Drie vragen over herkomst en context die leerlingen zelf beantwoorden
+2. Twee vragen over perspectief en wat er ontbreekt
+3. Één verificatie-opdracht — welke andere bronnen bevestigen of tegenspreken dit?
+
+Formuleer op het niveau van <span class="pv">[graad]</span>, zonder de antwoorden te geven.</div>
+    </div>
+  </section>
+
+  <section class="sect" id="paleografie">
+    <span class="sect-label">Toepassing 2</span>
+    <h2 class="sect-title">Paleografie</h2>
+    <p class="sect-lead">Handgeschreven historische documenten zijn vaak onleesbaar voor leerlingen. Transkribus maakt ze toegankelijk — waarna Gemini helpt met duiding.</p>
+    <ul class="steps r">
+      <li><span class="n">01</span><span>Upload het document in <strong>Transkribus</strong>. Het AI-model transcribeert automatisch.</span></li>
+      <li><span class="n">02</span><span>Leerlingen vergelijken hun transcriptie met die van de AI — waar verschilt het?</span></li>
+      <li><span class="n">03</span><span>Kopieer de tekst naar Gemini voor historische duiding en woordverklaring.</span></li>
+      <li><span class="n">04</span><span>Leerlingen schrijven een korte analyse op basis van bron en AI-duiding.</span></li>
+    </ul>
+    <div class="callout r">
+      <p><strong>Tip:</strong> gebruik de Vlaamse archieven online — Gent, Antwerpen, Leuven — voor authentieke documenten. Transkribus heeft een gratis basisversie voor scholen.</p>
+    </div>
+    <div class="prompt-wrap r">
+      <div class="prompt-head">
+        <span class="prompt-head-label">Prompt — Paleografie-duiding</span>
+        <button class="btn-copy" onclick="copy(this)">Kopiëren</button>
+      </div>
+      <div class="prompt-body">Ik geef je een getranscribeerd historisch document voor <span class="pv">[graad + vak]</span>.
+
+Tekst: <span class="pv">[plak de transcriptie hier]</span>
+
+Geef:
+1. Korte historische context (max. 5 zinnen)
+2. Verklaring van de 5 moeilijkste woorden of begrippen
+3. Drie vragen die leerlingen aan dit document kunnen stellen
+4. Één vergelijkingsopdracht: een andere bron over hetzelfde thema vanuit ander perspectief
+
+Niveau: <span class="pv">[graad]</span></div>
+    </div>
+  </section>
+
+  <section class="sect" id="dialoog">
+    <span class="sect-label">Toepassing 3</span>
+    <h2 class="sect-title">Dialoog met het verleden</h2>
+    <p class="sect-lead">Gemini speelt een historische figuur. Leerlingen stellen vragen — de AI antwoordt vanuit de kennis en het perspectief van die tijd.</p>
+    <ul class="steps r">
+      <li><span class="n">01</span><span>Kies een historische figuur passend bij de leerstof — bv. een soldaat in WO I of een ambtenaar in koloniaal Congo.</span></li>
+      <li><span class="n">02</span><span>Activeer de <strong>Historische Figuur-Gem</strong> of gebruik de prompt hieronder.</span></li>
+      <li><span class="n">03</span><span>Leerlingen voeren een gesprek vanuit hun historisch begrip.</span></li>
+      <li><span class="n">04</span><span>Nabespreking: drie momenten waarop de AI een ander perspectief toonde dan verwacht.</span></li>
+    </ul>
+    <div class="callout r">
+      <p><strong>Kritische noot:</strong> de AI voegt altijd een disclaimer toe. Gebruik dit om te bespreken wat AI wel en niet kan nabootsen.</p>
+    </div>
+    <div class="prompt-wrap r">
+      <div class="prompt-head">
+        <span class="prompt-head-label">Prompt — Historische figuur</span>
+        <button class="btn-copy" onclick="copy(this)">Kopiëren</button>
+      </div>
+      <div class="prompt-body">Jij bent <span class="pv">[naam historische figuur]</span>, levend in <span class="pv">[jaar/periode]</span>.
+
+Antwoord in de eerste persoon, vanuit de kennis van die tijd.
+Gebruik begrijpelijk taalgebruik voor secundaire leerlingen.
+
+Voeg na elk antwoord toe:
+⚠️ Simulatie — controleer feiten via authentieke bronnen.
+
+Weet je iets niet zeker? Zeg dat eerlijk vanuit de rol.</div>
+    </div>
+  </section>
+
+  <section class="sect" id="visualisatie">
+    <span class="sect-label">Toepassing 4</span>
+    <h2 class="sect-title">Tijdlijnen &amp; kaarten</h2>
+    <p class="sect-lead">Van ruwe data naar een begrijpelijke tijdlijn — Gemini structureert, Timeline JS visualiseert.</p>
+    <ul class="steps r">
+      <li><span class="n">01</span><span>Vraag Gemini de data te structureren als Google Sheets-tabel voor Timeline JS.</span></li>
+      <li><span class="n">02</span><span>Kopieer naar een Google Sheet. Timeline JS genereert de tijdlijn automatisch.</span></li>
+      <li><span class="n">03</span><span>Leerlingen voegen na eigen onderzoek twee extra events toe.</span></li>
+      <li><span class="n">04</span><span>Deel als link — werkt als eindproduct of procesopdracht.</span></li>
+    </ul>
+    <div class="prompt-wrap r">
+      <div class="prompt-head">
+        <span class="prompt-head-label">Prompt — Tijdlijn voor Timeline JS</span>
+        <button class="btn-copy" onclick="copy(this)">Kopiëren</button>
+      </div>
+      <div class="prompt-body">Maak een tijdlijn over <span class="pv">[historisch thema]</span> voor <span class="pv">[graad + vak]</span>.
+
+Geef de data als Google Sheets-tabel:
+Date | Headline | Text | Media (optioneel)
+
+Vereisten:
+- 12 tot 20 events
+- Datumformaat: YYYY,MM,DD
+- Headline max. 8 woorden, Text max. 2 zinnen
+- Kies causaal verbonden events
+
+Geef de tabel direct, zonder extra uitleg.</div>
+    </div>
+  </section>
+
+  <section class="sect" id="gems">
+    <span class="sect-label">Gemini Gems</span>
+    <h2 class="sect-title">Kant-en-klare AI-assistenten</h2>
+    <p class="sect-lead">Maak eenmalig aan op <a href="https://gemini.google.com" target="_blank" rel="noopener">gemini.google.com</a> → Gems → Nieuwe Gem. Deel de link via Smartschool — leerlingen starten meteen met hun Don Bosco-account.</p>
+    <div class="gems-grid">
+      <div class="gem-card r">
+        <div class="gem-head"><div class="gem-icon"><i class="fa-solid fa-scroll"></i></div><div class="gem-name">De Broncriticus</div></div>
+        <div class="gem-doel">Leerlingen analyseren historische bronnen kritisch — de AI geeft nooit het antwoord.</div>
+        <div class="gem-instructie">Jij bent een kritische geschiedenisleraar.
+Stel bij elke bron drie vragen:
+1. Wie maakte dit en met welk doel?
+2. Welk perspectief ontbreekt?
+3. Hoe kan de leerling dit controleren?
+Geef nooit het antwoord.
+Reageer met een diepere vervolgvraag.</div>
+      </div>
+      <div class="gem-card r d1">
+        <div class="gem-head"><div class="gem-icon"><i class="fa-solid fa-person-chalkboard"></i></div><div class="gem-name">De Historische Figuur</div></div>
+        <div class="gem-doel">Leerlingen verkennen historische perspectieven via gesprek met een figuur uit het verleden.</div>
+        <div class="gem-instructie">Jij speelt een historische figuur
+naar keuze van de leerling.
+Antwoord in de eerste persoon
+vanuit de kennis van die tijd.
+Voeg na elk antwoord toe:
+⚠️ Simulatie — controleer feiten
+via authentieke bronnen.</div>
+      </div>
+      <div class="gem-card r d2">
+        <div class="gem-head"><div class="gem-icon"><i class="fa-solid fa-timeline"></i></div><div class="gem-name">De Tijdlijnbouwer</div></div>
+        <div class="gem-doel">Leerlingen bouwen oorzaak-gevolg-ketens op bij elk historisch thema.</div>
+        <div class="gem-instructie">Jij helpt leerlingen een tijdlijn bouwen.
+Vraag bij elk thema:
+— Wat was de directe aanleiding?
+— Wat waren de diepere oorzaken?
+— Gevolgen op korte termijn?
+— Gevolgen tot vandaag?
+Geef max. één hint per vraag.</div>
+      </div>
+    </div>
+    <div class="callout r">
+      <p><strong>Gems delen:</strong> open de Gem → drie puntjes → Link kopiëren → plak in Smartschool of Google Classroom.</p>
+    </div>
+  </section>
+
+  <nav class="page-nav r">
+    <a href="vakken.html"><i class="fa-solid fa-arrow-left"></i> Alle vakken</a>
+    <a href="aardrijkskunde.html">Aardrijkskunde <i class="fa-solid fa-arrow-right"></i></a>
+  </nav>
+
+</main>
+
+<footer>
+  <p><strong>Masterclass AI 2026</strong> · Secundair Onderwijs Vlaanderen</p>
+  <p>Don Bosco · 2026</p>
+</footer>
+
+<script>
+const ro = new IntersectionObserver(e => {
+  e.forEach(en => { if(en.isIntersecting){en.target.classList.add('on');ro.unobserve(en.target);} });
+},{threshold:0.07});
+document.querySelectorAll('.r').forEach(el=>ro.observe(el));
+
+function copy(btn){
+  const text = btn.closest('.prompt-wrap').querySelector('.prompt-body').innerText;
+  navigator.clipboard.writeText(text).then(()=>{
+    btn.textContent='Gekopiëerd ✓';btn.classList.add('ok');
+    setTimeout(()=>{btn.textContent='Kopiëren';btn.classList.remove('ok');},2000);
+  });
+}
+</script>
+</body>
+</html>
