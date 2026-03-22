@@ -157,59 +157,249 @@ footer strong{color:rgba(255,255,255,.85);font-weight:500}
   </nav>
 </header>
 <main class="page">
+
 <header class="page-head r">
   <span class="page-kicker">Stap 01</span>
   <h1 class="page-title">Wat is <em>AI</em>?</h1>
-  <p class="page-intro">Hoe het écht werkt — van tokens tot hallucinaties. Geen hype, wel nuance. Dit deel legt de basis voor alles wat volgt.</p>
-</header><nav class="toc r"><span class="toc-label">Op deze pagina</span><div class="toc-items"><a class="toc-link" href="#tokens">Tokens & hallucinaties</a><a class="toc-link" href="#modellen">Modellen vergelijken</a><a class="toc-link" href="#tips">Praktische tips</a></div></nav><section class="sect" id="tokens">
-  <h2 class="sect-title">Tokens &amp; hallucinaties</h2>
-  <p class="sect-lead">AI werkt niet met woorden maar met tokens — stukjes tekst die statistische verbanden leggen. Dat verklaart zowel de kracht als de beperkingen.</p>
+  <p class="page-intro">Hoe werkt een taalmodel écht? Wat zijn tokens, hallucinaties en context? Dit deel legt de basis — met concrete voorbeelden die je morgen kunt gebruiken in de klas.</p>
+</header>
+
+<nav class="toc r">
+  <span class="toc-label">Op deze pagina</span>
+  <div class="toc-items">
+    <a class="toc-link" href="#geen-brein">Geen brein, wel patroon</a>
+    <a class="toc-link" href="#tokens">Tokens</a>
+    <a class="toc-link" href="#hallucinaties">Hallucinaties</a>
+    <a class="toc-link" href="#context">Context &amp; geheugen</a>
+    <a class="toc-link" href="#modellen">Modellen vergelijken</a>
+    <a class="toc-link" href="#klas">In de klas</a>
+  </div>
+</nav>
+
+<!-- ══ GEEN BREIN, WEL PATROON ══ -->
+<section class="sect" id="geen-brein">
+  <h2 class="sect-title">Geen brein, wel patroon</h2>
+  <p class="sect-lead">De grootste misvatting over AI is dat het "denkt" of "begrijpt". Het doet dat niet. Het voorspelt — extreem goed, op basis van miljarden voorbeelden.</p>
+
+  <div class="narrative r">
+    <p>Een taalmodel is getraind op een enorme hoeveelheid tekst — boeken, websites, artikels, code, gesprekken. Op basis daarvan heeft het geleerd: <strong>welk woord volgt er waarschijnlijk na welk ander woord</strong>? Dat is het. Geen begrip, geen intentie, geen bewustzijn. Maar omdat dat patroon zo ongelooflijk verfijnd is geworden, <em>lijkt</em> het alsof de AI begrijpt wat je vraagt.</p>
+  </div>
+
+  <div class="card-grid r">
+    <div class="card">
+      <div class="card-name">Wat AI doet</div>
+      <div class="card-desc">De meest waarschijnlijke volgende token voorspellen, gebaseerd op alles wat het gezien heeft tijdens training. Keer op keer, tot de tekst klaar is.</div>
+    </div>
+    <div class="card">
+      <div class="card-name">Wat AI niet doet</div>
+      <div class="card-desc">Nadenken, begrijpen, voelen, weten, geloven of bedoelen. Het simuleert dat overtuigend — maar er is niemand thuis.</div>
+    </div>
+    <div class="card">
+      <div class="card-name">Waarom toch nuttig?</div>
+      <div class="card-desc">Omdat de patronen zo rijk zijn dat het antwoorden geeft die in de praktijk bruikbaar, correct en soms verrassend goed zijn.</div>
+    </div>
+  </div>
+
+  <div class="callout r">
+    <p><strong>Analogie voor in de klas:</strong> stel je voor dat iemand miljoenen boeken gelezen heeft maar nooit de wereld heeft gezien. Hij kan perfect over paarden schrijven zonder ooit een paard gezien te hebben. Dat is AI. Rijke woordkennis, nul ervaring.</p>
+  </div>
+</section>
+
+<!-- ══ TOKENS ══ -->
+<section class="sect" id="tokens">
+  <h2 class="sect-title">Tokens — niet woorden, maar stukjes</h2>
+  <p class="sect-lead">AI verwerkt tekst niet woord per woord, maar in <em>tokens</em> — stukjes van woorden. Dat verklaart een heleboel eigenaardige gedragingen.</p>
+
+  <div class="narrative r">
+    <p>Een token is een stukje tekst — soms een heel woord, soms een lettergreep, soms zelfs maar één letter. Het woord <strong>"onderwijs"</strong> is twee tokens: "onder" + "wijs". Het woord <strong>"the"</strong> is één token. Een emoji is één token. Een zeldzaam woord als <strong>"stoichiometrie"</strong> kan vijf of zes tokens zijn.</p>
+  </div>
+
+  <div style="background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--r);padding:1.5rem 1.8rem;margin-bottom:1.5rem;" class="r">
+    <p style="font-size:.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:1rem;">Voorbeeld — hoe tokens eruitzien</p>
+    <div style="display:flex;flex-wrap:wrap;gap:.4rem;font-family:var(--mono);font-size:.88rem;line-height:2">
+      <span style="background:#e8f2f4;color:var(--petrol);padding:.2rem .5rem;border-radius:4px">De</span>
+      <span style="background:#fdf3e8;color:#7a4a10;padding:.2rem .5rem;border-radius:4px">leer</span>
+      <span style="background:#edf7f0;color:#1a6b3a;padding:.2rem .5rem;border-radius:4px">ling</span>
+      <span style="background:#e8f2f4;color:var(--petrol);padding:.2rem .5rem;border-radius:4px">maakt</span>
+      <span style="background:#fdf3e8;color:#7a4a10;padding:.2rem .5rem;border-radius:4px">een</span>
+      <span style="background:#edf7f0;color:#1a6b3a;padding:.2rem .5rem;border-radius:4px">oef</span>
+      <span style="background:#e8f2f4;color:var(--petrol);padding:.2rem .5rem;border-radius:4px">ening</span>
+    </div>
+    <p style="font-size:.8rem;color:var(--ink-3);margin-top:.8rem">"De leerling maakt een oefening" = 7 tokens. Elk token heeft een numerieke waarde waarmee het model rekent.</p>
+  </div>
+
   <ul class="steps r">
-<li><span class="n">—</span><span><strong>Token &ne; woord</strong> — "onderwijs" kan 2-3 tokens zijn. Modellen voorspellen het meest waarschijnlijke volgende token op basis van miljarden trainingsteksten.</span></li>
-<li><span class="n">—</span><span><strong>Hallucinaties</strong> — AI verzint overtuigend klinkende feiten. Controleer altijd bronnen, zeker bij cijfers, namen en data.</span></li>
-<li><span class="n">—</span><span><strong>Context-venster</strong> — hoe meer context je geeft, hoe beter het antwoord. Lange gesprekken worden na verloop afgekapt.</span></li>
-<li><span class="n">—</span><span><strong>Temperatuur</strong> — hogere creatieve instelling = meer variatie maar ook meer kans op fouten.</span></li>
-<li><span class="n">—</span><span><strong>Geen begrip, wel imitatie</strong> — AI simuleert taalbegrip op basis van patronen. Dit is cruciaal om te weten als leraar én als leerling.</span></li>
-</ul>
-<div class="callout r"><p><strong>In de klas:</strong> laat leerlingen AI bewust een fout laten maken door een verkeerde premisse in te geven. Zo leren ze kritisch omgaan met AI-output.</p></div>
-</section><section class="sect" id="modellen">
+    <li><span class="n">→</span><span><strong>Waarom telt dit?</strong> Elk model heeft een maximaal contextvenster — een limiet op het aantal tokens dat het in één keer kan verwerken. Boven die limiet vergeet het wat eerder stond.</span></li>
+    <li><span class="n">→</span><span><strong>Korte prompts = minder context</strong> — een vage vraag in drie woorden geeft weinig houvast. Meer tokens = meer context = beter antwoord.</span></li>
+    <li><span class="n">→</span><span><strong>Prijs</strong> — bij betaalde API-gebruik betaal je per token. Beknopte prompts zijn goedkoper.</span></li>
+    <li><span class="n">→</span><span><strong>Reden voor rare fouten</strong> — AI telt slecht omdat het tokens telt, niet letters of woorden. "Hoeveel letters heeft het woord strawberry?" gaat vaak fout.</span></li>
+  </ul>
+
+  <div class="callout r">
+    <p><strong>Doe het zelf:</strong> ga naar <a href="https://platform.openai.com/tokenizer" target="_blank" rel="noopener">platform.openai.com/tokenizer</a> en type een Nederlandse zin. Je ziet live hoe de tekst in tokens wordt opgesplitst. Goed om te tonen in de klas.</p>
+  </div>
+</section>
+
+<!-- ══ HALLUCINATIES ══ -->
+<section class="sect" id="hallucinaties">
+  <h2 class="sect-title">Hallucinaties — zelfverzekerd en fout</h2>
+  <p class="sect-lead">AI verzint feiten. Niet uit kwade wil, maar omdat het altijd een antwoord genereert — ook als het eigenlijk niets weet.</p>
+
+  <div class="narrative r">
+    <p>Het model weet niet dat het iets niet weet. Het kent geen twijfel — het kiest altijd het meest waarschijnlijke volgende token. Als de vraag buiten zijn trainingsdata valt, verzint het een antwoord dat <em>klinkt</em> zoals een correct antwoord eruit zou zien. Dat noemen we een <strong>hallucinatie</strong>.</p>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem;" class="r">
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.2rem 1.4rem;">
+      <div style="font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#c0392b;margin-bottom:.6rem;">❌ Typisch voorbeeld van hallucinatie</div>
+      <p style="font-size:.88rem;color:var(--ink-2);line-height:1.75;font-style:italic">"Het boek <em>De IJzeren Weg</em> van Hugo Claus uit 1978 beschrijft..."</p>
+      <p style="font-size:.8rem;color:var(--ink-3);margin-top:.6rem">Dat boek bestaat niet. Maar de zin klinkt perfect — auteur, jaar, titel, alles klopt qua structuur.</p>
+    </div>
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.2rem 1.4rem;">
+      <div style="font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#1a6b3a;margin-bottom:.6rem;">✓ Wanneer AI betrouwbaarder is</div>
+      <p style="font-size:.88rem;color:var(--ink-2);line-height:1.75">Veel voorkomende, goed gedocumenteerde feiten. Breed beschikbare informatie. Geen specifieke cijfers, data of namen.</p>
+      <p style="font-size:.8rem;color:var(--ink-3);margin-top:.6rem">Hoe zeldzamer de informatie, hoe groter de kans op hallucinatie.</p>
+    </div>
+  </div>
+
+  <ul class="steps r">
+    <li><span class="n">→</span><span><strong>Cijfers en data</strong> zijn bijzonder risicovol — AI verzint statistieken overtuigend. Controleer altijd aan de primaire bron.</span></li>
+    <li><span class="n">→</span><span><strong>Namen en titels</strong> — boektitels, artikelreferenties, namen van personen die minder bekend zijn: altijd verifiëren.</span></li>
+    <li><span class="n">→</span><span><strong>Recente gebeurtenissen</strong> — het model heeft een kennisgrens (cutoff date). Alles wat erna gebeurde, kent het niet of verzint het.</span></li>
+    <li><span class="n">→</span><span><strong>Gebruik Perplexity</strong> voor informatie waarbij bronnen tellen — elk antwoord heeft klikbare voetnoten die je kunt controleren.</span></li>
+  </ul>
+
+  <div class="callout r">
+    <p><strong>Klasopdracht:</strong> vraag Gemini naar een fictief persoon ("Wie was de Belgische wiskundige Luc Vandenberghe die in 1923 de stelling van Vandenberghe bewees?"). Kijk wat er gebeurt. Bespreek daarna: hoe herken je een hallucinatie? Wat zijn de signalen?</p>
+  </div>
+</section>
+
+<!-- ══ CONTEXT & GEHEUGEN ══ -->
+<section class="sect" id="context">
+  <h2 class="sect-title">Context &amp; geheugen</h2>
+  <p class="sect-lead">AI heeft geen geheugen tussen gesprekken. Alles wat het "weet" over jouw situatie, staat in het huidige gesprek. Dat is tegelijk een beperking én een kracht.</p>
+
+  <div class="narrative r">
+    <p>Elk gesprek begint blanco. Het model weet niet wie je bent, wat je eerder vroeg of wat je vak is — tenzij je het vertelt. <strong>Hoe meer relevante context je geeft, hoe beter het antwoord.</strong> Dit is de meest onderschatte les van de hele masterclass.</p>
+  </div>
+
+  <div style="background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--r);padding:1.5rem 1.8rem;margin-bottom:1.5rem;" class="r">
+    <p style="font-size:.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:1rem;">Hetzelfde verzoek — twee versies</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+      <div>
+        <p style="font-size:.72rem;color:#c0392b;font-weight:600;margin-bottom:.4rem">❌ Zonder context</p>
+        <div style="background:#0d1a24;border-radius:4px;padding:.9rem 1rem;font-family:var(--mono);font-size:.8rem;color:#c8dce8;line-height:1.7">Maak een oefening over WO II.</div>
+        <p style="font-size:.78rem;color:var(--ink-3);margin-top:.5rem">Resultaat: generieke vragen, verkeerd niveau, geen aansluiting bij jouw leerplan.</p>
+      </div>
+      <div>
+        <p style="font-size:.72rem;color:#1a6b3a;font-weight:600;margin-bottom:.4rem">✓ Met context</p>
+        <div style="background:#0d1a24;border-radius:4px;padding:.9rem 1rem;font-family:var(--mono);font-size:.8rem;color:#c8dce8;line-height:1.7">Jij bent een ervaren geschiedenisleraar. Maak 5 meerkeuzevragen over de oorzaken van WO II voor leerlingen van de derde graad ASO. Focus op het leerplan van de tweede graad. Niveau: inzichtsvragen, geen loutere kennis. Formaat: vraag + 4 opties + correct antwoord + korte uitleg.</div>
+        <p style="font-size:.78rem;color:var(--ink-3);margin-top:.5rem">Resultaat: gerichte, bruikbare vragen op het juiste niveau.</p>
+      </div>
+    </div>
+  </div>
+
+  <ul class="steps r">
+    <li><span class="n">→</span><span><strong>Contextvenster</strong> — het model verwerkt alles in het actieve gesprek. Bij een heel lang gesprek "vergeet" het de vroegste berichten.</span></li>
+    <li><span class="n">→</span><span><strong>Geen persistent geheugen</strong> — sluit je het venster, dan is het gesprek weg. Sommige tools (Claude Projects, Gemini Gems) bewaren instructies, maar niet het gesprek zelf.</span></li>
+    <li><span class="n">→</span><span><strong>Temperatuur</strong> — hogere creativiteitsinstelling = meer variatie, maar ook meer kans op fouten. Voor feitelijke vragen wil je lage temperatuur; voor creatief werk mag het hoger.</span></li>
+  </ul>
+
+  <div class="callout r">
+    <p><strong>Praktisch:</strong> maak een eigen "context-blok" dat je altijd bovenaan je prompt plakt: jouw vak, graad, school, type leerlingen, leerplan. Eén keer opstellen, altijd kopiëren. Het maakt elk antwoord meteen concreter.</p>
+  </div>
+</section>
+
+<!-- ══ MODELLEN VERGELIJKEN ══ -->
+<section class="sect" id="modellen">
   <h2 class="sect-title">Modellen vergelijken</h2>
-  <p class="sect-lead">Niet alle AI-tools zijn gelijk. Elke tool heeft zijn sterke punten — de juiste keuze hangt af van de taak.</p>
-  <div class="card-grid"><a class="card r" href="https://gemini.google.com" target="_blank" rel="noopener">
-  <div class="card-name">Gemini</div>
-  <div class="card-url">gemini.google.com</div>
-  <div class="card-desc">Geïntegreerd in Google Workspace. Sterk in Google Drive, Docs, Sheets. Beste keuze voor dagelijks schoolgebruik.</div>
-  <div class="card-tags"><span class="card-tag">Schoolaccount</span><span class="card-tag">Gems</span></div>
-</a><a class="card r" href="https://claude.ai" target="_blank" rel="noopener">
-  <div class="card-name">Claude</div>
-  <div class="card-url">claude.ai</div>
-  <div class="card-desc">Sterk in lange teksten analyseren en nuanceren. Geeft vaak meer genuanceerde antwoorden.</div>
-  <div class="card-tags"><span class="card-tag">Analyse</span><span class="card-tag">Lange teksten</span></div>
-</a><a class="card r" href="https://perplexity.ai" target="_blank" rel="noopener">
-  <div class="card-name">Perplexity</div>
-  <div class="card-url">perplexity.ai</div>
-  <div class="card-desc">Antwoorden met bronvermeldingen. Ideaal voor onderzoek waarbij je bronnen wil controleren.</div>
-  <div class="card-tags"><span class="card-tag">Bronnen</span><span class="card-tag">Onderzoek</span></div>
-</a><a class="card r" href="https://chatgpt.com" target="_blank" rel="noopener">
-  <div class="card-name">ChatGPT</div>
-  <div class="card-url">chatgpt.com</div>
-  <div class="card-desc">Het bekendste model. Breed inzetbaar maar zonder bronvermelding. Goed startpunt voor vergelijking.</div>
-  <div class="card-tags"><span class="card-tag">Breed</span><span class="card-tag">Bekend</span></div>
-</a></div>
-<div class="callout r"><p><strong>Vergelijkopdracht:</strong> geef leerlingen dezelfde vraag aan drie AI-tools. Welke antwoorden verschillen? Welke zijn betrouwbaarder?</p></div>
-</section><section class="sect" id="tips">
-  <h2 class="sect-title">Praktische tips voor de klas</h2>
-  <p class="sect-lead">Drie principes die de basis vormen voor alles wat volgt.</p>
-  <ul class="steps r">
-<li><span class="n">01</span><span><strong>Verifieer altijd</strong> — behandel AI-output als een eerste draft die controle vereist. Leer leerlingen dit van dag één.</span></li>
-<li><span class="n">02</span><span><strong>Context is alles</strong> — hoe meer relevante context je geeft, hoe beter het antwoord.</span></li>
-<li><span class="n">03</span><span><strong>Itereer</strong> — het eerste antwoord is zelden het beste. Vraag door, stel bij, verfijn. AI is een gesprek, geen zoekopdracht.</span></li>
-<li><span class="n">04</span><span><strong>Gebruik je expertkennis</strong> — jij weet als leraar beter dan de AI wat kwaliteitsvol is. Dat is jouw onvervangbare meerwaarde.</span></li>
-</ul>
-</section><nav class="page-nav r">
-<a href="index.html">&larr; Home</a>
-<a href="deel2.html">Stap 02 — Prompting &rarr;</a>
-</nav></main>
+  <p class="sect-lead">Gemini, Claude, ChatGPT, Perplexity — ze zijn niet uitwisselbaar. Elk model heeft een eigen sterk punt. De juiste keuze hangt af van wat je wil doen.</p>
+
+  <div class="card-grid r">
+    <a class="card" href="https://gemini.google.com" target="_blank" rel="noopener">
+      <div class="card-name"><i class="fa-solid fa-gem" style="color:var(--petrol);margin-right:.4rem"></i>Gemini</div>
+      <div class="card-url">gemini.google.com</div>
+      <div class="card-desc">De beste keuze voor schoolgebruik. Geïntegreerd in je Google Workspace-account. Gems aanmaken, Drive-bestanden lezen, Sheets analyseren — alles in één omgeving.</div>
+      <div class="card-tags"><span class="card-tag">Schoolaccount</span><span class="card-tag">Gems</span><span class="card-tag">Google Drive</span></div>
+    </a>
+    <a class="card" href="https://claude.ai" target="_blank" rel="noopener">
+      <div class="card-name"><i class="fa-solid fa-comment" style="color:var(--petrol);margin-right:.4rem"></i>Claude</div>
+      <div class="card-url">claude.ai</div>
+      <div class="card-desc">Sterk in nuance en lange documenten. Verwerkt een volledig handboek in één keer. Geprefereerd door onderwijsprofessionals voor zijn warmere schrijfstijl — minder herkenbaar als AI.</div>
+      <div class="card-tags"><span class="card-tag">Lange teksten</span><span class="card-tag">Nuance</span><span class="card-tag">Schrijfstijl</span></div>
+    </a>
+    <a class="card" href="https://perplexity.ai" target="_blank" rel="noopener">
+      <div class="card-name"><i class="fa-solid fa-magnifying-glass" style="color:var(--petrol);margin-right:.4rem"></i>Perplexity</div>
+      <div class="card-url">perplexity.ai</div>
+      <div class="card-desc">Geen chatbot maar een AI-zoekmachine. Elke bewering heeft een klikbare bronvermelding. Zoekt real-time op het web — geen vaste kennisgrens. Ideaal voor broncritiek.</div>
+      <div class="card-tags"><span class="card-tag">Bronnen</span><span class="card-tag">Real-time</span><span class="card-tag">Verificatie</span></div>
+    </a>
+    <a class="card" href="https://chatgpt.com" target="_blank" rel="noopener">
+      <div class="card-name"><i class="fa-solid fa-robot" style="color:var(--petrol);margin-right:.4rem"></i>ChatGPT</div>
+      <div class="card-url">chatgpt.com</div>
+      <div class="card-desc">Het bekendste model. Breed inzetbaar, geen bronvermelding. Leerlingen kennen het al — goed startpunt om te vergelijken met andere tools en te bespreken wat het verschil maakt.</div>
+      <div class="card-tags"><span class="card-tag">Bekend</span><span class="card-tag">Breed</span></div>
+    </a>
+    <a class="card" href="https://notebooklm.google.com" target="_blank" rel="noopener">
+      <div class="card-name"><i class="fa-solid fa-book" style="color:var(--petrol);margin-right:.4rem"></i>NotebookLM</div>
+      <div class="card-url">notebooklm.google.com</div>
+      <div class="card-desc">Upload je eigen cursus of syllabus. AI antwoordt uitsluitend op basis van jouw bronnen — geen hallucinaties over eigen materiaal. Ideaal voor studietools en examenvoorbereiding.</div>
+      <div class="card-tags"><span class="card-tag">Eigen bronnen</span><span class="card-tag">Geen hallucinaties</span></div>
+    </a>
+  </div>
+
+  <div style="background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--r);padding:1.4rem 1.8rem;margin-bottom:1.5rem;" class="r">
+    <p style="font-size:.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:1rem;">Wanneer gebruik je welk model?</p>
+    <div style="display:flex;flex-direction:column;gap:.6rem;font-size:.88rem;color:var(--ink-2);line-height:1.7">
+      <div><strong style="color:var(--petrol)">Lesvoorbereiding, Gems, apps bouwen</strong> → Gemini</div>
+      <div><strong style="color:var(--petrol)">Lange tekst analyseren, feedback op schrijfwerk</strong> → Claude</div>
+      <div><strong style="color:var(--petrol)">Onderzoek met bronnen, actuele info</strong> → Perplexity</div>
+      <div><strong style="color:var(--petrol)">Vergelijkopdracht met leerlingen</strong> → ChatGPT vs Gemini vs Perplexity</div>
+      <div><strong style="color:var(--petrol)">Vragen over je eigen cursusmateriaal</strong> → NotebookLM</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ IN DE KLAS ══ -->
+<section class="sect" id="klas">
+  <h2 class="sect-title">Dit gebruik je morgen in de klas</h2>
+  <p class="sect-lead">Drie concrete opdrachten waarmee je meteen aan de slag kunt — zonder extra voorbereiding.</p>
+
+  <div class="card-grid r">
+    <div class="card">
+      <div class="card-name">De hallucinatie-test</div>
+      <div class="card-desc">Vraag Gemini naar een fictief persoon of niet-bestaand boek. Kijk wat er gebeurt. Bespreek: hoe herkennen we een hallucinatie? Welke signalen zijn er?</div>
+      <div class="card-tags"><span class="card-tag">Kritisch denken</span><span class="card-tag">10 min</span></div>
+    </div>
+    <div class="card">
+      <div class="card-name">De vergelijkopdracht</div>
+      <div class="card-desc">Geef leerlingen dezelfde vraag aan Gemini, ChatGPT en Perplexity. Vergelijk de antwoorden: wat verschilt? Welke bronnen gebruikt Perplexity? Welk antwoord is betrouwbaarder?</div>
+      <div class="card-tags"><span class="card-tag">Broncritiek</span><span class="card-tag">20 min</span></div>
+    </div>
+    <div class="card">
+      <div class="card-name">De context-les</div>
+      <div class="card-desc">Laat leerlingen dezelfde vraag stellen met en zonder context. Vergelijk de antwoorden. Conclusie: context = kwaliteit. Toepasbaar in elk vak.</div>
+      <div class="card-tags"><span class="card-tag">Prompt engineering</span><span class="card-tag">15 min</span></div>
+    </div>
+    <div class="card">
+      <div class="card-name">De tokenizer</div>
+      <div class="card-desc">Ga naar platform.openai.com/tokenizer. Laat leerlingen woorden intikken en zien hoe AI tekst "ziet". Zeldzame woorden, emoji, getallen — allemaal anders gesplitst.</div>
+      <div class="card-tags"><span class="card-tag">Visueel</span><span class="card-tag">5 min</span></div>
+    </div>
+  </div>
+
+  <div class="callout r">
+    <p><strong>Kernboodschap voor leerlingen:</strong> AI is een krachtig gereedschap — net als een rekenmachine. Een rekenmachine rekent perfect, maar als jij de verkeerde getallen ingeeft, krijg je het verkeerde antwoord. Met AI is het precies zo: garbage in, garbage out. Jij blijft verantwoordelijk voor wat je ermee doet.</p>
+  </div>
+</section>
+
+<nav class="page-nav r">
+  <a href="index.html">&larr; Home</a>
+  <a href="deel2.html">Stap 02 &mdash; Prompting &rarr;</a>
+</nav>
+
+</main>
 <footer>
   <p><strong>Masterclass AI 2026</strong> · Secundair Onderwijs Vlaanderen · Don Bosco</p>
 </footer>
