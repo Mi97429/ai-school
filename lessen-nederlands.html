@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="nl-BE">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lessenreeks Nederlands — Masterclass AI 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+<style>
+:root{--bg:#f8f7f4;--bg-alt:#f0ede8;--white:#ffffff;--ink:#1a1a1a;--ink-2:#3d3d3d;--ink-3:#767676;--border:#e0dbd4;--petrol:#0f4c5c;--petrol-l:#e8f2f4;--petrol-m:#1a6b80;--serif:'Lora',Georgia,serif;--sans:system-ui,-apple-system,sans-serif;--mono:'Courier New',monospace;--r:6px;--ease:cubic-bezier(0.25,0,0,1);--content:720px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+:focus-visible{outline:2px solid var(--petrol);outline-offset:3px}
+a{color:var(--petrol)}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--white);border-bottom:1px solid var(--border);height:56px;display:flex;align-items:center;padding:0 5%;gap:0}
+.topbar-logo{font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol);text-decoration:none;white-space:nowrap;margin-right:2.5rem}
+.progress-steps{display:flex;align-items:center;flex:1;gap:0;overflow-x:auto;scrollbar-width:none}
+.progress-steps::-webkit-scrollbar{display:none}
+.ps-item{display:flex;align-items:center;text-decoration:none;flex-shrink:0}
+.ps-step{display:flex;align-items:center;gap:.45rem;padding:.3rem .7rem;border-radius:4px;font-size:.78rem;color:var(--ink-3);transition:color .15s,background .15s;white-space:nowrap}
+.ps-step .n{font-family:var(--serif);font-size:.7rem;font-weight:600;color:var(--petrol);opacity:.5}
+.ps-item:hover .ps-step{color:var(--petrol);background:var(--petrol-l)}
+.ps-item.active .ps-step{color:var(--petrol);font-weight:500;background:var(--petrol-l)}
+.ps-item.active .ps-step .n{opacity:1}
+.ps-arrow{color:var(--border);font-size:.8rem;margin:0 .1rem;flex-shrink:0}
+.page{margin-top:56px;max-width:var(--content);margin-left:auto;margin-right:auto;padding:0 5% 6rem}
+.page.wide{--content:900px}
+.page-head{padding:3.5rem 0 2.5rem;border-bottom:1px solid var(--border);margin-bottom:2.5rem}
+.page-kicker{font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--petrol);display:block;margin-bottom:.8rem}
+.page-title{font-family:var(--serif);font-size:clamp(2.2rem,4vw,3.4rem);font-weight:600;line-height:1.1;color:var(--ink);letter-spacing:-.02em;margin-bottom:1rem}
+.page-title em{font-style:italic}
+.page-intro{font-size:1.05rem;line-height:1.85;color:var(--ink-2);max-width:60ch}
+.toc{margin-bottom:3rem}
+.toc-label{font-size:.62rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:.8rem}
+.toc-items{display:flex;flex-wrap:wrap;gap:.5rem}
+.toc-link{display:inline-flex;align-items:center;padding:.42rem .9rem;background:var(--white);border:1px solid var(--border);border-radius:100px;font-size:.83rem;color:var(--ink-2);text-decoration:none;transition:all .18s var(--ease)}
+.toc-link:hover{background:var(--petrol);color:var(--white);border-color:var(--petrol)}
+.sect{padding:3rem 0;border-bottom:1px solid var(--border);scroll-margin-top:76px}
+.sect:last-of-type{border-bottom:none}
+.sect-label{font-size:.62rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--petrol);display:block;margin-bottom:.6rem}
+.sect-title{font-family:var(--serif);font-size:1.5rem;font-weight:600;color:var(--ink);letter-spacing:-.01em;margin-bottom:.5rem;line-height:1.25}
+.sect-lead{font-size:.97rem;color:var(--ink-2);line-height:1.8;max-width:66ch;margin-bottom:1.6rem}
+.steps{list-style:none;display:flex;flex-direction:column;gap:.8rem;margin-bottom:1.4rem}
+.steps li{display:flex;align-items:flex-start;gap:1rem;font-size:.95rem;color:var(--ink-2);line-height:1.7}
+.steps li .n{font-family:var(--serif);font-size:.85rem;font-weight:600;color:var(--petrol);flex-shrink:0;width:1.5rem;padding-top:.1rem}
+.steps li strong{color:var(--ink);font-weight:600}
+.callout{border-left:3px solid var(--petrol);padding:.9rem 1.3rem;background:var(--petrol-l);border-radius:0 var(--r) var(--r) 0;margin-bottom:1.5rem}
+.callout p{font-size:.9rem;color:var(--ink-2);line-height:1.75}
+.callout strong{color:var(--petrol);font-weight:600}
+.prompt-wrap{margin-top:1.8rem;margin-bottom:.5rem}
+.prompt-head{display:flex;align-items:center;justify-content:space-between;background:var(--petrol);padding:.55rem 1rem;border-radius:var(--r) var(--r) 0 0}
+.prompt-head-label{font-size:.68rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.75)}
+.btn-copy{font-family:var(--sans);font-size:.72rem;font-weight:500;background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:4px;padding:.2rem .65rem;cursor:pointer;transition:all .15s}
+.btn-copy:hover{background:rgba(255,255,255,.25)}
+.btn-copy.ok{background:rgba(255,255,255,.3)}
+.prompt-body{font-family:var(--mono);font-size:.83rem;line-height:1.85;color:#c8dce8;background:#0d1a24;border:1px solid #1e3040;border-top:none;border-radius:0 0 var(--r) var(--r);padding:1.2rem 1.3rem;white-space:pre-wrap}
+.pv{color:#7ecfe0;font-weight:600}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin-bottom:1.5rem}
+.card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.2rem 1.3rem;text-decoration:none;display:flex;flex-direction:column;transition:box-shadow .2s,border-color .2s,transform .2s}
+.card:hover{box-shadow:0 3px 16px rgba(15,76,92,.09);border-color:var(--petrol-m);transform:translateY(-1px)}
+.card-name{font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.2rem}
+.card-url{font-size:.75rem;color:var(--petrol);margin-bottom:.45rem;opacity:.8}
+.card-desc{font-size:.82rem;color:var(--ink-3);line-height:1.65;flex:1}
+.card-tags{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.7rem}
+.card-tag{font-size:.65rem;padding:.12rem .45rem;background:var(--bg-alt);color:var(--ink-3);border-radius:3px}
+.gem-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1.1rem;margin-bottom:1.4rem}
+.gem{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.3rem;transition:box-shadow .2s,border-color .2s}
+.gem:hover{box-shadow:0 2px 14px rgba(15,76,92,.08);border-color:var(--petrol-m)}
+.gem-head{display:flex;align-items:center;gap:.7rem;margin-bottom:.6rem}
+.gem-icon{width:32px;height:32px;border-radius:var(--r);background:var(--petrol-l);color:var(--petrol);display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0}
+.gem-name{font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--ink)}
+.gem-doel{font-size:.8rem;color:var(--ink-3);line-height:1.6;font-style:italic;margin-bottom:.8rem}
+.gem-instructie{font-family:var(--mono);font-size:.74rem;line-height:1.65;color:var(--ink-2);background:#0d1a24;color:#c8dce8;border-left:2px solid var(--petrol);padding:.6rem .8rem;white-space:pre-wrap;border-radius:0 4px 4px 0}
+.page-nav{display:flex;justify-content:space-between;align-items:center;padding-top:2.5rem;border-top:1px solid var(--border);margin-top:3rem;flex-wrap:wrap;gap:1rem}
+.page-nav a{display:flex;align-items:center;gap:.5rem;font-size:.88rem;color:var(--petrol);text-decoration:none;padding:.5rem .9rem;border:1px solid var(--border);border-radius:var(--r);transition:all .18s}
+.page-nav a:hover{background:var(--petrol-l);border-color:var(--petrol-m)}
+.deel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem}
+.deel-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.8rem 2rem;text-decoration:none;display:flex;flex-direction:column;position:relative;overflow:hidden;transition:box-shadow .2s,transform .2s,border-color .2s}
+.deel-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--petrol);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}
+.deel-card:hover{box-shadow:0 4px 24px rgba(15,76,92,.10);transform:translateY(-2px);border-color:transparent}
+.deel-card:hover::before{transform:scaleX(1)}
+.deel-num{font-family:var(--serif);font-size:.75rem;font-weight:600;color:var(--petrol);margin-bottom:.8rem;opacity:.6}
+.deel-title{font-family:var(--serif);font-size:1.2rem;font-weight:600;color:var(--ink);margin-bottom:.5rem;line-height:1.3}
+.deel-sub{font-size:.85rem;color:var(--ink-3);line-height:1.65;flex:1}
+.deel-arrow{margin-top:1.4rem;font-size:.8rem;color:var(--petrol);opacity:.4;transition:opacity .2s,transform .2s;align-self:flex-start}
+.deel-card:hover .deel-arrow{opacity:1;transform:translateX(4px)}
+.vak-groep{margin-bottom:2.2rem}
+.vak-groep-label{font-size:.68rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.7rem;display:block}
+.vak-pills{display:flex;flex-wrap:wrap;gap:.5rem}
+.vak-pill{display:inline-flex;align-items:center;gap:.5rem;padding:.45rem 1rem;background:var(--white);border:1px solid var(--border);border-radius:100px;font-size:.84rem;color:var(--ink-2);text-decoration:none;transition:all .18s var(--ease)}
+.vak-pill:hover{background:var(--petrol);color:#fff;border-color:var(--petrol)}
+.narrative{background:var(--petrol-l);border-left:4px solid var(--petrol);padding:1.4rem 1.8rem;border-radius:0 var(--r) var(--r) 0;margin-bottom:2rem}
+.narrative p{font-size:1rem;line-height:1.85;color:var(--ink-2);max-width:68ch}
+.narrative strong{color:var(--petrol)}
+.hl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:2rem}
+.hl{padding:1.6rem;background:var(--white);border:1px solid var(--border);border-radius:var(--r)}
+.hl-icon{width:38px;height:38px;border-radius:var(--r);background:var(--petrol-l);color:var(--petrol);display:flex;align-items:center;justify-content:center;font-size:1rem;margin-bottom:1rem}
+.hl-title{font-family:var(--serif);font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:.4rem}
+.hl-text{font-size:.88rem;color:var(--ink-3);line-height:1.7}
+.hero{background:var(--petrol);padding:7rem 0 6rem;position:relative;overflow:hidden;margin-top:56px}
+.hero::before{content:'';position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(circle,rgba(255,255,255,.04) 1px,transparent 1px);background-size:28px 28px}
+.hero-inner{max-width:900px;margin:0 auto;padding:0 5%;position:relative}
+.hero-kicker{display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:1.5rem}
+.hero-title{font-family:var(--serif);font-size:clamp(2.8rem,5.5vw,5rem);font-weight:600;line-height:1.1;color:#fff;letter-spacing:-.025em;margin-bottom:1.8rem;max-width:14ch}
+.hero-title em{font-style:italic;font-weight:400;color:rgba(255,255,255,.75)}
+.hero-sub{font-size:1.1rem;font-weight:400;line-height:1.8;color:rgba(255,255,255,.7);max-width:54ch;margin-bottom:2.5rem}
+.hero-cta{display:flex;gap:.75rem;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:.5rem;font-size:.9rem;font-weight:500;padding:.7rem 1.5rem;border-radius:var(--r);text-decoration:none;transition:all .2s var(--ease);cursor:pointer;border:none;font-family:var(--sans)}
+.btn-white{background:#fff;color:var(--petrol)}
+.btn-white:hover{background:var(--bg);transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,0,0,.15)}
+.btn-outline{background:transparent;color:rgba(255,255,255,.85);border:1px solid rgba(255,255,255,.3)}
+.btn-outline:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.5)}
+.section-block{padding:5rem 0;border-bottom:1px solid var(--border)}
+.section-block:last-of-type{border-bottom:none}
+.section-inner{max-width:900px;margin:0 auto;padding:0 5%}
+.section-label{font-size:.7rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--petrol);display:block;margin-bottom:.8rem}
+.section-title{font-family:var(--serif);font-size:clamp(1.7rem,2.8vw,2.6rem);font-weight:600;line-height:1.2;color:var(--ink);letter-spacing:-.02em;margin-bottom:.8rem}
+.section-title em{font-style:italic;font-weight:400}
+.section-lead{font-size:1.05rem;font-weight:400;line-height:1.8;color:var(--ink-2);max-width:62ch;margin-bottom:2.5rem}
+.yt-block{display:flex;align-items:center;gap:1rem;background:var(--white);border:1px solid var(--border);padding:1rem 1.3rem;border-radius:var(--r);margin-top:1rem}
+.yt-icon{width:36px;height:36px;background:#ff0000;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff;font-size:1rem}
+.yt-text{flex:1}
+.yt-text strong{display:block;font-size:.88rem;color:var(--ink)}
+.yt-text span{font-size:.78rem;color:var(--ink-3)}
+.yt-btn{background:var(--ink);color:#fff;font-family:var(--sans);font-size:.75rem;font-weight:600;padding:.4rem .8rem;border-radius:2px;text-decoration:none;flex-shrink:0;transition:background .15s}
+.yt-btn:hover{background:var(--petrol)}
+.r{opacity:0;transform:translateY(16px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.r.on{opacity:1;transform:none}
+.r.d1{transition-delay:.07s}.r.d2{transition-delay:.14s}.r.d3{transition-delay:.21s}.r.d4{transition-delay:.28s}.r.d5{transition-delay:.35s}
+footer{background:var(--petrol);padding:2rem 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+footer p{font-size:.8rem;color:rgba(255,255,255,.55)}
+footer strong{color:rgba(255,255,255,.85);font-weight:500}
+@media(max-width:860px){.hl-grid{grid-template-columns:1fr}.deel-grid{grid-template-columns:1fr}}
+@media(max-width:700px){.progress-steps{display:none}.card-grid,.gem-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <a class="topbar-logo" href="index.html">Masterclass AI</a>
+  <nav class="progress-steps" aria-label="Programmanavigatie">
+    <a class="ps-item" href="index.html"><div class="ps-step"><span class="n">Home</span></div></a>
+    <span class="ps-arrow">›</span>
+    <a class="ps-item" href="deel1.html"><div class="ps-step"><span class="n">01</span> Wat is AI?</div></a>
+    <span class="ps-arrow">›</span>
+    <a class="ps-item" href="deel2.html"><div class="ps-step"><span class="n">02</span> Prompting</div></a>
+    <span class="ps-arrow">›</span>
+    <a class="ps-item" href="deel3.html"><div class="ps-step"><span class="n">03</span> AI-tools</div></a>
+    <span class="ps-arrow">›</span>
+    <a class="ps-item" href="deel4.html"><div class="ps-step"><span class="n">04</span> Evaluatie</div></a>
+    <span class="ps-arrow">›</span>
+    <a class="ps-item active" href="vakken.html"><div class="ps-step"><span class="n">05</span> Vakken</div></a>
+    <span class="ps-arrow">›</span>
+    <a class="ps-item" href="deel6.html"><div class="ps-step"><span class="n">06</span> Geletterdheid</div></a>
+  </nav>
+</header>
+<main class="page" style="--content:800px">
+
+<header class="page-head r">
+  <span class="page-kicker">Uitgewerkte lessenreeks</span>
+  <h1 class="page-title"><em>Nederlands</em> — vier lessen met AI</h1>
+  <p class="page-intro">Vier volledig uitgewerkte lessen van 50 minuten voor het vak Nederlands. Elke les bevat een gedetailleerd lesverloop, kant-en-klare prompts, Gem-instructies, differentiatiemogelijkheden en evaluatietips. Geschikt voor de tweede en derde graad.</p>
+</header>
+
+<nav class="toc r">
+  <span class="toc-label">De vier lessen</span>
+  <div class="toc-items">
+    <a class="toc-link" href="#nl-les1">Les 1 — Schrijfcoach</a>
+    <a class="toc-link" href="#nl-les2">Les 2 — Betoog</a>
+    <a class="toc-link" href="#nl-les3">Les 3 — Leesvaardigheid</a>
+    <a class="toc-link" href="#nl-les4">Les 4 — Debat</a>
+  </div>
+</nav>
+
+<!-- ══ LES 1 ══ -->
+<section class="sect" id="nl-les1">
+<div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.8rem 2rem;margin-bottom:2rem" class="r">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem">
+    <div>
+      <div style="font-size:.65rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--petrol);margin-bottom:.3rem">Les 1 van 4</div>
+      <div style="font-family:var(--serif);font-size:1.4rem;font-weight:600;color:var(--ink);line-height:1.2;margin-bottom:.8rem">De AI-schrijfcoach in actie</div>
+      <div style="display:flex;flex-wrap:wrap;gap:.4rem">
+        <span style="background:var(--petrol-l);color:var(--petrol);font-size:.72rem;font-weight:600;padding:.2rem .6rem;border-radius:3px">Nederlands</span>
+        <span style="background:var(--bg-alt);color:var(--ink-3);font-size:.72rem;padding:.2rem .6rem;border-radius:3px">3de graad</span>
+        <span style="background:var(--bg-alt);color:var(--ink-3);font-size:.72rem;padding:.2rem .6rem;border-radius:3px">50 minuten</span>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.4rem">Thema</div>
+      <div style="font-size:.9rem;color:var(--ink-2);margin-bottom:.9rem">Schrijfvaardigheid — een persoonlijk betoog</div>
+      <div style="font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.4rem">Leerdoelen</div>
+      <ul style="font-size:.85rem;color:var(--ink-2);line-height:1.7;padding-left:1rem"><li>De leerling past de structuur van een betoog correct toe.</li><li>De leerling evalueert eigen schrijfwerk kritisch via AI-feedback.</li><li>De leerling herschrijft gericht op basis van gerichte vragen.</li></ul>
+    </div>
+  </div>
+  <div style="border-top:1px solid var(--border);margin-top:1.2rem;padding-top:1rem">
+    <div style="font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.5rem">Benodigdheden</div>
+    <ul style="font-size:.83rem;color:var(--ink-3);line-height:1.65;padding-left:1rem;columns:2"><li>Smartschool of Google Classroom met link naar de Schrijfcoach-Gem</li><li>Google Docs of Word (één document per leerling)</li><li>Beamer of smartboard voor klassikale momenten</li><li>Optioneel: rubric voor zelfbeoordeling</li></ul>
+  </div>
+</div>
+  <h3 style="font-family:var(--serif);font-size:1.1rem;font-weight:600;color:var(--ink);margin:1.5rem 0 .6rem">Lesverloop</h3>
+<div style="border-top:1px solid var(--border);margin-bottom:1.5rem" class="r"><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start">
+  <div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol);white-space:nowrap">5 min</div>
+  <div>
+    <div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Instap — Wat doet een goede schrijfcoach?</div>
+    <div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Klassikaal gesprek: wat verwacht je van feedback op je schrijfwerk? Wat helpt wél, wat helpt niet?</div>
+    <div style='font-size:.82rem;color:var(--ink-3);line-height:1.6'>Vraag: "Heb je liever dat iemand je tekst herschrijft, of dat hij vragen stelt?" Laat een paar leerlingen antwoorden. Leg de link naar hoe de Gem werkt: hij herschrijft nooit, hij vraagt altijd.</div>
+  </div>
+</div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start">
+  <div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol);white-space:nowrap">10 min</div>
+  <div>
+    <div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Schrijffase — eerste versie</div>
+    <div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Leerlingen schrijven individueel een eerste versie van een inleiding op een zelf gekozen stelling. Minimaal 80 woorden.</div>
+    <div style='font-size:.82rem;color:var(--ink-3);line-height:1.6'>Geef de stelling mee of laat leerlingen kiezen uit drie opties: "Sociale media doet meer kwaad dan goed", "Huisdieren zijn goed voor de mentale gezondheid" of een eigen stelling. Geen hulp van AI in deze fase — dit is hun basisversie.</div>
+  </div>
+</div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start">
+  <div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol);white-space:nowrap">15 min</div>
+  <div>
+    <div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Feedbackfase — gesprek met de Schrijfcoach-Gem</div>
+    <div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Leerlingen openen de Gem via de link in Smartschool en plakken hun inleiding. Ze voeren minstens drie feedbackronden.</div>
+    <div style='font-size:.82rem;color:var(--ink-3);line-height:1.6'>Circuleer door de klas. Let op leerlingen die meteen vragen "schrijf het voor mij" — wijs hen op hoe de Gem reageert. Laat leerlingen hun gesprek open houden; ze zullen het straks nodig hebben.</div>
+  </div>
+</div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start">
+  <div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol);white-space:nowrap">10 min</div>
+  <div>
+    <div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Herschrijffase — verbeterde versie</div>
+    <div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Op basis van de Gem-feedback herschrijven leerlingen hun inleiding. Beide versies blijven bewaard in hetzelfde document.</div>
+    <div style='font-size:.82rem;color:var(--ink-3);line-height:1.6'>Vraag leerlingen om in een andere kleur of cursief te markeren wat ze veranderd hebben en waarom. Dit maakt het leerproces zichtbaar voor jou als leraar.</div>
+  </div>
+</div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start">
+  <div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol);white-space:nowrap">8 min</div>
+  <div>
+    <div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Nabespreking — wat heeft de AI gezien?</div>
+    <div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Klassikaal: een of twee leerlingen delen hun scherm. Welke feedback gaf de Gem? Was die nuttig? Wat miste de Gem?</div>
+    <div style='font-size:.82rem;color:var(--ink-3);line-height:1.6'>Belangrijk discussiepunt: de Gem kan geen intentie lezen. Hij ziet niet waarom je iets schrijft. Dat is jouw taak als schrijver — en dat is precies wat AI niet kan vervangen.</div>
+  </div>
+</div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start">
+  <div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol);white-space:nowrap">2 min</div>
+  <div>
+    <div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Afsluiting — RAPPORT</div>
+    <div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Leerlingen typen RAPPORT in de Gem en kopiëren het overzicht onderaan hun Google Doc.</div>
+    <div style='font-size:.82rem;color:var(--ink-3);line-height:1.6'>Dit is hun inleverbaar bewijs van het gesprek. Jij leest het rapport — niet het volledige gesprek.</div>
+  </div>
+</div></div>
+<div style="background:var(--petrol-l);border-left:3px solid var(--petrol);padding:.9rem 1.3rem;border-radius:0 var(--r) var(--r) 0;margin:1rem 0" class="r">
+  <div style="font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--petrol);margin-bottom:.3rem">Differentiatie</div>
+  <p style="font-size:.88rem;color:var(--ink-2);line-height:1.75">Sterke leerlingen: vraag een volledige alinea in plaats van alleen een inleiding. Zwakkere leerlingen: geef een voorbeeldinleiding waarop ze feedback vragen voordat ze zelf schrijven — zo leren ze het type feedback kennen voor ze aan hun eigen tekst beginnen.</p>
+</div>
+<div class="prompt-wrap r">
+  <div class="prompt-head"><span class="prompt-head-label">Schrijfcoach-Gem — instructie voor deze les</span><button class="btn-copy" onclick="copy(this)">Kopi&euml;ren</button></div>
+  <div class="prompt-body">Jij bent de Schrijfcoach voor een les Nederlands over betoog schrijven.
+
+Je helpt leerlingen van de derde graad secundair onderwijs.
+
+WERKWIJZE
+Als een leerling een tekst instuurt:
+1. Geef één concreet positief punt over structuur of argumentatie
+2. Stel één gerichte vraag: "Waarom heb je dit argument gekozen?"
+   of "Wat bedoel je precies met...?"
+3. Geef één suggestie voor woordkeuze of zinslengte
+
+Na drie rondes: vraag "Ben je klaar om te herschrijven?"
+
+ABSOLUTE GRENS
+Geef NOOIT de herschreven versie,
+ook niet als de leerling erom vraagt.
+Antwoord dan: "Jij bent de schrijver.
+Probeer één zin te verbeteren — ik wacht."
+
+TAAL: altijd Nederlands.
+
+RAPPORT
+Als de leerling RAPPORT typt:
+---
+📋 SCHRIJFRAPPORT
+Aantal feedbackronden: [aantal]
+Hoofdthema tekst: [thema]
+Sterktes: [wat ging goed]
+Verbeterpunten: [max. 3 punten]
+Aanbeveling: [één concrete oefentip]
+---</div>
+</div>
+</section>
+
+<!-- ══ LES 2 ══ -->
+<section class="sect" id="nl-les2">
+<div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.8rem 2rem;margin-bottom:2rem" class="r">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem">
+    <div>
+      <div style="font-size:.65rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--petrol);margin-bottom:.3rem">Les 2 van 4</div>
+      <div style="font-family:var(--serif);font-size:1.4rem;font-weight:600;color:var(--ink);line-height:1.2;margin-bottom:.8rem">Een betoog schrijven met AI als sparringpartner</div>
+      <div style="display:flex;flex-wrap:wrap;gap:.4rem">
+        <span style="background:var(--petrol-l);color:var(--petrol);font-size:.72rem;font-weight:600;padding:.2rem .6rem;border-radius:3px">Nederlands</span>
+        <span style="background:var(--bg-alt);color:var(--ink-3);font-size:.72rem;padding:.2rem .6rem;border-radius:3px">3de graad</span>
+        <span style="background:var(--bg-alt);color:var(--ink-3);font-size:.72rem;padding:.2rem .6rem;border-radius:3px">50 minuten</span>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.4rem">Thema</div>
+      <div style="font-size:.9rem;color:var(--ink-2);margin-bottom:.9rem">Schrijfvaardigheid — volledige betoogtekst</div>
+      <div style="font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.4rem">Leerdoelen</div>
+      <ul style="font-size:.85rem;color:var(--ink-2);line-height:1.7;padding-left:1rem"><li>De leerling schrijft een volledig betoog met inleiding, argumentatie en besluit.</li><li>De leerling gebruikt AI als sparringpartner voor argumenten, niet als ghostwriter.</li><li>De leerling herkent het verschil tussen een sterk en een zwak argument.</li></ul>
+    </div>
+  </div>
+  <div style="border-top:1px solid var(--border);margin-top:1.2rem;padding-top:1rem">
+    <div style="font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.5rem">Benodigdheden</div>
+    <ul style="font-size:.83rem;color:var(--ink-3);line-height:1.65;padding-left:1rem;columns:2"><li>Link naar de Argumenten-Gem (zie instructie hieronder)</li><li>Google Docs — schrijfdocument klaar per leerling</li><li>Optioneel: betoogschema als werkblad (structuurkaart)</li></ul>
+  </div>
+</div>
+  <h3 style="font-family:var(--serif);font-size:1.1rem;font-weight:600;color:var(--ink);margin:1.5rem 0 .6rem">Lesverloop</h3>
+<div style="border-top:1px solid var(--border);margin-bottom:1.5rem" class="r"><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start">
+  <div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol);white-space:nowrap">5 min</div>
+  <div>
+    <div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Instap — Stelling kiezen</div>
+    <div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Leerlingen kiezen hun stelling uit een voorbereide lijst of stellen er zelf één op. De stelling moet verdedigbaar én aanvechtbaar zijn.</div>
+    <div style='font-size:.82rem;color:var(--ink-3);line-height:1.6'>Voorbeeldstellingen: "Influencers dragen meer bij aan jongeren dan leerkrachten", "Dierentuinen zijn moreel niet te verantwoorden", "Kernenergie is de enige oplossing voor de klimaatcrisis". Tip: laat leerlingen de stelling kiezen die zij persoonlijk het moeilijkst vinden te verdedigen — dat levert de rijkste lessen op.</div>
+  </div>
+</div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start">
+  <div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol);white-space:nowrap">10 min</div>
+  <div>
+    <div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Argumentenfase — AI als sparringpartner</div>
+    <div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Leerlingen vragen de Argumenten-Gem om drie tegenargumenten op hun stelling. Ze moeten die vervolgens weerleggen.</div>
+    <div style='font-size:.82rem;color:var(--ink-3);line-height:1.6'>Dit is de kern van de les: leerlingen denken niet na over hun eigen argumenten, maar over hoe ze tegenstand pareren. Dat is cognitief veel rijker. De Gem geeft tegenargumenten — de leerling moet reageren.</div>
+  </div>
+</div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start">
+  <div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol);white-space:nowrap">20 min</div>
+  <div>
+    <div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Schrijffase — volledig betoog</div>
+    <div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Leerlingen schrijven hun betoog. Ze mogen de Gem raadplegen voor feedback op argumenten en formulering, maar niet voor de tekst zelf.</div>
+    <div style='font-size:.82rem;color:var(--ink-3);line-height:1.6'>Houd twee regels aan: 1. De Gem mag vragen stellen en reageren op argumenten. 2. De Gem schrijft nooit zinnen. Leerlingen noteren bij elk argument: "Dit argument bedacht ik zelf / Dit argument kwam uit de AI-discussie."</div>
+  </div>
+</div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start">
+  <div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol);white-space:nowrap">10 min</div>
+  <div>
+    <div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Peerfeedback — twee leerlingen wisselen</div>
+    <div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Leerlingen wisselen hun betoog met een klasgenoot. Ze geven feedback op één sterk punt en één verbeterpunt.</div>
+    <div style='font-size:.82rem;color:var(--ink-3);line-height:1.6'>Gebruik een eenvoudige feedbackzin: "Jouw sterkste argument is... omdat... Een argument dat ik overtuigender zou willen zien is..."</div>
+  </div>
+</div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start">
+  <div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol);white-space:nowrap">5 min</div>
+  <div>
+    <div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Afsluiting en RAPPORT</div>
+    <div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Leerlingen typen RAPPORT in de Gem. Klassikale uitwisseling: welk argument van de AI vonden ze het moeilijkst te weerleggen?</div>
+    <div style='font-size:.82rem;color:var(--ink-3);line-height:1.6'>Dat gesprek onthult welke argumenten ze zelf nog niet goed beheersen — een perfecte indicatie voor de volgende les.</div>
+  </div>
+</div></div>
+<div style="background:var(--petrol-l);border-left:3px solid var(--petrol);padding:.9rem 1.3rem;border-radius:0 var(--r) var(--r) 0;margin:1rem 0" class="r">
+  <div style="font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--petrol);margin-bottom:.3rem">Evaluatietip</div>
+  <p style="font-size:.88rem;color:var(--ink-2);line-height:1.75">Vraag leerlingen bij inlevering twee dingen te markeren in hun betoog: in het blauw elk argument dat ze zelf bedachten, in het groen elk argument dat ze hebben bijgesteld na het gesprek met de Gem. Zo zie jij meteen in hoeverre ze zelfstandig gedacht hebben.</p>
+</div>
+<div class="prompt-wrap r">
+  <div class="prompt-head"><span class="prompt-head-label">Argumenten-Gem — instructie voor deze les</span><button class="btn-copy" onclick="copy(this)">Kopi&euml;ren</button></div>
+  <div class="prompt-body">Jij bent een Argumenten-adviseur voor leerlingen die een betoog schrijven.
+
+Als een leerling een stelling deelt:
+1. Geef drie sterke tegenargumenten op die stelling
+2. Vraag: "Welk tegenargument vind jij het moeilijkst te weerleggen?"
+3. Als de leerling een weerlegging probeert:
+   - Is de weerlegging logisch?
+   - Mist er bewijs of een voorbeeld?
+   - Stel één verdiepende vraag
+
+Geef NOOIT het volledige betoog of een alinea.
+Geef alleen feedback op de redenering.
+
+Als een leerling vraagt om een argument te schrijven:
+"Dat is jouw taak — ik help je het scherper maken.
+Wat wil je zeggen? Ik reageer daarop."
+
+RAPPORT
+Als de leerling RAPPORT typt:
+---
+📋 BETOOGRAPPORT
+Stelling: [stelling]
+Aantal argumentatieronden: [aantal]
+Sterkste weerlegging door leerling: [beschrijving]
+Verbeterpunt: [aanbeveling]
+---</div>
+</div>
+</section>
+
+<!-- ══ LES 3 ══ -->
+<section class="sect" id="nl-les3">
+<div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.8rem 2rem;margin-bottom:2rem" class="r">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem">
+    <div>
+      <div style="font-size:.65rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--petrol);margin-bottom:.3rem">Les 3 van 4</div>
+      <div style="font-family:var(--serif);font-size:1.4rem;font-weight:600;color:var(--ink);line-height:1.2;margin-bottom:.8rem">Leesvaardigheid — teksten begrijpen en bevragen</div>
+      <div style="display:flex;flex-wrap:wrap;gap:.4rem">
+        <span style="background:var(--petrol-l);color:var(--petrol);font-size:.72rem;font-weight:600;padding:.2rem .6rem;border-radius:3px">Nederlands</span>
+        <span style="background:var(--bg-alt);color:var(--ink-3);font-size:.72rem;padding:.2rem .6rem;border-radius:3px">2de graad</span>
+        <span style="background:var(--bg-alt);color:var(--ink-3);font-size:.72rem;padding:.2rem .6rem;border-radius:3px">50 minuten</span>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.4rem">Thema</div>
+      <div style="font-size:.9rem;color:var(--ink-2);margin-bottom:.9rem">Leesvaardigheid — informatieve tekst</div>
+      <div style="font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.4rem">Leerdoelen</div>
+      <ul style="font-size:.85rem;color:var(--ink-2);line-height:1.7;padding-left:1rem"><li>De leerling formuleert de hoofdgedachte van een tekst in eigen woorden.</li><li>De leerling onderscheidt feiten van meningen in een tekst.</li><li>De leerling evalueert de betrouwbaarheid van een bron.</li></ul>
+    </div>
+  </div>
+  <div style="border-top:1px solid var(--border);margin-top:1.2rem;padding-top:1rem">
+    <div style="font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.5rem">Benodigdheden</div>
+    <ul style="font-size:.83rem;color:var(--ink-3);line-height:1.65;padding-left:1rem;columns:2"><li>Een informatieve tekst van 400-600 woorden (actuele krant of tijdschrift)</li><li>Link naar de Leespartner-Gem</li><li>Individuele werkbladen of Google Forms voor notities</li></ul>
+  </div>
+</div>
+  <h3 style="font-family:var(--serif);font-size:1.1rem;font-weight:600;color:var(--ink);margin:1.5rem 0 .6rem">Lesverloop</h3>
+<div style="border-top:1px solid var(--border);margin-bottom:1.5rem" class="r"><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start">
+  <div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol);white-space:nowrap">5 min</div>
+  <div>
+    <div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Instap — Waarom lezen we?</div>
+    <div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Activerend gesprek: wanneer lees je iets écht aandachtig? Wanneer scan je alleen? Wat is het verschil?</div>
+    <div style='font-size:.82rem;color:var(--ink-3);line-height:1.6'>Leg de link naar het doel van de les: we oefenen vandaag "lezen met vragen" — niet passief absorberen maar actief bevragen.</div>
+  </div>
+</div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start">
+  <div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol);white-space:nowrap">10 min</div>
+  <div>
+    <div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Eerste lezing — individueel</div>
+    <div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Leerlingen lezen de tekst één keer stil. Ze noteren: drie woorden die de kern samenvatten, en één vraag die de tekst bij hen oproept.</div>
+    <div style='font-size:.82rem;color:var(--ink-3);line-height:1.6'>Nog geen AI — dit is hun eigen, onbeïnvloede eerste reactie. Die basisreactie is waardevol als vertrekpunt.</div>
+  </div>
+</div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start">
+  <div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol);white-space:nowrap">15 min</div>
+  <div>
+    <div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Tweede lezing — in gesprek met de Leespartner-Gem</div>
+    <div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Leerlingen openen de Gem, plakken de tekst erin en stellen hun eigen vraag als openingszin. De Gem stelt vervolgvragen.</div>
+    <div style='font-size:.82rem;color:var(--ink-3);line-height:1.6'>Instrueer leerlingen: "Geef de tekst aan de Gem en zeg: Dit is de tekst die ik gelezen heb. Ik wil jou bevragen over de hoofdgedachte. Start." Zo stuurt de leerling het gesprek — niet andersom.</div>
+  </div>
+</div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start">
+  <div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol);white-space:nowrap">10 min</div>
+  <div>
+    <div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Verwerkingsopdracht — feiten vs meningen</div>
+    <div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Leerlingen maken een eenvoudige tabel: drie uitspraken uit de tekst die feiten zijn, drie die meningen zijn. Ze leggen uit hoe ze het onderscheid maakten.</div>
+    <div style='font-size:.82rem;color:var(--ink-3);line-height:1.6'>Optioneel: leerlingen vragen de Gem of hij het eens is met hun indeling. De Gem reageert met een vraag — "Hoe weet je dat dit een feit is?" — geen bevestiging.</div>
+  </div>
+</div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start">
+  <div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol);white-space:nowrap">8 min</div>
+  <div>
+    <div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Broncritiek</div>
+    <div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Klassikaal: wie schreef deze tekst? Voor welk publiek? Wat ontbreekt er? Gebruik Perplexity om de auteur of bron te controleren.</div>
+    <div style='font-size:.82rem;color:var(--ink-3);line-height:1.6'>Dit verbindt leesvaardigheid met mediawijsheid: een tekst begrijpen is pas compleet als je de bron begrijpt.</div>
+  </div>
+</div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start">
+  <div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol);white-space:nowrap">2 min</div>
+  <div>
+    <div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Afsluiting en RAPPORT</div>
+    <div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Leerlingen typen RAPPORT in de Gem en bewaren het overzicht in hun portfolio.</div>
+    
+  </div>
+</div></div>
+<div style="background:var(--petrol-l);border-left:3px solid var(--petrol);padding:.9rem 1.3rem;border-radius:0 var(--r) var(--r) 0;margin:1rem 0" class="r">
+  <div style="font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--petrol);margin-bottom:.3rem">Huiswerkvariante</div>
+  <p style="font-size:.88rem;color:var(--ink-2);line-height:1.75">Geef leerlingen een tweede tekst mee naar huis. Ze voeren thuis hetzelfde gesprek met de Gem en leveren het rapport in. Zo oefen je leesvaardigheid buiten de klas zonder extra correctiewerk voor jou.</p>
+</div>
+<div class="prompt-wrap r">
+  <div class="prompt-head"><span class="prompt-head-label">Leespartner-Gem — instructie voor deze les</span><button class="btn-copy" onclick="copy(this)">Kopi&euml;ren</button></div>
+  <div class="prompt-body">Jij bent een leespartner voor leerlingen die een tekst analyseren.
+
+Als een leerling een tekst deelt:
+1. Vraag: "Wat is volgens jou de hoofdgedachte? Formuleer in één zin."
+2. Na het antwoord: "Waarop baseer je dat? Citeer de zin uit de tekst."
+3. Vraag: "Is dit een feit of een mening? Hoe weet je dat?"
+4. Vraag: "Welke informatie ontbreekt in deze tekst?"
+
+Stel altijd één vraag per keer.
+Geef nooit zelf de samenvatting of het antwoord.
+Als een leerling zegt "ik weet het niet":
+"Lees de eerste en laatste zin van elke alinea opnieuw.
+Wat valt op?"
+
+RAPPORT
+Als de leerling RAPPORT typt:
+---
+📋 LEESRAPPORT
+Tekst: [onderwerp/titel]
+Hoofgedachte geformuleerd door leerling: [citaat]
+Feiten vs meningen: [sterkte van het onderscheid]
+Brilvraag: [interessantste vraag die de leerling stelde]
+Aanbeveling: [één leesstrategietip]
+---</div>
+</div>
+</section>
+
+<!-- ══ LES 4 ══ -->
+<section class="sect" id="nl-les4">
+<div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.8rem 2rem;margin-bottom:2rem" class="r">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem">
+    <div>
+      <div style="font-size:.65rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--petrol);margin-bottom:.3rem">Les 4 van 4</div>
+      <div style="font-family:var(--serif);font-size:1.4rem;font-weight:600;color:var(--ink);line-height:1.2;margin-bottom:.8rem">Debatles — standpunten verdedigen en aanvallen</div>
+      <div style="display:flex;flex-wrap:wrap;gap:.4rem">
+        <span style="background:var(--petrol-l);color:var(--petrol);font-size:.72rem;font-weight:600;padding:.2rem .6rem;border-radius:3px">Nederlands</span>
+        <span style="background:var(--bg-alt);color:var(--ink-3);font-size:.72rem;padding:.2rem .6rem;border-radius:3px">3de graad</span>
+        <span style="background:var(--bg-alt);color:var(--ink-3);font-size:.72rem;padding:.2rem .6rem;border-radius:3px">50 minuten</span>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.4rem">Thema</div>
+      <div style="font-size:.9rem;color:var(--ink-2);margin-bottom:.9rem">Mondelinge taalvaardigheid — debat</div>
+      <div style="font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.4rem">Leerdoelen</div>
+      <ul style="font-size:.85rem;color:var(--ink-2);line-height:1.7;padding-left:1rem"><li>De leerling bouwt een mondeling argument op met stelling, bewijs en conclusie.</li><li>De leerling reageert gepast op een tegenargument.</li><li>De leerling evalueert debatvaardigheden via AI-feedback achteraf.</li></ul>
+    </div>
+  </div>
+  <div style="border-top:1px solid var(--border);margin-top:1.2rem;padding-top:1rem">
+    <div style="font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.5rem">Benodigdheden</div>
+    <ul style="font-size:.83rem;color:var(--ink-3);line-height:1.65;padding-left:1rem;columns:2"><li>Link naar de Debatcoach-Gem (voorbereiding thuis of in klas)</li><li>Debatregels op het bord (of uitgeprint)</li><li>Timer (5 minuten per spreker)</li><li>Evaluatieformulier voor medeleerlingen</li></ul>
+  </div>
+</div>
+  <h3 style="font-family:var(--serif);font-size:1.1rem;font-weight:600;color:var(--ink);margin:1.5rem 0 .6rem">Lesverloop</h3>
+<div style="border-top:1px solid var(--border);margin-bottom:1.5rem" class="r"><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start">
+  <div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol);white-space:nowrap">10 min</div>
+  <div>
+    <div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Voorbereiding — Gem als debatcoach</div>
+    <div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Leerlingen krijgen 10 minuten om met de Debatcoach-Gem hun drie sterkste argumenten te testen. De Gem speelt advocaat van de duivel.</div>
+    <div style='font-size:.82rem;color:var(--ink-3);line-height:1.6'>Dit kan ook als huiswerk de avond ervoor. Als het in de klas gebeurt: leerlingen zitten in tweetallen aan dezelfde stelling maar de ene verdedigt, de andere bestrijdt. Ze oefenen elk met de Gem hun eigen kant.</div>
+  </div>
+</div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start">
+  <div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol);white-space:nowrap">5 min</div>
+  <div>
+    <div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Debatregels en structuur</div>
+    <div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Kort klassikaal: de drie fasen van een debatargument — stelling, bewijs (citaat of voorbeeld), conclusie. Plus de enige regel: je reageert altijd op wat de tegenstander zei.</div>
+    <div style='font-size:.82rem;color:var(--ink-3);line-height:1.6'>Schrijf op het bord: "Ik beweer dat... omdat... Dat bewijst dat..." Als een leerling die structuur volgt, is het al een goed argument.</div>
+  </div>
+</div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start">
+  <div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol);white-space:nowrap">20 min</div>
+  <div>
+    <div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Het debat</div>
+    <div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Twee teams van drie leerlingen debatteren voor de klas. Overige leerlingen evalueren op een eenvoudig formulier: welk argument was het sterkst? Welke tegenreactie was het best?</div>
+    <div style='font-size:.82rem;color:var(--ink-3);line-height:1.6'>Wissel na 10 minuten van debatteurs als de klas groot genoeg is. Houd de tijd strikt — 2 minuten per spreker, 1 minuut repliek.</div>
+  </div>
+</div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start">
+  <div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol);white-space:nowrap">10 min</div>
+  <div>
+    <div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">AI-nabespreking — wat miste de Gem?</div>
+    <div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Leerlingen keren terug naar hun Debatcoach-Gem en vertellen welke argumenten ze gebruikten en hoe het debat verliep. De Gem stelt evaluatievragen.</div>
+    <div style='font-size:.82rem;color:var(--ink-3);line-height:1.6'>Dit is een zeldzame didactische kans: leerlingen evalueren hun eigen mondelinge prestatie via een gesprek. De Gem kan niet het debat horen, maar kan wel vragen "Hoe reageerde je op het sterkste tegenargument?" en de redenering achteraf bespreken.</div>
+  </div>
+</div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start">
+  <div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol);white-space:nowrap">5 min</div>
+  <div>
+    <div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Afsluiting en RAPPORT</div>
+    <div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Leerlingen typen RAPPORT. Klassikale uitwisseling: welk argument van de tegenstander vond je het moeilijkst te weerleggen?</div>
+    <div style='font-size:.82rem;color:var(--ink-3);line-height:1.6'>Dat antwoord geeft jou als leraar inzicht in welke argumentatievaardigheden nog ontwikkeling vragen.</div>
+  </div>
+</div></div>
+<div style="background:var(--petrol-l);border-left:3px solid var(--petrol);padding:.9rem 1.3rem;border-radius:0 var(--r) var(--r) 0;margin:1rem 0" class="r">
+  <div style="font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--petrol);margin-bottom:.3rem">Evaluatie zonder stress</div>
+  <p style="font-size:.88rem;color:var(--ink-2);line-height:1.75">Beoordeel niet het winnen van het debat maar de kwaliteit van het redeneren. Gebruik de rapporten van de Debatcoach-Gem als basis voor individuele feedback. Leerlingen die goed gereedschapsgesprekken voerden met de Gem, laten dat zien in hun rapport — ook al spraken ze minder in het debat zelf.</p>
+</div>
+<div class="prompt-wrap r">
+  <div class="prompt-head"><span class="prompt-head-label">Debatcoach-Gem — instructie voor deze les</span><button class="btn-copy" onclick="copy(this)">Kopi&euml;ren</button></div>
+  <div class="prompt-body">Jij bent een debatcoach voor leerlingen die een debat voorbereiden.
+
+Als een leerling een stelling en hun standpunt deelt:
+1. Vraag naar hun drie sterkste argumenten
+2. Speel advocaat van de duivel voor elk argument:
+   "Hoe zou jij reageren als de tegenstander zegt...?"
+3. Wijs op eventuele drogredenaties
+4. Vraag: "Hoe maak je dit argument sterker met een concreet voorbeeld?"
+
+Na het debat (als leerling vertelt hoe het ging):
+1. "Welk tegenargument verraste je het meest?"
+2. "Hoe heb je gereageerd? Was dat effectief?"
+3. "Wat zou je anders doen?"
+
+RAPPORT
+Als de leerling RAPPORT typt:
+---
+📋 DEBATRAPPORT
+Stelling: [stelling] — Standpunt: [voor/tegen]
+Sterkste argument: [beschrijving]
+Moeilijkste tegenargument: [beschrijving]
+Reactie leerling: [hoe hij/zij reageerde]
+Aanbeveling: [één debattechniek om te oefenen]
+---</div>
+</div>
+</section>
+
+<nav class="page-nav r">
+  <a href="gems-vaktalen.html">&larr; Gems voor taalvakken</a>
+  <a href="lessen-engels.html">Lessen Engels &rarr;</a>
+</nav>
+
+</main>
+<footer>
+  <p><strong>Masterclass AI 2026</strong> · Secundair Onderwijs Vlaanderen · Don Bosco</p>
+</footer>
+<script>
+const ro=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting){en.target.classList.add('on');ro.unobserve(en.target);}});},{threshold:0.07});
+document.querySelectorAll('.r').forEach(el=>ro.observe(el));
+function copy(btn){
+  const text=btn.closest('.prompt-wrap').querySelector('.prompt-body').innerText;
+  navigator.clipboard.writeText(text).then(()=>{
+    btn.textContent='Gekopieerd ✓';btn.classList.add('ok');
+    setTimeout(()=>{btn.textContent='Kopiëren';btn.classList.remove('ok');},2000);
+  });
+}
+</script>
+</body>
+</html>

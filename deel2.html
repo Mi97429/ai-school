@@ -156,59 +156,389 @@ footer strong{color:rgba(255,255,255,.85);font-weight:500}
     <a class="ps-item" href="deel6.html"><div class="ps-step"><span class="n">06</span> Geletterdheid</div></a>
   </nav>
 </header>
-<main class="page"><header class="page-head r"><span class="page-kicker">Stap 02</span><h1 class="page-title">Prompt<em>engineering</em></h1><p class="page-intro">De kunst van goed communiceren met AI. Van vage opdracht naar gestructureerde prompt — met concrete sjablonen die je morgen al kunt gebruiken.</p></header><nav class="toc r"><span class="toc-label">Op deze pagina</span><div class="toc-items"><a class="toc-link" href="#blauwdruk">De vier bouwstenen</a><a class="toc-link" href="#itereren">Itereren & verfijnen</a><a class="toc-link" href="#gamificatie">Gamificatie</a><a class="toc-link" href="#apps">Speelbare apps</a><a class="toc-link" href="#publiceren">Publiceren: Google Sites</a><a class="toc-link" href="#github">Publiceren: GitHub Pages</a></div></nav><section class="sect" id="blauwdruk"><h2 class="sect-title">De vier bouwstenen</h2><p class="sect-lead">Een goede prompt bevat altijd vier elementen. Ontbreekt er één, dan daalt de kwaliteit van het antwoord merkbaar.</p><div class="card-grid"><div class="card r"><div class="card-name"><i class="fa-solid fa-user-tie" style="color:var(--petrol);margin-right:.4rem"></i>Rol</div><div class="card-desc">Geef de AI een identiteit. &ldquo;Jij bent een ervaren leraar Nederlands&rdquo; levert betere resultaten dan een anonieme opdracht.</div></div><div class="card r d1"><div class="card-name"><i class="fa-solid fa-bullseye" style="color:var(--petrol);margin-right:.4rem"></i>Taak</div><div class="card-desc">Wees specifiek. &ldquo;Maak 10 meerkeuzevragen over de Tweede Wereldoorlog voor 5de jaar&rdquo; is concreet. &ldquo;Schrijf een quiz&rdquo; is vaag.</div></div><div class="card r d2"><div class="card-name"><i class="fa-solid fa-circle-info" style="color:var(--petrol);margin-right:.4rem"></i>Context</div><div class="card-desc">Geef relevante achtergrond mee: leerjaar, vak, niveau, doelstelling, beschikbare tijd. Context = kwaliteit.</div></div><div class="card r d3"><div class="card-name"><i class="fa-solid fa-file-lines" style="color:var(--petrol);margin-right:.4rem"></i>Formaat</div><div class="card-desc">Beschrijf hoe de output er moet uitzien: lijstje, tabel, HTML-pagina. Zonder formaat krijg je proza.</div></div></div><div class="callout r"><p><strong>Gouden regel:</strong> een vaag prompt geeft een vaag antwoord. Neem 30 seconden extra om je prompt te structureren — het resultaat is tien keer beter.</p></div></section><section class="sect" id="itereren"><h2 class="sect-title">Itereren &amp; verfijnen</h2><p class="sect-lead">Het eerste antwoord is zelden het beste. AI is een gesprek, geen zoekopdracht.</p><ul class="steps r"><li><span class="n">01</span><span>Stuur je eerste prompt — bekijk het resultaat kritisch.</span></li><li><span class="n">02</span><span>Vraag door: <strong>"Maak het concreter voor 4de jaar"</strong> of <strong>"Voeg meer voorbeelden toe"</strong>.</span></li><li><span class="n">03</span><span>Pas de context aan: <strong>"Stel dat leerlingen dit thema nog nooit gezien hebben"</strong>.</span></li><li><span class="n">04</span><span>Vraag alternatieven: <strong>"Geef me drie versies op verschillende niveaus"</strong>.</span></li><li><span class="n">05</span><span>Verfijn het formaat: <strong>"Zet dit in een tabel met kolommen voor niveau, activiteit en tijdsduur"</strong>.</span></li></ul><div class="callout r"><p><strong>Metaprompt:</strong> vraag de AI om jouw prompt te verbeteren voor je hem verstuurt: <em>"Verbeter deze prompt zodat ik een beter antwoord krijg: [jouw prompt]"</em></p></div></section><section class="sect" id="gamificatie"><h2 class="sect-title">Gamificatie-elementen</h2><p class="sect-lead">AI genereert speelse oefeningen die leerlingen motiveren. Van puntensystemen tot escape rooms — alles is mogelijk.</p><div class="card-grid"><div class="card r"><div class="card-name">Puntensysteem</div><div class="card-desc">Leerlingen verdienen punten voor correct antwoorden. AI schrijft de regels en de feedbackteksten.</div></div><div class="card r"><div class="card-name">Escape room</div><div class="card-desc">Een reeks raadsels die leerlingen stap voor stap oplossen. AI genereert het verhaal en de puzzels.</div></div><div class="card r"><div class="card-name">Niveaubadges</div><div class="card-desc">Drie niveaus: beginner, gevorderd, expert. AI past de moeilijkheid automatisch aan.</div></div><div class="card r"><div class="card-name">Hints-systeem</div><div class="card-desc">Leerlingen kunnen hints opvragen die punten kosten. AI schrijft de gegradueerde hints.</div></div></div></section><section class="sect" id="apps"><h2 class="sect-title">Speelbare apps maken</h2><p class="sect-lead">Gemini schrijft HTML, CSS en JavaScript in één bestand. Jij plakt het online — klaar. Geen programmeerkennis nodig.</p><div class="sect" style="padding:2rem 0;border-bottom:1px solid var(--border)"><h3 style="font-family:var(--serif);font-size:1.1rem;font-weight:600;margin-bottom:.4rem">Interactieve quiz</h3><p style="font-size:.9rem;color:var(--ink-3);margin-bottom:.8rem">Timer, meerkeuze, directe feedback, scoreteller. Solo of klassikaal op het grote scherm.</p><div class="prompt-wrap r"><div class="prompt-head"><span class="prompt-head-label">Prompt — Interactieve quiz</span><button class="btn-copy" onclick="copy(this)">Kopiëren</button></div><div class="prompt-body">Schrijf een <span class="pv">volledige werkende HTML-pagina</span> voor een interactieve quiz over <span class="pv">[onderwerp]</span> voor <span class="pv">[graad + vak]</span>.
+<main class="page">
+
+<header class="page-head r">
+  <span class="page-kicker">Stap 02</span>
+  <h1 class="page-title">Prompt<em>engineering</em></h1>
+  <p class="page-intro">Een prompt is meer dan een vraag typen. Het is de kunst van precies communiceren met een machine die alles doet wat je zegt — maar alleen dat wat je zegt. Deze stap leert je hoe je van vage opdrachten naar scherpe, bruikbare resultaten gaat.</p>
+</header>
+
+<nav class="toc r">
+  <span class="toc-label">Op deze pagina</span>
+  <div class="toc-items">
+    <a class="toc-link" href="#waarom">Waarom mislukken prompts?</a>
+    <a class="toc-link" href="#vier">De vier bouwstenen</a>
+    <a class="toc-link" href="#itereren">Itereren &amp; verfijnen</a>
+    <a class="toc-link" href="#context">Je eigen materiaal als basis</a>
+    <a class="toc-link" href="#gamificatie">Gamificatie</a>
+    <a class="toc-link" href="#apps">Speelbare apps bouwen</a>
+    <a class="toc-link" href="#publiceren">Publiceren</a>
+  </div>
+</nav>
+
+<!-- ══ WAAROM MISLUKKEN PROMPTS? ══ -->
+<section class="sect" id="waarom">
+  <h2 class="sect-title">Waarom mislukken de meeste prompts?</h2>
+  <p class="sect-lead">De meeste leraren die voor het eerst AI gebruiken, zijn teleurgesteld. Ze krijgen vage, generieke antwoorden die ze niet kunnen gebruiken. Dat ligt zelden aan de AI — het ligt bijna altijd aan de prompt.</p>
+
+  <div class="narrative r">
+    <p>Stel je voor dat je een nieuwe, hoogopgeleide stagiair in dienst neemt. Die persoon heeft alles gelezen wat er te lezen valt, spreekt twintig talen en kan elk type document opstellen. Maar hij kent jou niet. Hij kent je school niet, je leerlingen niet, je leerplan niet, je stijl niet. Als je hem vraagt "maak een quiz over WO II", geeft hij je iets generiek terug. Als je hem vraagt "maak tien meerkeuzevragen over de oorzaken van WO II voor leerlingen van de derde graad D-finaliteit, niveau inzichtsvragen, focus op de Belgische en Europese context, met vier antwoordopties per vraag en een korte uitleg bij het correcte antwoord" — dan geeft hij je iets bruikbaars. <strong>De AI is de stagiair. Jij bent de expert. Jij stuurt.</strong></p>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-bottom:1.8rem" class="r">
+    <div style="background:var(--white);border:1px solid #f5c6cb;border-radius:var(--r);padding:1.3rem 1.5rem">
+      <div style="font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#c0392b;margin-bottom:.8rem">❌ Een typische mislukte prompt</div>
+      <div style="background:#0d1a24;border-radius:4px;padding:.9rem 1rem;font-family:var(--mono);font-size:.82rem;color:#c8dce8;line-height:1.7;margin-bottom:.7rem">Maak een oefening over fotosynthese.</div>
+      <p style="font-size:.82rem;color:var(--ink-3);line-height:1.6">Resultaat: vijf invulvragen op een onbepaald niveau, ergens tussen lager onderwijs en universiteit, zonder context of structuur.</p>
+    </div>
+    <div style="background:var(--white);border:1px solid #c3e6cb;border-radius:var(--r);padding:1.3rem 1.5rem">
+      <div style="font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#1a6b3a;margin-bottom:.8rem">✓ Dezelfde vraag, beter gesteld</div>
+      <div style="background:#0d1a24;border-radius:4px;padding:.9rem 1rem;font-family:var(--mono);font-size:.82rem;color:#c8dce8;line-height:1.7;margin-bottom:.7rem">Jij bent een ervaren biologieleraar. Maak vijf oefenvragen over fotosynthese voor 4de jaar D-finaliteit. Mix: twee begripsvragen, twee toepassingsvragen, één analysegraag. Elk met modelantwoord.</div>
+      <p style="font-size:.82rem;color:var(--ink-3);line-height:1.6">Resultaat: vijf bruikbare vragen op het juiste niveau, klaar om in te leveren.</p>
+    </div>
+  </div>
+
+  <p style="font-size:.97rem;color:var(--ink-2);line-height:1.85;margin-bottom:1.2rem">Het verschil tussen die twee prompts? Vier elementen die je altijd kunt toevoegen. We noemen ze de vier bouwstenen.</p>
+</section>
+
+<!-- ══ DE VIER BOUWSTENEN ══ -->
+<section class="sect" id="vier">
+  <h2 class="sect-title">De vier bouwstenen van een goede prompt</h2>
+  <p class="sect-lead">Elke sterke prompt bevat vier ingrediënten: een rol, een taak, context en een gewenst formaat. Ontbreekt er één, dan daalt de kwaliteit van het antwoord merkbaar. Zijn alle vier aanwezig, dan is het resultaat bijna altijd bruikbaar.</p>
+
+  <div class="narrative r">
+    <p>Bekijk het als een recept. Je kunt een gerecht bereiden met alleen zout — maar het smaakt naar niets. Voeg je ook de juiste ingrediënten toe in de juiste verhoudingen, dan wordt het wat het moet zijn. Zo ook met prompts: elk element heeft een functie, en ze versterken elkaar.</p>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.8rem" class="r">
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.4rem 1.6rem;border-top:3px solid var(--petrol)">
+      <div style="font-family:var(--serif);font-size:1.05rem;font-weight:600;color:var(--ink);margin-bottom:.5rem"><i class="fa-solid fa-user-tie" style="color:var(--petrol);margin-right:.5rem;font-size:.9rem"></i>1. De Rol</div>
+      <p style="font-size:.9rem;color:var(--ink-2);line-height:1.75;margin-bottom:.7rem">Geef de AI een identiteit. Door de AI een rol te geven, activeer je de juiste "kennislaag". Een geschiedenisleraar antwoordt anders dan een jurist, ook al beschrijf je dezelfde situatie.</p>
+      <div style="background:#0d1a24;border-radius:4px;padding:.7rem .9rem;font-family:var(--mono);font-size:.78rem;color:#c8dce8;line-height:1.6">
+        <span style="color:#7ecfe0">Zonder rol:</span> "Schrijf een tekst over de Koude Oorlog."<br>
+        <span style="color:#7ecfe0">Met rol:</span> "Jij bent een ervaren geschiedenisleraar voor de derde graad D-finaliteit..."
+      </div>
+    </div>
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.4rem 1.6rem;border-top:3px solid var(--petrol)">
+      <div style="font-family:var(--serif);font-size:1.05rem;font-weight:600;color:var(--ink);margin-bottom:.5rem"><i class="fa-solid fa-bullseye" style="color:var(--petrol);margin-right:.5rem;font-size:.9rem"></i>2. De Taak</div>
+      <p style="font-size:.9rem;color:var(--ink-2);line-height:1.75;margin-bottom:.7rem">Wees zo concreet mogelijk. Vaag = generiek. Specifiek = bruikbaar. Zeg niet "maak een oefening" maar wat voor oefening, hoeveel vragen, welk type, voor welk niveau.</p>
+      <div style="background:#0d1a24;border-radius:4px;padding:.7rem .9rem;font-family:var(--mono);font-size:.78rem;color:#c8dce8;line-height:1.6">
+        <span style="color:#7ecfe0">Vaag:</span> "Schrijf een quiz."<br>
+        <span style="color:#7ecfe0">Concreet:</span> "Maak 10 meerkeuzevragen over... voor 5de jaar, met 4 opties elk en modelantwoord."
+      </div>
+    </div>
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.4rem 1.6rem;border-top:3px solid var(--petrol)">
+      <div style="font-family:var(--serif);font-size:1.05rem;font-weight:600;color:var(--ink);margin-bottom:.5rem"><i class="fa-solid fa-circle-info" style="color:var(--petrol);margin-right:.5rem;font-size:.9rem"></i>3. De Context</div>
+      <p style="font-size:.9rem;color:var(--ink-2);line-height:1.75;margin-bottom:.7rem">Dit is het meest onderschatte element. Hoe meer relevante achtergrond je geeft, hoe beter het resultaat. Leerjaar, studierichting, wat leerlingen al kennen, het leerplannummer — alles telt.</p>
+      <div style="background:#0d1a24;border-radius:4px;padding:.7rem .9rem;font-family:var(--mono);font-size:.78rem;color:#c8dce8;line-height:1.6">
+        <span style="color:#7ecfe0">Tip:</span> "Leerlingen hebben hoofdstuk 3 al gezien maar hoofdstuk 4 nog niet. Ze zijn sterk in theorie maar zwak in toepassing."
+      </div>
+    </div>
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.4rem 1.6rem;border-top:3px solid var(--petrol)">
+      <div style="font-family:var(--serif);font-size:1.05rem;font-weight:600;color:var(--ink);margin-bottom:.5rem"><i class="fa-solid fa-file-lines" style="color:var(--petrol);margin-right:.5rem;font-size:.9rem"></i>4. Het Formaat</div>
+      <p style="font-size:.9rem;color:var(--ink-2);line-height:1.75;margin-bottom:.7rem">Beschrijf hoe de output eruit moet zien. Zonder formaatinstructie krijg je proza. Met formaatinstructie krijg je precies de structuur die jij nodig hebt om het direct te gebruiken.</p>
+      <div style="background:#0d1a24;border-radius:4px;padding:.7rem .9rem;font-family:var(--mono);font-size:.78rem;color:#c8dce8;line-height:1.6">
+        <span style="color:#7ecfe0">Geef aan:</span> "Geef de output als tabel / als genummerde lijst / als HTML-pagina / als Word-document."
+      </div>
+    </div>
+  </div>
+
+  <div style="background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--r);padding:1.6rem 1.8rem;margin-bottom:1.5rem" class="r">
+    <p style="font-size:.75rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:1rem">Een volledige prompt met alle vier bouwstenen</p>
+    <div style="background:#0d1a24;border-radius:var(--r);padding:1.2rem 1.4rem;font-family:var(--mono);font-size:.83rem;color:#c8dce8;line-height:1.85">
+<span style="color:#7ecfe0;font-weight:600">ROL:</span> Jij bent een ervaren leraar Nederlands voor het secundair onderwijs.<br><br>
+<span style="color:#7ecfe0;font-weight:600">TAAK:</span> Schrijf een schrijfopdracht voor een betoog van 400 woorden.<br><br>
+<span style="color:#7ecfe0;font-weight:600">CONTEXT:</span> Leerlingen zijn in het 4de jaar A-finaliteit. Ze kennen de structuur van een betoog maar worstelen met sterke argumenten. Het thema is sociale media en mentale gezondheid bij jongeren.<br><br>
+<span style="color:#7ecfe0;font-weight:600">FORMAAT:</span> Geef de opdracht als een werkblad: situatieschets, opdrachtzin, evaluatiecriteria en drie startzinnen als hulp voor leerlingen die vastlopen.
+    </div>
+  </div>
+
+  <div class="callout r">
+    <p><strong>De gouden regel:</strong> een vage prompt geeft een vaag antwoord. Neem dertig seconden extra om je prompt te structureren via de vier bouwstenen — het resultaat is tien keer bruikbaarder. En onthoud: je hoeft niet altijd alle vier expliciet te benoemen. Zolang de informatie er is, vindt de AI zijn weg.</p>
+  </div>
+</section>
+
+<!-- ══ ITEREREN ══ -->
+<section class="sect" id="itereren">
+  <h2 class="sect-title">Itereren &amp; verfijnen — AI is een gesprek, geen zoekopdracht</h2>
+  <p class="sect-lead">De grootste misvatting over AI-gebruik is dat je één perfecte prompt moet schrijven en dat het dan meteen goed is. Zo werkt het niet. AI is een gesprek. Je stuurt bij, verfijnt, vraagt door — net zoals je dat zou doen met een collega.</p>
+
+  <div class="narrative r">
+    <p>Stel je voor dat je een collega vraagt om een lesplan te schrijven. Die collega levert iets in. Het is niet slecht, maar het klopt niet helemaal. Je zegt: "Dit is te lang, kan je het compacter maken?" En: "De derde activiteit past niet bij mijn klas, die zijn onrustiger." En: "Voeg ook een differentiatiemoment toe voor sterkere leerlingen." Na drie rondes heb je iets dat perfect bij jou past. <strong>Dat is exact hoe je AI moet gebruiken.</strong></p>
+  </div>
+
+  <p style="font-size:.97rem;color:var(--ink-2);line-height:1.85;margin-bottom:1.4rem">Hier is hoe zo'n iteratief gesprek er concreet uitziet. Een leraar economie wil een les opbouwen over inflatie:</p>
+
+  <div style="display:flex;flex-direction:column;gap:.8rem;margin-bottom:1.8rem" class="r">
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.1rem 1.4rem">
+      <div style="font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--petrol);margin-bottom:.5rem">Ronde 1 — Eerste prompt</div>
+      <p style="font-family:var(--mono);font-size:.82rem;color:var(--ink-2);margin-bottom:.5rem">Jij bent een leraar economie. Leg inflatie uit voor leerlingen van het 5de jaar.</p>
+      <p style="font-size:.8rem;color:var(--ink-3)">→ AI geeft een correcte maar droge uitleg in proza. Te lang, te abstract.</p>
+    </div>
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.1rem 1.4rem">
+      <div style="font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--petrol);margin-bottom:.5rem">Ronde 2 — Bijsturen</div>
+      <p style="font-family:var(--mono);font-size:.82rem;color:var(--ink-2);margin-bottom:.5rem">Maak dit concreter met een voorbeeld uit het dagelijks leven. Max. 150 woorden. Gebruik een vergelijking die 17-jarigen aanspreken.</p>
+      <p style="font-size:.8rem;color:var(--ink-3)">→ AI geeft een voorbeeld met een bioscoopticket dat jaar na jaar duurder wordt. Beter, maar de leraar wil een interactief element.</p>
+    </div>
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.1rem 1.4rem">
+      <div style="font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--petrol);margin-bottom:.5rem">Ronde 3 — Verdiepen</div>
+      <p style="font-family:var(--mono);font-size:.82rem;color:var(--ink-2);margin-bottom:.5rem">Voeg nu drie discussievragen toe die leerlingen aan het denken zetten over de oorzaken van inflatie. Sluit af met een link naar de actualiteit van dit jaar.</p>
+      <p style="font-size:.8rem;color:var(--ink-3)">→ Resultaat: een complete les-opener van 200 woorden met uitleg, voorbeeld en discussievragen. Klaar om te gebruiken.</p>
+    </div>
+  </div>
+
+  <p style="font-size:.97rem;color:var(--ink-2);line-height:1.85;margin-bottom:1.4rem">Die drie rondes kosten je samen minder dan twee minuten. Maar het resultaat is fundamenteel anders dan wat je bij de eerste poging zou krijgen.</p>
+
+  <div class="callout r">
+    <p><strong>De metaprompt-truc:</strong> als je niet weet hoe je je prompt moet verbeteren, vraag het de AI zelf: <em>"Hoe kan ik deze prompt verbeteren zodat ik een beter antwoord krijg? [plak hier je prompt]"</em> De AI geeft je concrete suggesties om je eigen vraag scherper te formuleren.</p>
+  </div>
+
+  <ul class="steps r">
+    <li><span class="n">→</span><span><strong>Maak het korter of langer:</strong> "Vat dit samen in drie bullets" of "Werk dit uit in meer detail."</span></li>
+    <li><span class="n">→</span><span><strong>Pas het niveau aan:</strong> "Herschrijf dit voor leerlingen die moeite hebben met abstracte concepten."</span></li>
+    <li><span class="n">→</span><span><strong>Vraag alternatieven:</strong> "Geef me drie verschillende versies van deze openingsvraag."</span></li>
+    <li><span class="n">→</span><span><strong>Voeg toe:</strong> "Voeg een differentiatieopdracht toe voor snelle leerlingen."</span></li>
+    <li><span class="n">→</span><span><strong>Verander de toon:</strong> "Schrijf dit opnieuw in een informelere, meer motiverende toon."</span></li>
+  </ul>
+</section>
+
+<!-- ══ EIGEN MATERIAAL ALS BASIS ══ -->
+<section class="sect" id="context">
+  <h2 class="sect-title">Jouw eigen materiaal als basis</h2>
+  <p class="sect-lead">De krachtigste prompt-techniek die de meeste leraren onderschatten: geef de AI eerst jóuw materiaal, en vraag hem dan pas iets te maken. Zo verankert de AI zijn output aan jouw werkelijkheid in plaats van aan het internet.</p>
+
+  <div class="narrative r">
+    <p>Er is een groot verschil tussen een AI die iets maakt op basis van wat het weet over biologie in het algemeen, en een AI die iets maakt op basis van jóuw cursustekst, met jóuw begrippen, jóuw voorbeelden en jóuw leerplandoelstellingen. Het eerste levert generiek materiaal. Het tweede levert iets dat aansluit bij wat jij al hebt opgebouwd met je leerlingen.</p>
+  </div>
+
+  <div style="background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--r);padding:1.6rem 1.8rem;margin-bottom:1.5rem" class="r">
+    <p style="font-size:.75rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:1rem">Hoe doe je dat in de praktijk?</p>
+    <ul class="steps" style="margin-bottom:0">
+      <li><span class="n">01</span><span>Kopieer een passage uit je cursus — een definitie, een uitleg, een voorbeeld — en plak die bovenaan je prompt.</span></li>
+      <li><span class="n">02</span><span>Zeg: <em>"Op basis van de volgende tekst uit mijn cursus, maak [opdracht]..."</em> Zo is de AI gebonden aan jóuw materiaal.</span></li>
+      <li><span class="n">03</span><span>Wil je vragen genereren? Plak de volledige tekst van het hoofdstuk en vraag om vragen die rechtstreeks verwijzen naar de inhoud.</span></li>
+      <li><span class="n">04</span><span>Voor NotebookLM upload je de hele cursus — dan kun je er de rest van het jaar vragen over stellen, samenvattingen laten maken en examenvragen genereren.</span></li>
+    </ul>
+  </div>
+
+  <div class="callout r">
+    <p><strong>Persoonlijk contextblok:</strong> maak één keer een alinea over jezelf als leraar — jouw vak, graad, type leerlingen, studierichting, leerplannummer. Sla die op als tekstbestand. Plak hem altijd bovenaan elke nieuwe prompt. Dat ene gewoontetje verbetert elk antwoord dat je krijgt, omdat de AI altijd weet wie je bent en voor wie je werkt.</p>
+  </div>
+</section>
+
+<!-- ══ GAMIFICATIE ══ -->
+<section class="sect" id="gamificatie">
+  <h2 class="sect-title">Gamificatie — oefeningen die leerlingen wíllen maken</h2>
+  <p class="sect-lead">Een oefening is een oefening. Maar een oefening met een timer, punten, een verhaallijn en een eindscherm is iets wat leerlingen spontaan opnieuw willen proberen. AI genereert niet alleen de inhoud — het kan ook de volledige spelstructuur ontwerpen.</p>
+
+  <div class="narrative r">
+    <p>Het principe is eenvoudig: je voegt een gamificatie-blok toe aan je gewone prompt. In plaats van "maak tien vragen over de Franse Revolutie" zeg je "maak tien vragen over de Franse Revolutie, verpak ze als een escape room waarbij elke reeks correcte antwoorden een sleutel geeft voor de volgende kamer, schrijf een spannende inleiding en zorg voor een eindscherm met de score." De AI doet de rest.</p>
+  </div>
+
+  <p style="font-size:.97rem;color:var(--ink-2);line-height:1.85;margin-bottom:1.6rem">Je kunt gamificatie-elementen combineren of apart gebruiken. Hier zijn de vier meest effectieve:</p>
+
+  <div class="card-grid r">
+    <div class="card">
+      <div class="card-name"><i class="fa-solid fa-star" style="color:var(--petrol);margin-right:.4rem"></i>Puntensysteem &amp; levels</div>
+      <div class="card-desc">Leerlingen verdienen punten per correct antwoord. Oplopende moeilijkheid, bonusvragen, levelindicator. Voeg toe aan elke prompt met: <em>"Verwerk een puntensysteem met 1 punt per basisvraag, 2 punten per toepassingsvraag."</em></div>
+    </div>
+    <div class="card">
+      <div class="card-name"><i class="fa-solid fa-lock" style="color:var(--petrol);margin-right:.4rem"></i>Escape room</div>
+      <div class="card-desc">De leerstof zit verborgen in een verhaal of scenario. Elke opdracht is een "slot" dat je ontgrendelt. Hoge motivatie, diepe verwerking. Voeg toe: <em>"Verpak als escape room. De leerling is opgesloten in [context]."</em></div>
+    </div>
+    <div class="card">
+      <div class="card-name"><i class="fa-solid fa-layer-group" style="color:var(--petrol);margin-right:.4rem"></i>Drie niveaus</div>
+      <div class="card-desc">Beginner, gevorderd en meester. Leerlingen kiezen zelf hun startpunt of worden er naartoe geleid. Voeg toe: <em>"Maak drie versies: Niveau 1 is feitelijk, Niveau 2 toepassingsgericht, Niveau 3 analyserend."</em></div>
+    </div>
+    <div class="card">
+      <div class="card-name"><i class="fa-solid fa-lightbulb" style="color:var(--petrol);margin-right:.4rem"></i>Hints-systeem</div>
+      <div class="card-desc">Leerlingen kunnen hints opvragen, maar dat kost punten. Zo word je geholpen zonder het antwoord te krijgen. Voeg toe: <em>"Voeg bij elke vraag twee hints toe op stijgende specificiteit."</em></div>
+    </div>
+  </div>
+
+  <div class="callout r">
+    <p><strong>De winnende combinatie:</strong> Rol + Taak + Context + Formaat + één gamificatie-blok = een oefening die leerlingen willen afmaken. Het kost je niet meer tijd dan een gewone prompt — alleen een extra zin aan het einde.</p>
+  </div>
+</section>
+
+<!-- ══ SPEELBARE APPS ══ -->
+<section class="sect" id="apps"><div class="callout r"><p><i class="fa-solid fa-wand-magic-sparkles" style="color:var(--petrol);margin-right:.4rem"></i><strong>Verder gaan met vibecoding?</strong> Bekijk de <a href="vibecoding.html">volledige vibecoding-pagina</a> voor een stap-voor-stap walkthrough, debuggingtips en idee&euml;n per vak.</p></div>
+  <h2 class="sect-title">Speelbare apps bouwen — zonder één regel code te schrijven</h2>
+  <p class="sect-lead">Dit is het onderdeel dat de meeste leraren niet geloven totdat ze het zelf proberen: Gemini of Claude schrijft een complete, werkende webpagina met spellogica, animaties en feedback — en jij hoeft er letterlijk niets van te begrijpen. Je kopieert, plakt, en het werkt.</p>
+
+  <div class="narrative r">
+    <p>HTML, CSS en JavaScript zijn de drie talen waaruit een website is opgebouwd. Gemini kan die drie talen vloeiend schrijven. Als je vraagt om een interactieve quiz met timer, scoreteller en feedback, genereert het de volledige code. Dat is een tekstbestand van misschien duizend regels — maar voor jou is het gewoon tekst die je ergens plakt. Je hoeft niet te begrijpen wat erin staat. Je hoeft alleen te weten dat het werkt.</p>
+  </div>
+
+  <p style="font-size:.97rem;color:var(--ink-2);line-height:1.85;margin-bottom:1.8rem">Er zijn zes soorten apps die bijzonder goed werken in het onderwijs. Voor elk staat hieronder een kant-en-klare prompt. Vervang de variabelen in <code style="background:var(--petrol-l);color:var(--petrol);padding:.1em .4em;border-radius:3px;font-size:.85em">[haakjes]</code> en stuur naar Gemini of Claude.</p>
+
+  <div class="sect" style="padding:1.5rem 0;border-bottom:1px solid var(--border)">
+    <h3 style="font-family:var(--serif);font-size:1.15rem;font-weight:600;color:var(--ink);margin-bottom:.4rem"><i class="fa-solid fa-circle-question" style="color:var(--petrol);margin-right:.5rem;font-size:.9rem"></i>Interactieve quiz</h3>
+    <p style="font-size:.9rem;color:var(--ink-3);line-height:1.65;margin-bottom:.8rem">Timer, meerkeuze, directe feedback per vraag, scoreteller en eindscherm. Solo of op het grote scherm klassikaal. Werkt op telefoon, tablet en computer — geen app nodig.</p>
+    <div class="prompt-wrap">
+      <div class="prompt-head"><span class="prompt-head-label">Prompt — Interactieve quiz</span><button class="btn-copy" onclick="copy(this)">Kopi&euml;ren</button></div>
+      <div class="prompt-body">Schrijf een volledige werkende HTML-pagina voor een interactieve quiz over <span class="pv">[onderwerp]</span> voor <span class="pv">[graad + vak]</span>.
 
 Vereisten:
 &bull; 10 meerkeuzevragen met 4 antwoorden elk
 &bull; Timer van 20 seconden per vraag
-&bull; Directe feedback: groen/rood + korte uitleg
+&bull; Directe feedback: groen/rood + korte uitleg bij elk antwoord
 &bull; Scoreteller zichtbaar tijdens het spel
-&bull; Eindscherm met score en motiverende boodschap
+&bull; Eindscherm met totaalscore en motiverende boodschap
 
-Gebruik alleen HTML, CSS en JavaScript in &eacute;&eacute;n bestand.</div></div></div><div class="sect" style="padding:2rem 0;border-bottom:1px solid var(--border)"><h3 style="font-family:var(--serif);font-size:1.1rem;font-weight:600;margin-bottom:.4rem">Matching-app</h3><p style="font-size:.9rem;color:var(--ink-3);margin-bottom:.8rem">Begrippen aan definities koppelen, tijdlijnen ordenen, categorieën sorteren.</p><div class="prompt-wrap r"><div class="prompt-head"><span class="prompt-head-label">Prompt — Matching-app</span><button class="btn-copy" onclick="copy(this)">Kopiëren</button></div><div class="prompt-body">Schrijf een <span class="pv">volledige werkende HTML-pagina</span> voor een matching-oefening over <span class="pv">[onderwerp]</span> voor <span class="pv">[graad + vak]</span>.
+Gebruik alleen HTML, CSS en JavaScript in &eacute;&eacute;n bestand. Geen externe bibliotheken.</div>
+    </div>
+  </div>
+
+  <div class="sect" style="padding:1.5rem 0;border-bottom:1px solid var(--border)">
+    <h3 style="font-family:var(--serif);font-size:1.15rem;font-weight:600;color:var(--ink);margin-bottom:.4rem"><i class="fa-solid fa-link" style="color:var(--petrol);margin-right:.5rem;font-size:.9rem"></i>Matching-app</h3>
+    <p style="font-size:.9rem;color:var(--ink-3);line-height:1.65;margin-bottom:.8rem">Begrippen aan definities koppelen, tijdlijnen in de juiste volgorde slepen, categorieën sorteren. Alles via klikken, met directe visuele feedback. Ideaal voor woordenschat, begrippenkaders en chronologie.</p>
+    <div class="prompt-wrap">
+      <div class="prompt-head"><span class="prompt-head-label">Prompt — Matching-app</span><button class="btn-copy" onclick="copy(this)">Kopi&euml;ren</button></div>
+      <div class="prompt-body">Schrijf een volledige werkende HTML-pagina voor een matching-oefening over <span class="pv">[onderwerp]</span> voor <span class="pv">[graad + vak]</span>.
 
 Vereisten:
 &bull; 10 begrippen aan hun definitie koppelen via klikken
 &bull; Correcte match: groen + verdwijnt uit de lijst
 &bull; Foute match: rode flits + opnieuw proberen
 &bull; Progressiebalk die vordert bij elke correcte match
+&bull; Eindscherm met tijd en aantal pogingen
 
-Gebruik alleen HTML, CSS en JavaScript in &eacute;&eacute;n bestand.</div></div></div><div class="sect" style="padding:2rem 0;border-bottom:1px solid var(--border)"><h3 style="font-family:var(--serif);font-size:1.1rem;font-weight:600;margin-bottom:.4rem">Keuzeverhaal</h3><p style="font-size:.9rem;color:var(--ink-3);margin-bottom:.8rem">Leerling maakt keuzes die het verhaal sturen. Meerdere eindes, reflectievraag achteraf.</p><div class="prompt-wrap r"><div class="prompt-head"><span class="prompt-head-label">Prompt — Keuzeverhaal</span><button class="btn-copy" onclick="copy(this)">Kopiëren</button></div><div class="prompt-body">Schrijf een <span class="pv">volledige werkende HTML-pagina</span> voor een interactief keuzeverhaal over <span class="pv">[thema/dilemma]</span> voor <span class="pv">[graad + vak]</span>.
+Gebruik alleen HTML, CSS en JavaScript in &eacute;&eacute;n bestand.</div>
+    </div>
+  </div>
+
+  <div class="sect" style="padding:1.5rem 0;border-bottom:1px solid var(--border)">
+    <h3 style="font-family:var(--serif);font-size:1.15rem;font-weight:600;color:var(--ink);margin-bottom:.4rem"><i class="fa-solid fa-book-open" style="color:var(--petrol);margin-right:.5rem;font-size:.9rem"></i>Keuzeverhaal</h3>
+    <p style="font-size:.9rem;color:var(--ink-3);line-height:1.65;margin-bottom:.8rem">De leerling maakt keuzes die het verhaal sturen. Elke keuze heeft gevolgen, meerdere eindes zijn mogelijk, reflectievraag achteraf. Bijzonder sterk voor ethische dilemma's, historische scenario's en taalsituaties.</p>
+    <div class="prompt-wrap">
+      <div class="prompt-head"><span class="prompt-head-label">Prompt — Keuzeverhaal</span><button class="btn-copy" onclick="copy(this)">Kopi&euml;ren</button></div>
+      <div class="prompt-body">Schrijf een volledige werkende HTML-pagina voor een interactief keuzeverhaal over <span class="pv">[thema/dilemma]</span> voor <span class="pv">[graad + vak]</span>.
 
 Vereisten:
 &bull; Verhalende inleiding die de situatie schetst
-&bull; Minstens 4 keuzemomenten met 2-3 opties elk
+&bull; Minstens 4 keuzemomenten met 2&ndash;3 opties elk
 &bull; Minstens 2 mogelijke eindes
-&bull; Reflectievraag na elk einde
+&bull; Reflectievraag na elk einde die de leerling laat nadenken
 
-Gebruik alleen HTML, CSS en JavaScript in &eacute;&eacute;n bestand.</div></div></div><div class="sect" style="padding:2rem 0;border-bottom:1px solid var(--border)"><h3 style="font-family:var(--serif);font-size:1.1rem;font-weight:600;margin-bottom:.4rem">Simulatie / rekentool</h3><p style="font-size:.9rem;color:var(--ink-3);margin-bottom:.8rem">Sliders en invoervelden die live berekeningen uitvoeren. Ideaal voor wiskunde, fysica, economie.</p><div class="prompt-wrap r"><div class="prompt-head"><span class="prompt-head-label">Prompt — Simulatie</span><button class="btn-copy" onclick="copy(this)">Kopiëren</button></div><div class="prompt-body">Schrijf een <span class="pv">volledige werkende HTML-pagina</span> voor een interactieve simulatie van <span class="pv">[concept/proces]</span> voor <span class="pv">[graad + vak]</span>.
+Gebruik alleen HTML, CSS en JavaScript in &eacute;&eacute;n bestand.</div>
+    </div>
+  </div>
+
+  <div class="sect" style="padding:1.5rem 0;border-bottom:1px solid var(--border)">
+    <h3 style="font-family:var(--serif);font-size:1.15rem;font-weight:600;color:var(--ink);margin-bottom:.4rem"><i class="fa-solid fa-sliders" style="color:var(--petrol);margin-right:.5rem;font-size:.9rem"></i>Simulatie &amp; rekentool</h3>
+    <p style="font-size:.9rem;color:var(--ink-3);line-height:1.65;margin-bottom:.8rem">Sliders en invoervelden die live berekeningen uitvoeren en resultaten visualiseren. Leerlingen experimenteren zelf — begrip door ontdekken. Ideaal voor wiskunde, fysica, economie en statistiek.</p>
+    <div class="prompt-wrap">
+      <div class="prompt-head"><span class="prompt-head-label">Prompt — Simulatie</span><button class="btn-copy" onclick="copy(this)">Kopi&euml;ren</button></div>
+      <div class="prompt-body">Schrijf een volledige werkende HTML-pagina voor een interactieve simulatie van <span class="pv">[concept/proces]</span> voor <span class="pv">[graad + vak]</span>.
 
 Vereisten:
-&bull; Invoervelden of sliders voor de variabelen
-&bull; Live berekening en grafische weergave
-&bull; Uitleg bij elk resultaat
+&bull; Sliders of invoervelden voor de variabelen
+&bull; Live berekening en grafische weergave bij elke aanpassing
+&bull; Korte uitleg bij elk resultaat
 &bull; Resetknop om opnieuw te beginnen
 
-Gebruik alleen HTML, CSS en JavaScript in &eacute;&eacute;n bestand.</div></div></div><div class="sect" style="padding:2rem 0;border-bottom:1px solid var(--border)"><h3 style="font-family:var(--serif);font-size:1.1rem;font-weight:600;margin-bottom:.4rem">Oefenreeks</h3><p style="font-size:.9rem;color:var(--ink-3);margin-bottom:.8rem">Stijgende moeilijkheid, progressiebalk, hint-knop. Werkt voor elk vak.</p><div class="prompt-wrap r"><div class="prompt-head"><span class="prompt-head-label">Prompt — Oefenreeks</span><button class="btn-copy" onclick="copy(this)">Kopiëren</button></div><div class="prompt-body">Schrijf een <span class="pv">volledige werkende HTML-pagina</span> voor een stapsgewijze oefenreeks over <span class="pv">[leerstof]</span> voor <span class="pv">[graad + vak]</span>.
+Gebruik alleen HTML, CSS en JavaScript in &eacute;&eacute;n bestand.</div>
+    </div>
+  </div>
+
+  <div class="sect" style="padding:1.5rem 0;border-bottom:1px solid var(--border)">
+    <h3 style="font-family:var(--serif);font-size:1.15rem;font-weight:600;color:var(--ink);margin-bottom:.4rem"><i class="fa-solid fa-stairs" style="color:var(--petrol);margin-right:.5rem;font-size:.9rem"></i>Oefenreeks</h3>
+    <p style="font-size:.9rem;color:var(--ink-3);line-height:1.65;margin-bottom:.8rem">Stijgende moeilijkheid, progressiebalk, hint-knop die punten kost. Directe feedback na elke vraag. Werkt voor elk vak en elk niveau — ook als remediëring of huiswerkopdracht.</p>
+    <div class="prompt-wrap">
+      <div class="prompt-head"><span class="prompt-head-label">Prompt — Oefenreeks</span><button class="btn-copy" onclick="copy(this)">Kopi&euml;ren</button></div>
+      <div class="prompt-body">Schrijf een volledige werkende HTML-pagina voor een stapsgewijze oefenreeks over <span class="pv">[leerstof]</span> voor <span class="pv">[graad + vak]</span>.
 
 Vereisten:
-&bull; 12 oefeningen op 3 niveaus (4/4/4)
+&bull; 12 oefeningen op 3 niveaus (4 instap / 4 gevorderd / 4 uitdagend)
 &bull; Progressiebalk bovenaan
 &bull; Hint-knop per vraag (kost 1 punt)
-&bull; Eindscherm met score en niveau bereikt
+&bull; Directe feedback na elke vraag
+&bull; Eindscherm met score en behaald niveau
 
-Gebruik alleen HTML, CSS en JavaScript in &eacute;&eacute;n bestand.</div></div></div><div class="sect" style="padding:2rem 0;border-bottom:1px solid var(--border)"><h3 style="font-family:var(--serif);font-size:1.1rem;font-weight:600;margin-bottom:.4rem">Flitskaarten</h3><p style="font-size:.9rem;color:var(--ink-3);margin-bottom:.8rem">Flip-animatie, "Ik kende het / Nog oefenen", shuffle. Perfect voor woordenschat en begrippen.</p><div class="prompt-wrap r"><div class="prompt-head"><span class="prompt-head-label">Prompt — Flitskaarten</span><button class="btn-copy" onclick="copy(this)">Kopiëren</button></div><div class="prompt-body">Schrijf een <span class="pv">volledige werkende HTML-pagina</span> voor een flitskaarten-app met de woordenschat van <span class="pv">[thema/hoofdstuk]</span> voor <span class="pv">[graad + vak]</span>.
+Gebruik alleen HTML, CSS en JavaScript in &eacute;&eacute;n bestand.</div>
+    </div>
+  </div>
+
+  <div class="sect" style="padding:1.5rem 0;border-bottom:1px solid var(--border)">
+    <h3 style="font-family:var(--serif);font-size:1.15rem;font-weight:600;color:var(--ink);margin-bottom:.4rem"><i class="fa-solid fa-clone" style="color:var(--petrol);margin-right:.5rem;font-size:.9rem"></i>Flitskaarten</h3>
+    <p style="font-size:.9rem;color:var(--ink-3);line-height:1.65;margin-bottom:.8rem">Flip-animatie bij klikken, "Ik kende het / Nog oefenen"-knoppen, shuffle en voortgangsweergave. Perfect voor woordenschat in taalvakken, begrippen in elk ander vak, en formules in wiskunde of fysica.</p>
+    <div class="prompt-wrap">
+      <div class="prompt-head"><span class="prompt-head-label">Prompt — Flitskaarten</span><button class="btn-copy" onclick="copy(this)">Kopi&euml;ren</button></div>
+      <div class="prompt-body">Schrijf een volledige werkende HTML-pagina voor een flitskaarten-app met de woordenschat van <span class="pv">[thema/hoofdstuk]</span> voor <span class="pv">[graad + vak]</span>.
 
 Vereisten:
 &bull; 20 flitskaarten: voorkant = woord, achterkant = definitie + voorbeeld
-&bull; Flip-animatie bij klikken
+&bull; Flip-animatie bij klikken op de kaart
 &bull; Knoppen: "Ik kende het" / "Nog oefenen"
 &bull; Shuffle-knop en voortgangsweergave
+&bull; Kaarten die fout gaan komen automatisch terug
 
-Gebruik alleen HTML, CSS en JavaScript in &eacute;&eacute;n bestand.</div></div></div><div class="callout r"><p><strong>Multiplayer?</strong> Niet mogelijk met een HTML-bestand. Gebruik <a href="https://kahoot.com">Kahoot!</a> of <a href="https://quizizz.com">Quizizz</a> voor realtime klassikale quizzen. Laat Gemini de vragen schrijven en plak ze erin.</p></div></section><section class="sect" id="publiceren"><h2 class="sect-title">Publiceren via Google Sites</h2><p class="sect-lead">Gratis, werkt met je schoolaccount van Don Bosco. Klaar in minder dan 5 minuten.</p><ul class="steps r"><li><span class="n">1.</span><span>Ga naar <strong>sites.google.com</strong> &rarr; klik <em>+ Leeg</em>.</span></li><li><span class="n">2.</span><span>Zijvenster <strong>rechts</strong> &rarr; <strong>Pagina's</strong> &rarr; <strong>+</strong> &rarr; <em>Volledig ingesloten pagina</em>.</span></li><li><span class="n">3.</span><span>Geef de pagina een naam &rarr; klik <em>Gereed</em>.</span></li><li><span class="n">4.</span><span>Klik op <strong>Insluiting toevoegen</strong> &rarr; <strong>Code insluiten</strong> &rarr; HTML plakken &rarr; Invoegen.</span></li><li><span class="n">5.</span><span>Klik <em>Publiceren</em> &rarr; kies <strong>Beperkt &mdash; alleen mensen in je organisatie</strong> (Don Bosco-schooldomein).</span></li><li><span class="n">6.</span><span>Kopieer het adres &rarr; deel via Smartschool.</span></li></ul><div class="callout r"><p><strong>Meerdere apps?</strong> Herhaal stap 2 per app. Google Sites maakt automatisch een navigatiemenu bovenaan.</p></div><div class="yt-block r"><div class="yt-icon"><i class="fa-brands fa-youtube"></i></div><div class="yt-text"><strong>Instructiefilmpje</strong><span>Google Sites volledig ingesloten pagina HTML tutorial</span></div><a class="yt-btn" href="https://www.youtube.com/results?search_query=Google+Sites+volledige+ingesloten+pagina+HTML+tutorial+2024" target="_blank" rel="noopener">Zoeken</a></div></section><section class="sect" id="github"><h2 class="sect-title">Publiceren via GitHub Pages</h2><p class="sect-lead">Gratis webhost, professioneel adres. Voor wie wat verder wil gaan.</p><ul class="steps r"><li><span class="n">1.</span><span>Maak gratis account op <strong>github.com</strong>.</span></li><li><span class="n">2.</span><span><strong>+ New repository</strong> &rarr; naam (bv. <code style="background:var(--bg-alt);padding:0 .3em;border-radius:3px">quiz-biologie</code>) &rarr; Public &rarr; Create.</span></li><li><span class="n">3.</span><span><strong>Add file</strong> &rarr; Create new file &rarr; naam exact <code style="background:var(--bg-alt);padding:0 .3em;border-radius:3px">index.html</code>.</span></li><li><span class="n">4.</span><span>HTML van Gemini plakken &rarr; <strong>Commit changes</strong>.</span></li><li><span class="n">5.</span><span><strong>Settings</strong> &rarr; <strong>Pages</strong> &rarr; Deploy from branch &rarr; main &rarr; Save.</span></li><li><span class="n">6.</span><span>Na 1 minuut: <code style="background:var(--bg-alt);padding:0 .3em;border-radius:3px">gebruikersnaam.github.io/quiz-biologie</code></span></li></ul><div class="callout r"><p><strong>Afbeeldingen toevoegen:</strong> upload jpg/png via <em>Add file &rarr; Upload files</em>. Gebruik ze in HTML als <code style="background:var(--bg-alt);padding:0 .3em;border-radius:3px">&lt;img src="naam.jpg"&gt;</code></p></div><div class="yt-block r"><div class="yt-icon"><i class="fa-brands fa-youtube"></i></div><div class="yt-text"><strong>Instructiefilmpje GitHub Pages</strong><span>GitHub Pages HTML beginners tutorial 2024</span></div><a class="yt-btn" href="https://www.youtube.com/results?search_query=GitHub+Pages+HTML+beginners+tutorial+2024" target="_blank" rel="noopener">Zoeken</a></div></section><nav class="page-nav r">
-<a href="deel1.html">&larr; Stap 01 — Wat is AI?</a>
-<a href="deel3.html">Stap 03 — AI-tools &rarr;</a>
-</nav></main>
+Gebruik alleen HTML, CSS en JavaScript in &eacute;&eacute;n bestand.</div>
+    </div>
+  </div>
+
+  <div class="callout r" style="margin-top:1.5rem">
+    <p><strong>Multiplayer quiz?</strong> Een HTML-bestand kan dat helaas niet — realtime multiplayer heeft een server nodig. Maar er zijn twee gratis tools die dat wél kunnen: <strong>Kahoot!</strong> (kahoot.com) voor klassikale spanning met pincode en scorebord, en <strong>Quizizz</strong> (quizizz.com) voor eigen tempo met live resultaten. Slim combineren: laat Gemini de vragen schrijven → kopieer naar Kahoot of Quizizz → multiplayer klaar in vijf minuten.</p>
+  </div>
+</section>
+
+<!-- ══ PUBLICEREN ══ -->
+<section class="sect" id="publiceren">
+  <h2 class="sect-title">Publiceren — van code naar link in vijf minuten</h2>
+  <p class="sect-lead">Je hebt de code van je app. Nu moet die online komen zodat leerlingen er via een link naartoe kunnen. Er zijn twee manieren: Google Sites voor wie snel wil gaan, GitHub Pages voor wie een professioneel adres wil.</p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-bottom:2rem" class="r">
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.4rem 1.6rem">
+      <div style="font-family:var(--serif);font-size:1.05rem;font-weight:600;color:var(--ink);margin-bottom:.3rem">Google Sites</div>
+      <div style="font-size:.78rem;color:var(--petrol);margin-bottom:.8rem;font-weight:500">Gratis · schoolaccount · 5 minuten</div>
+      <p style="font-size:.87rem;color:var(--ink-3);line-height:1.65;margin-bottom:.5rem">Werkt met je Don Bosco Google-account. Meerdere apps op één site, automatisch navigatiemenu. Toegang beperken tot schooldomein.</p>
+      <p style="font-size:.8rem;color:var(--ink-3);font-style:italic">Beperking: de HTML wordt ingebed in een Google Sites-pagina. Werkt goed voor eenvoudige apps.</p>
+    </div>
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.4rem 1.6rem">
+      <div style="font-family:var(--serif);font-size:1.05rem;font-weight:600;color:var(--ink);margin-bottom:.3rem">GitHub Pages</div>
+      <div style="font-size:.78rem;color:var(--petrol);margin-bottom:.8rem;font-weight:500">Gratis · professioneel adres · altijd online</div>
+      <p style="font-size:.87rem;color:var(--ink-3);line-height:1.65;margin-bottom:.5rem">Werkt voor alle soorten apps, ook complexere. Eigen adres: gebruikersnaam.github.io/app-naam. Geen tijdslimiet, geen reclame.</p>
+      <p style="font-size:.8rem;color:var(--ink-3);font-style:italic">Voordeel: de app staat op een echte URL, niet ingesloten. Werkt perfect voor alle app-types.</p>
+    </div>
+  </div>
+
+  <h3 style="font-family:var(--serif);font-size:1.15rem;font-weight:600;color:var(--ink);margin-bottom:1rem">Via Google Sites</h3>
+  <ul class="steps r">
+    <li><span class="n">1.</span><span>Ga naar <strong>sites.google.com</strong> → klik op <strong>+ Leeg</strong>.</span></li>
+    <li><span class="n">2.</span><span>Klik rechts in het zijvenster op <strong>Pagina's</strong> → <strong>+</strong> → <strong>Volledig ingesloten pagina</strong>.</span></li>
+    <li><span class="n">3.</span><span>Geef de pagina een naam → klik <strong>Gereed</strong>.</span></li>
+    <li><span class="n">4.</span><span>Klik op <strong>Insluiting toevoegen</strong> → <strong>Code insluiten</strong> → plak de HTML-code → klik <strong>Invoegen</strong>.</span></li>
+    <li><span class="n">5.</span><span>Klik <strong>Publiceren</strong> → kies <strong>Beperkt — alleen mensen in je organisatie</strong> → publiceer.</span></li>
+    <li><span class="n">6.</span><span>Kopieer het adres en deel via Smartschool of Google Classroom.</span></li>
+  </ul>
+
+  <div class="callout r">
+    <p><strong>Meerdere apps op één site:</strong> herhaal stap 2 per app. Google Sites maakt automatisch een navigatiemenu bovenaan — zo kan je alle apps van een thema of vak bundelen op één adres.</p>
+  </div>
+
+  <h3 style="font-family:var(--serif);font-size:1.15rem;font-weight:600;color:var(--ink);margin-bottom:1rem;margin-top:2rem">Via GitHub Pages</h3>
+  <ul class="steps r">
+    <li><span class="n">1.</span><span>Maak een gratis account aan op <strong>github.com</strong> — gebruik je schoolmailadres.</span></li>
+    <li><span class="n">2.</span><span>Klik op <strong>+ New repository</strong> → geef het een naam (bv. <code style="background:var(--bg-alt);padding:0 .3em;border-radius:3px">quiz-biologie</code>) → zet op <strong>Public</strong> → klik <strong>Create repository</strong>.</span></li>
+    <li><span class="n">3.</span><span>Klik op <strong>Add file → Create new file</strong> → noem het bestand exact <code style="background:var(--bg-alt);padding:0 .3em;border-radius:3px">index.html</code>.</span></li>
+    <li><span class="n">4.</span><span>Plak de volledige HTML-code in het tekstvak → klik <strong>Commit changes</strong>.</span></li>
+    <li><span class="n">5.</span><span>Ga naar <strong>Settings → Pages → Deploy from branch → main → Save</strong>.</span></li>
+    <li><span class="n">6.</span><span>Na één minuut verschijnt je adres: <code style="background:var(--bg-alt);padding:0 .3em;border-radius:3px">gebruikersnaam.github.io/quiz-biologie</code></span></li>
+  </ul>
+
+  <div class="callout r">
+    <p><strong>Afbeeldingen toevoegen:</strong> ga naar je repository → <strong>Add file → Upload files</strong> → sleep je jpg- of png-bestanden naar het venster → Commit. In de HTML verwijs je er zo naar: <code style="background:var(--bg-alt);padding:0 .3em;border-radius:3px">&lt;img src="naam.jpg"&gt;</code> — het bestand staat in dezelfde map als je index.html.</p>
+  </div>
+</section>
+
+<nav class="page-nav r">
+  <a href="deel1.html">&larr; Stap 01 &mdash; Wat is AI?</a>
+  <a href="deel3.html">Stap 03 &mdash; AI-tools &rarr;</a>
+</nav>
+
+</main>
 <footer>
   <p><strong>Masterclass AI 2026</strong> · Secundair Onderwijs Vlaanderen · Don Bosco</p>
 </footer>

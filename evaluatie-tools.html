@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="nl-BE">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rubrics, examenvragen &amp; differentiatie — Masterclass AI 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+<style>
+:root{--bg:#f8f7f4;--bg-alt:#f0ede8;--white:#ffffff;--ink:#1a1a1a;--ink-2:#3d3d3d;--ink-3:#767676;--border:#e0dbd4;--petrol:#0f4c5c;--petrol-l:#e8f2f4;--petrol-m:#1a6b80;--serif:'Lora',Georgia,serif;--sans:system-ui,-apple-system,sans-serif;--mono:'Courier New',monospace;--r:6px;--ease:cubic-bezier(0.25,0,0,1);--content:720px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+:focus-visible{outline:2px solid var(--petrol);outline-offset:3px}
+a{color:var(--petrol)}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--white);border-bottom:1px solid var(--border);height:56px;display:flex;align-items:center;padding:0 5%;gap:0}
+.topbar-logo{font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol);text-decoration:none;white-space:nowrap;margin-right:2.5rem}
+.progress-steps{display:flex;align-items:center;flex:1;gap:0;overflow-x:auto;scrollbar-width:none}
+.progress-steps::-webkit-scrollbar{display:none}
+.ps-item{display:flex;align-items:center;text-decoration:none;flex-shrink:0}
+.ps-step{display:flex;align-items:center;gap:.45rem;padding:.3rem .7rem;border-radius:4px;font-size:.78rem;color:var(--ink-3);transition:color .15s,background .15s;white-space:nowrap}
+.ps-step .n{font-family:var(--serif);font-size:.7rem;font-weight:600;color:var(--petrol);opacity:.5}
+.ps-item:hover .ps-step{color:var(--petrol);background:var(--petrol-l)}
+.ps-item.active .ps-step{color:var(--petrol);font-weight:500;background:var(--petrol-l)}
+.ps-item.active .ps-step .n{opacity:1}
+.ps-arrow{color:var(--border);font-size:.8rem;margin:0 .1rem;flex-shrink:0}
+.page{margin-top:56px;max-width:var(--content);margin-left:auto;margin-right:auto;padding:0 5% 6rem}
+.page.wide{--content:900px}
+.page-head{padding:3.5rem 0 2.5rem;border-bottom:1px solid var(--border);margin-bottom:2.5rem}
+.page-kicker{font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--petrol);display:block;margin-bottom:.8rem}
+.page-title{font-family:var(--serif);font-size:clamp(2.2rem,4vw,3.4rem);font-weight:600;line-height:1.1;color:var(--ink);letter-spacing:-.02em;margin-bottom:1rem}
+.page-title em{font-style:italic}
+.page-intro{font-size:1.05rem;line-height:1.85;color:var(--ink-2);max-width:60ch}
+.toc{margin-bottom:3rem}
+.toc-label{font-size:.62rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:.8rem}
+.toc-items{display:flex;flex-wrap:wrap;gap:.5rem}
+.toc-link{display:inline-flex;align-items:center;padding:.42rem .9rem;background:var(--white);border:1px solid var(--border);border-radius:100px;font-size:.83rem;color:var(--ink-2);text-decoration:none;transition:all .18s var(--ease)}
+.toc-link:hover{background:var(--petrol);color:var(--white);border-color:var(--petrol)}
+.sect{padding:3rem 0;border-bottom:1px solid var(--border);scroll-margin-top:76px}
+.sect:last-of-type{border-bottom:none}
+.sect-label{font-size:.62rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--petrol);display:block;margin-bottom:.6rem}
+.sect-title{font-family:var(--serif);font-size:1.5rem;font-weight:600;color:var(--ink);letter-spacing:-.01em;margin-bottom:.5rem;line-height:1.25}
+.sect-lead{font-size:.97rem;color:var(--ink-2);line-height:1.8;max-width:66ch;margin-bottom:1.6rem}
+.steps{list-style:none;display:flex;flex-direction:column;gap:.8rem;margin-bottom:1.4rem}
+.steps li{display:flex;align-items:flex-start;gap:1rem;font-size:.95rem;color:var(--ink-2);line-height:1.7}
+.steps li .n{font-family:var(--serif);font-size:.85rem;font-weight:600;color:var(--petrol);flex-shrink:0;width:1.5rem;padding-top:.1rem}
+.steps li strong{color:var(--ink);font-weight:600}
+.callout{border-left:3px solid var(--petrol);padding:.9rem 1.3rem;background:var(--petrol-l);border-radius:0 var(--r) var(--r) 0;margin-bottom:1.5rem}
+.callout p{font-size:.9rem;color:var(--ink-2);line-height:1.75}
+.callout strong{color:var(--petrol);font-weight:600}
+.prompt-wrap{margin-top:1.8rem;margin-bottom:.5rem}
+.prompt-head{display:flex;align-items:center;justify-content:space-between;background:var(--petrol);padding:.55rem 1rem;border-radius:var(--r) var(--r) 0 0}
+.prompt-head-label{font-size:.68rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.75)}
+.btn-copy{font-family:var(--sans);font-size:.72rem;font-weight:500;background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:4px;padding:.2rem .65rem;cursor:pointer;transition:all .15s}
+.btn-copy:hover{background:rgba(255,255,255,.25)}
+.btn-copy.ok{background:rgba(255,255,255,.3)}
+.prompt-body{font-family:var(--mono);font-size:.83rem;line-height:1.85;color:#c8dce8;background:#0d1a24;border:1px solid #1e3040;border-top:none;border-radius:0 0 var(--r) var(--r);padding:1.2rem 1.3rem;white-space:pre-wrap}
+.pv{color:#7ecfe0;font-weight:600}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin-bottom:1.5rem}
+.card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.2rem 1.3rem;text-decoration:none;display:flex;flex-direction:column;transition:box-shadow .2s,border-color .2s,transform .2s}
+.card:hover{box-shadow:0 3px 16px rgba(15,76,92,.09);border-color:var(--petrol-m);transform:translateY(-1px)}
+.card-name{font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.2rem}
+.card-url{font-size:.75rem;color:var(--petrol);margin-bottom:.45rem;opacity:.8}
+.card-desc{font-size:.82rem;color:var(--ink-3);line-height:1.65;flex:1}
+.card-tags{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.7rem}
+.card-tag{font-size:.65rem;padding:.12rem .45rem;background:var(--bg-alt);color:var(--ink-3);border-radius:3px}
+.gem-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1.1rem;margin-bottom:1.4rem}
+.gem{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.3rem;transition:box-shadow .2s,border-color .2s}
+.gem:hover{box-shadow:0 2px 14px rgba(15,76,92,.08);border-color:var(--petrol-m)}
+.gem-head{display:flex;align-items:center;gap:.7rem;margin-bottom:.6rem}
+.gem-icon{width:32px;height:32px;border-radius:var(--r);background:var(--petrol-l);color:var(--petrol);display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0}
+.gem-name{font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--ink)}
+.gem-doel{font-size:.8rem;color:var(--ink-3);line-height:1.6;font-style:italic;margin-bottom:.8rem}
+.gem-instructie{font-family:var(--mono);font-size:.74rem;line-height:1.65;color:var(--ink-2);background:#0d1a24;color:#c8dce8;border-left:2px solid var(--petrol);padding:.6rem .8rem;white-space:pre-wrap;border-radius:0 4px 4px 0}
+.page-nav{display:flex;justify-content:space-between;align-items:center;padding-top:2.5rem;border-top:1px solid var(--border);margin-top:3rem;flex-wrap:wrap;gap:1rem}
+.page-nav a{display:flex;align-items:center;gap:.5rem;font-size:.88rem;color:var(--petrol);text-decoration:none;padding:.5rem .9rem;border:1px solid var(--border);border-radius:var(--r);transition:all .18s}
+.page-nav a:hover{background:var(--petrol-l);border-color:var(--petrol-m)}
+.deel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem}
+.deel-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.8rem 2rem;text-decoration:none;display:flex;flex-direction:column;position:relative;overflow:hidden;transition:box-shadow .2s,transform .2s,border-color .2s}
+.deel-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--petrol);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}
+.deel-card:hover{box-shadow:0 4px 24px rgba(15,76,92,.10);transform:translateY(-2px);border-color:transparent}
+.deel-card:hover::before{transform:scaleX(1)}
+.deel-num{font-family:var(--serif);font-size:.75rem;font-weight:600;color:var(--petrol);margin-bottom:.8rem;opacity:.6}
+.deel-title{font-family:var(--serif);font-size:1.2rem;font-weight:600;color:var(--ink);margin-bottom:.5rem;line-height:1.3}
+.deel-sub{font-size:.85rem;color:var(--ink-3);line-height:1.65;flex:1}
+.deel-arrow{margin-top:1.4rem;font-size:.8rem;color:var(--petrol);opacity:.4;transition:opacity .2s,transform .2s;align-self:flex-start}
+.deel-card:hover .deel-arrow{opacity:1;transform:translateX(4px)}
+.vak-groep{margin-bottom:2.2rem}
+.vak-groep-label{font-size:.68rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.7rem;display:block}
+.vak-pills{display:flex;flex-wrap:wrap;gap:.5rem}
+.vak-pill{display:inline-flex;align-items:center;gap:.5rem;padding:.45rem 1rem;background:var(--white);border:1px solid var(--border);border-radius:100px;font-size:.84rem;color:var(--ink-2);text-decoration:none;transition:all .18s var(--ease)}
+.vak-pill:hover{background:var(--petrol);color:#fff;border-color:var(--petrol)}
+.narrative{background:var(--petrol-l);border-left:4px solid var(--petrol);padding:1.4rem 1.8rem;border-radius:0 var(--r) var(--r) 0;margin-bottom:2rem}
+.narrative p{font-size:1rem;line-height:1.85;color:var(--ink-2);max-width:68ch}
+.narrative strong{color:var(--petrol)}
+.hl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:2rem}
+.hl{padding:1.6rem;background:var(--white);border:1px solid var(--border);border-radius:var(--r)}
+.hl-icon{width:38px;height:38px;border-radius:var(--r);background:var(--petrol-l);color:var(--petrol);display:flex;align-items:center;justify-content:center;font-size:1rem;margin-bottom:1rem}
+.hl-title{font-family:var(--serif);font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:.4rem}
+.hl-text{font-size:.88rem;color:var(--ink-3);line-height:1.7}
+.hero{background:var(--petrol);padding:7rem 0 6rem;position:relative;overflow:hidden;margin-top:56px}
+.hero::before{content:'';position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(circle,rgba(255,255,255,.04) 1px,transparent 1px);background-size:28px 28px}
+.hero-inner{max-width:900px;margin:0 auto;padding:0 5%;position:relative}
+.hero-kicker{display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:1.5rem}
+.hero-title{font-family:var(--serif);font-size:clamp(2.8rem,5.5vw,5rem);font-weight:600;line-height:1.1;color:#fff;letter-spacing:-.025em;margin-bottom:1.8rem;max-width:14ch}
+.hero-title em{font-style:italic;font-weight:400;color:rgba(255,255,255,.75)}
+.hero-sub{font-size:1.1rem;font-weight:400;line-height:1.8;color:rgba(255,255,255,.7);max-width:54ch;margin-bottom:2.5rem}
+.hero-cta{display:flex;gap:.75rem;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:.5rem;font-size:.9rem;font-weight:500;padding:.7rem 1.5rem;border-radius:var(--r);text-decoration:none;transition:all .2s var(--ease);cursor:pointer;border:none;font-family:var(--sans)}
+.btn-white{background:#fff;color:var(--petrol)}
+.btn-white:hover{background:var(--bg);transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,0,0,.15)}
+.btn-outline{background:transparent;color:rgba(255,255,255,.85);border:1px solid rgba(255,255,255,.3)}
+.btn-outline:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.5)}
+.section-block{padding:5rem 0;border-bottom:1px solid var(--border)}
+.section-block:last-of-type{border-bottom:none}
+.section-inner{max-width:900px;margin:0 auto;padding:0 5%}
+.section-label{font-size:.7rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--petrol);display:block;margin-bottom:.8rem}
+.section-title{font-family:var(--serif);font-size:clamp(1.7rem,2.8vw,2.6rem);font-weight:600;line-height:1.2;color:var(--ink);letter-spacing:-.02em;margin-bottom:.8rem}
+.section-title em{font-style:italic;font-weight:400}
+.section-lead{font-size:1.05rem;font-weight:400;line-height:1.8;color:var(--ink-2);max-width:62ch;margin-bottom:2.5rem}
+.yt-block{display:flex;align-items:center;gap:1rem;background:var(--white);border:1px solid var(--border);padding:1rem 1.3rem;border-radius:var(--r);margin-top:1rem}
+.yt-icon{width:36px;height:36px;background:#ff0000;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff;font-size:1rem}
+.yt-text{flex:1}
+.yt-text strong{display:block;font-size:.88rem;color:var(--ink)}
+.yt-text span{font-size:.78rem;color:var(--ink-3)}
+.yt-btn{background:var(--ink);color:#fff;font-family:var(--sans);font-size:.75rem;font-weight:600;padding:.4rem .8rem;border-radius:2px;text-decoration:none;flex-shrink:0;transition:background .15s}
+.yt-btn:hover{background:var(--petrol)}
+.r{opacity:0;transform:translateY(16px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.r.on{opacity:1;transform:none}
+.r.d1{transition-delay:.07s}.r.d2{transition-delay:.14s}.r.d3{transition-delay:.21s}.r.d4{transition-delay:.28s}.r.d5{transition-delay:.35s}
+footer{background:var(--petrol);padding:2rem 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+footer p{font-size:.8rem;color:rgba(255,255,255,.55)}
+footer strong{color:rgba(255,255,255,.85);font-weight:500}
+@media(max-width:860px){.hl-grid{grid-template-columns:1fr}.deel-grid{grid-template-columns:1fr}}
+@media(max-width:700px){.progress-steps{display:none}.card-grid,.gem-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <a class="topbar-logo" href="index.html">Masterclass AI</a>
+  <nav class="progress-steps" aria-label="Programmanavigatie">
+    <a class="ps-item" href="index.html"><div class="ps-step"><span class="n">Home</span></div></a>
+    <span class="ps-arrow">›</span>
+    <a class="ps-item" href="deel1.html"><div class="ps-step"><span class="n">01</span> Wat is AI?</div></a>
+    <span class="ps-arrow">›</span>
+    <a class="ps-item" href="deel2.html"><div class="ps-step"><span class="n">02</span> Prompting</div></a>
+    <span class="ps-arrow">›</span>
+    <a class="ps-item" href="deel3.html"><div class="ps-step"><span class="n">03</span> AI-tools</div></a>
+    <span class="ps-arrow">›</span>
+    <a class="ps-item active" href="deel4.html"><div class="ps-step"><span class="n">04</span> Evaluatie</div></a>
+    <span class="ps-arrow">›</span>
+    <a class="ps-item" href="vakken.html"><div class="ps-step"><span class="n">05</span> Vakken</div></a>
+    <span class="ps-arrow">›</span>
+    <a class="ps-item" href="deel6.html"><div class="ps-step"><span class="n">06</span> Geletterdheid</div></a>
+  </nav>
+</header>
+<main class="page"><header class="page-head r"><span class="page-kicker">Evaluatie &amp; lesvoorbereiding</span><h1 class="page-title">Rubrics, examenvragen<br>&amp; <em>differentiatie</em></h1><p class="page-intro">Evaluatiemateriaal maken is een van de meest tijdrovende taken voor leraren. Een goede rubric opstellen, examenvragen formuleren op het juiste niveau, gedifferentieerde oefeningen maken voor verschillende leerprofielen &mdash; het kost uren. Met AI kost het minuten. Deze pagina toont hoe, met concrete voorbeelden en kant-en-klare prompts.</p></header><nav class="toc r"><span class="toc-label">Op deze pagina</span><div class="toc-items"><a class="toc-link" href="#rubrics">Evaluatierubrics</a><a class="toc-link" href="#examenvragen">Examenvragen</a><a class="toc-link" href="#niveaus">Bloom &amp; denkniveaus</a><a class="toc-link" href="#differentiatie">Differentiatie</a><a class="toc-link" href="#feedback">Feedbackteksten</a><a class="toc-link" href="#notebooklm">NotebookLM voor evaluatie</a></div></nav><section class="sect" id="rubrics"><h2 class="sect-title">Evaluatierubrics opstellen</h2><p class="sect-lead">Een goede rubric beschrijft precies wat leerlingen moeten kunnen op elk niveau &mdash; en dat kosten doorgaans veel tijd. AI kan een volledige rubric genereren in twee minuten, op basis van jouw leerdoelen.</p><div class="narrative r"><p>Het geheim van een goede AI-rubric is context geven. Niet "maak een rubric voor een presentatie" maar "maak een rubric voor een mondelinge presentatie van 5 minuten over een historisch thema, voor leerlingen van de derde graad, met criteria voor inhoud, structuur, taalgebruik en non-verbale communicatie, op vier niveaus: onvoldoende, voldoende, goed en uitstekend, met concrete gedragsbeschrijvingen per cel." Dat tweede verzoek levert iets dat je morgen kunt gebruiken.</p></div><div style="background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--r);padding:1.4rem 1.8rem;margin-bottom:1.5rem" class="r"><p style="font-size:.75rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:1rem">Een rubriceringsprompt in de praktijk &mdash; voor een betoog Nederlands</p><div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem"><div><p style="font-size:.72rem;color:#c0392b;font-weight:600;margin-bottom:.5rem;letter-spacing:.06em;text-transform:uppercase">&times; Vaag &mdash; onbruikbaar resultaat</p><div style="background:#0d1a24;border-radius:var(--r);padding:.9rem 1rem;font-family:var(--mono);font-size:.8rem;color:#c8dce8;line-height:1.7">Maak een rubric voor
+een betoogopdracht.</div></div><div><p style="font-size:.72rem;color:#1a6b3a;font-weight:600;margin-bottom:.5rem;letter-spacing:.06em;text-transform:uppercase">+ Concreet &mdash; bruikbaar resultaat</p><div style="background:#0d1a24;border-radius:var(--r);padding:.9rem 1rem;font-family:var(--mono);font-size:.8rem;color:#c8dce8;line-height:1.7">Maak een evaluatierubric voor een
+betoogtekst van 400 woorden, vak
+Nederlands, 3de graad D-finaliteit.
+
+Criteria:
+- Structuur (inleiding, kern, besluit)
+- Argumentatiesterkte
+- Taalcorrectheid
+- Woordenschatvariatie
+
+Vier niveaus: onvoldoende (0-1),
+voldoende (2), goed (3), uitstekend (4).
+
+Geef per cel een concrete
+gedragsbeschrijving van 1-2 zinnen.
+Geef de rubric als tabel.</div></div></div></div><div class="prompt-wrap r"><div class="prompt-head"><span class="prompt-head-label">Rubric-prompt &mdash; universeel sjabloon</span><button class="btn-copy" onclick="copy(this)">Kopiëren</button></div><div class="prompt-body">Maak een evaluatierubric voor <span class="pv">[type opdracht]</span>,
+vak <span class="pv">[vak]</span>, <span class="pv">[graad en finaliteit]</span>.
+
+Criteria:
+- <span class="pv">[criterium 1]</span>
+- <span class="pv">[criterium 2]</span>
+- <span class="pv">[criterium 3]</span>
+- <span class="pv">[criterium 4]</span>
+
+Vier niveaus:
+- Onvoldoende (0-1 punt)
+- Voldoende (2 punten)
+- Goed (3 punten)
+- Uitstekend (4 punten)
+
+Per cel: een concrete gedragsbeschrijving van 1-2 zinnen.
+De leerling moet kunnen begrijpen waarom hij op dat niveau scoort.
+
+Geef de rubric als tabel.
+Voeg onderaan een totaalscore toe met slaaggrens.</div></div><div style="background:var(--petrol-l);border-left:3px solid var(--petrol);padding:.9rem 1.3rem;border-radius:0 var(--r) var(--r) 0;margin:1.2rem 0" class="r"><div style="font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--petrol);margin-bottom:.3rem">Na de rubric: vraag om een leerlingenversie</div><p style="font-size:.88rem;color:var(--ink-2);line-height:1.75">Vraag daarna: "Herschrijf deze rubric in eenvoudigere taal zodat leerlingen ze zelf kunnen gebruiken om hun werk te beoordelen v&oacute;&oacute;r inlevering." Zo maak je van de rubric tegelijk een zelfbeoordelingsinstrument. Leerlingen die hun eigen werk rubriceren v&oacute;&oacute;r inlevering, leveren gemiddeld betere eindproducten in.</p></div><ul class="steps r"><li><span class="n">01</span><span>Geef Gemini je leerdoelen of competenties &mdash; kopieer ze rechtstreeks uit je leerplan als je wil.</span></li><li><span class="n">02</span><span>Vraag een eerste versie van de rubric. Bekijk kritisch: kloppen de niveaus? Zijn de beschrijvingen herkenbaar voor jouw leerlingen?</span></li><li><span class="n">03</span><span>Stuur bij: "Het tweede criterium is te vaag, maak de gedragsbeschrijvingen concreter" of "Voeg een criterium toe over brongebruik."</span></li><li><span class="n">04</span><span>Vraag de leerlingenversie in eenvoudigere taal.</span></li><li><span class="n">05</span><span>Kopieer naar Word of Google Docs en pas de opmaak aan.</span></li></ul></section><section class="sect" id="examenvragen"><h2 class="sect-title">Examenvragen genereren</h2><p class="sect-lead">AI kan examenvragen genereren op elk niveau, voor elk vak. Het geheim is specificiteit: zeg niet alleen over welk onderwerp, maar ook welk type vraag, welk denkniveau en wat je wil vermijden.</p><div class="narrative r"><p>Een ervaren leraar weet intuïtief het verschil tussen een kennistoetsvraag en een inzichtsvraag. AI weet dat ook &mdash; maar alleen als je het vertelt. "Maak examenvragen over WO II" levert feitenvragen op. "Maak drie inzichtsvragen over de oorzaken van WO II waarbij leerlingen verbanden moeten leggen tussen economische crisis, nationalisme en politieke instabiliteit" levert vragen die daadwerkelijk analytisch denken testen.</p></div><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:1.5rem" class="r"><div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.2rem 1.4rem"><div style="font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--petrol);margin-bottom:.6rem">Meerkeuze</div><p style="font-size:.85rem;color:var(--ink-2);line-height:1.65">Snel te corrigeren, breed inzetbaar. Vraag altijd ook de "afleiders" (foute opties) mee te genereren &mdash; die zijn het moeilijkst om zelf te bedenken.</p></div><div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.2rem 1.4rem"><div style="font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--petrol);margin-bottom:.6rem">Open vragen</div><p style="font-size:.85rem;color:var(--ink-2);line-height:1.65">Vraag altijd een modelantwoord en een puntenverdeling mee. Zo maak je het correctieschema tegelijk met de vragen.</p></div><div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.2rem 1.4rem"><div style="font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--petrol);margin-bottom:.6rem">Casusgerichte vragen</div><p style="font-size:.85rem;color:var(--ink-2);line-height:1.65">Geef een situatie, vraag de leerling te redeneren. AI genereert de casus en de vragen tegelijk. Ideaal voor economie, zorg, geschiedenis.</p></div></div><div class="prompt-wrap r"><div class="prompt-head"><span class="prompt-head-label">Examenvragen-prompt &mdash; volledig uitgewerkt</span><button class="btn-copy" onclick="copy(this)">Kopiëren</button></div><div class="prompt-body">Maak examenvragen over <span class="pv">[onderwerp]</span> voor
+vak <span class="pv">[vak]</span>, <span class="pv">[graad en finaliteit]</span>.
+
+Leerlingen hebben de volgende leerstof gezien:
+<span class="pv">[geef een korte opsomming of plak een fragment uit je cursus]</span>
+
+Genereer:
+- 5 meerkeuzevragen (4 opties elk, inclusief 3 plausibele afleiders)
+- 3 open vragen op inzichtsniveau
+- 1 casusgerichte vraag waarbij leerlingen een situatie
+  moeten analyseren
+
+Voeg bij elke vraag toe:
+- Modelantwoord
+- Puntenverdeling
+- Het denkniveau (kennis / inzicht / toepassing / analyse)
+
+Vermijd: pure feitenkennis die leerlingen kunnen opzoeken.
+Focus op: verbanden leggen, redeneren, toepassen.</div></div><div style="background:var(--petrol-l);border-left:3px solid var(--petrol);padding:.9rem 1.3rem;border-radius:0 var(--r) var(--r) 0;margin:1.2rem 0" class="r"><div style="font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--petrol);margin-bottom:.3rem">Gebruik je eigen cursus als basis</div><p style="font-size:.88rem;color:var(--ink-2);line-height:1.75">Plak een passage uit je eigen cursustekst in de prompt: "Op basis van de volgende tekst uit mijn cursus, genereer vijf inzichtsvragen..." Zo zijn de vragen gegarandeerd afgestemd op jouw materiaal en niet op wat AI denkt dat de leerstof is. Dit is de krachtigste techniek voor examenvragen.</p></div><div class="callout r"><p><strong>Controleer altijd.</strong> AI genereert soms vragen waarvan het modelantwoord niet helemaal klopt, of waarvan de puntenverdeling onlogisch is. Lees elke vraag kritisch na voordat je hem op een examen plaatst. AI is een snelle eerste versie &mdash; jij bent de eindverantwoordelijke.</p></div></section><section class="sect" id="niveaus"><h2 class="sect-title">Bloom's taxonomie &mdash; vragen op het juiste denkniveau</h2><p class="sect-lead">Een veelgemaakte fout bij AI-gegenereerde vragen is dat ze te vaak op het laagste denkniveau zitten: kennis reproduceren. Bloom's taxonomie helpt je bewust hogere denkniveaus te vragen.</p><div class="narrative r"><p>De taxonomie van Bloom beschrijft zes niveaus van denken, van laag naar hoog: onthouden, begrijpen, toepassen, analyseren, evalueren en creëren. De meeste examens bevatten te veel niveau-1-vragen. Door het gewenste niveau expliciet te vermelden in je prompt, stuurt AI de complexiteit meteen in de juiste richting.</p></div><div style="border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:1.5rem" class="r"><table style="width:100%;border-collapse:collapse;font-size:.87rem"><thead><tr style="background:var(--petrol)"><th style="text-align:left;padding:.7rem 1rem;color:#fff;font-weight:600">Niveau</th><th style="text-align:left;padding:.7rem 1rem;color:#fff;font-weight:600">Wat de leerling doet</th><th style="text-align:left;padding:.7rem 1rem;color:#fff;font-weight:600">Werkwoorden voor je prompt</th></tr></thead><tbody><tr style="background:var(--bg-alt)"><td style="padding:.65rem 1rem;border-bottom:1px solid var(--border);font-weight:600;color:var(--petrol)">1. Onthouden</td><td style="padding:.65rem 1rem;border-bottom:1px solid var(--border);color:var(--ink-2)">Feiten reproduceren</td><td style="padding:.65rem 1rem;border-bottom:1px solid var(--border);color:var(--ink-3);font-size:.83rem">Noem, definieer, lijst op, identificeer, herken</td></tr><tr style="background:var(--white)"><td style="padding:.65rem 1rem;border-bottom:1px solid var(--border);font-weight:600;color:var(--petrol)">2. Begrijpen</td><td style="padding:.65rem 1rem;border-bottom:1px solid var(--border);color:var(--ink-2)">Uitleggen in eigen woorden</td><td style="padding:.65rem 1rem;border-bottom:1px solid var(--border);color:var(--ink-3);font-size:.83rem">Leg uit, beschrijf, vat samen, parafraseer, vergelijk</td></tr><tr style="background:var(--bg-alt)"><td style="padding:.65rem 1rem;border-bottom:1px solid var(--border);font-weight:600;color:var(--petrol)">3. Toepassen</td><td style="padding:.65rem 1rem;border-bottom:1px solid var(--border);color:var(--ink-2)">Kennis gebruiken in een nieuwe situatie</td><td style="padding:.65rem 1rem;border-bottom:1px solid var(--border);color:var(--ink-3);font-size:.83rem">Bereken, gebruik, pas toe, los op, demonstreer</td></tr><tr style="background:var(--white)"><td style="padding:.65rem 1rem;border-bottom:1px solid var(--border);font-weight:600;color:var(--petrol)">4. Analyseren</td><td style="padding:.65rem 1rem;border-bottom:1px solid var(--border);color:var(--ink-2)">Verbanden leggen, structuur ontleden</td><td style="padding:.65rem 1rem;border-bottom:1px solid var(--border);color:var(--ink-3);font-size:.83rem">Analyseer, verklaar, onderscheid, vergelijk, categoriseer</td></tr><tr style="background:var(--bg-alt)"><td style="padding:.65rem 1rem;border-bottom:1px solid var(--border);font-weight:600;color:var(--petrol)">5. Evalueren</td><td style="padding:.65rem 1rem;border-bottom:1px solid var(--border);color:var(--ink-2)">Beoordelen op basis van criteria</td><td style="padding:.65rem 1rem;border-bottom:1px solid var(--border);color:var(--ink-3);font-size:.83rem">Beoordeel, verdedig, kies en motiveer, kritiseer, rechtvaardigen</td></tr><tr style="background:var(--white)"><td style="padding:.65rem 1rem;border-bottom:1px solid var(--border);font-weight:600;color:var(--petrol)">6. Creëren</td><td style="padding:.65rem 1rem;border-bottom:1px solid var(--border);color:var(--ink-2)">Iets nieuws samenstellen</td><td style="padding:.65rem 1rem;border-bottom:1px solid var(--border);color:var(--ink-3);font-size:.83rem">Ontwerp, maak, schrijf, stel voor, ontwikkel</td></tr></tbody></table></div><div class="prompt-wrap r"><div class="prompt-head"><span class="prompt-head-label">Bloom-prompt &mdash; vragen op elk niveau</span><button class="btn-copy" onclick="copy(this)">Kopiëren</button></div><div class="prompt-body">Maak voor het onderwerp <span class="pv">[onderwerp]</span>, vak <span class="pv">[vak]</span>,
+<span class="pv">[graad]</span> &eacute;&eacute;n vraag op elk niveau van Bloom's taxonomie:
+
+1. Onthouden: vraag waarbij de leerling een feit of definitie reproduceert
+2. Begrijpen: vraag waarbij de leerling iets uitlegt in eigen woorden
+3. Toepassen: vraag waarbij de leerling kennis gebruikt in een nieuwe situatie
+4. Analyseren: vraag waarbij de leerling verbanden legt of een situatie ontleedt
+5. Evalueren: vraag waarbij de leerling een standpunt inneemt en motiveert
+6. Creëren: opdracht waarbij de leerling iets nieuws maakt op basis van de leerstof
+
+Voeg bij elke vraag een modelantwoord en het bijhorende puntenaantal toe.</div></div></section><section class="sect" id="differentiatie"><h2 class="sect-title">Differentiatie &mdash; &eacute;&eacute;n prompt, drie niveaus</h2><p class="sect-lead">Gedifferentieerd materiaal maken is tijdrovend. Met AI kun je vanuit &eacute;&eacute;n basisopdracht drie versies genereren &mdash; voor leerlingen die extra ondersteuning nodig hebben, voor de gemiddelde leerling en voor wie meer uitdaging aankan.</p><div class="narrative r"><p>De slimste aanpak is niet drie aparte prompts schrijven, maar &eacute;&eacute;n prompt waarbij je AI vraagt drie versies te maken. Zo zijn de drie niveaus intern consistent &mdash; ze gaan over hetzelfde onderwerp, gebruiken dezelfde context, maar verschillen in complexiteit, abstractieniveau en gevraagde denkoperaties.</p></div><div style="background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--r);padding:1.4rem 1.8rem;margin-bottom:1.5rem" class="r"><p style="font-size:.75rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.9rem">Hoe de drie niveaus verschillen</p><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.8rem;font-size:.85rem"><div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1rem 1.1rem"><div style="font-size:.7rem;font-weight:700;color:#1a6b3a;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem">Niveau 1 &mdash; Instap</div><ul style="padding-left:1rem;color:var(--ink-2);line-height:1.7"><li>Meer structuur en houvast</li><li>Kortere zinnen en teksten</li><li>Stappenplan of schema</li><li>Feitenvragen en invuloefeningen</li><li>Woordenlijst erbij</li></ul></div><div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1rem 1.1rem"><div style="font-size:.7rem;font-weight:700;color:var(--petrol);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem">Niveau 2 &mdash; Standaard</div><ul style="padding-left:1rem;color:var(--ink-2);line-height:1.7"><li>Normale complexiteit</li><li>Mix van kennis en inzicht</li><li>Beperkte structuurhulp</li><li>Toepassing op bekende situaties</li><li>Zelfstandig werken</li></ul></div><div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1rem 1.1rem"><div style="font-size:.7rem;font-weight:700;color:#7a4a10;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem">Niveau 3 &mdash; Verdieping</div><ul style="padding-left:1rem;color:var(--ink-2);line-height:1.7"><li>Hogere abstractie</li><li>Analyse en evaluatie</li><li>Nieuwe of complexe situaties</li><li>Weinig of geen structuurhulp</li><li>Creatieve uitwerking</li></ul></div></div></div><div class="prompt-wrap r"><div class="prompt-head"><span class="prompt-head-label">Differentiatie-prompt &mdash; drie versies in &eacute;&eacute;n keer</span><button class="btn-copy" onclick="copy(this)">Kopiëren</button></div><div class="prompt-body">Maak drie versies van de volgende oefening over <span class="pv">[onderwerp]</span>,
+vak <span class="pv">[vak]</span>, <span class="pv">[graad]</span>.
+
+Basisopdracht:
+<span class="pv">[beschrijf de opdracht]</span>
+
+Versie 1 &mdash; Instap (voor leerlingen die extra ondersteuning nodig hebben):
+- Geef een stappenplan of invulschema als houvast
+- Gebruik kortere zinnen en eenvoudigere woordenschat
+- Stel alleen feitenvragen en begripsvragen
+
+Versie 2 &mdash; Standaard (voor de meeste leerlingen):
+- Normale opdracht zonder extra structuurhulp
+- Mix van inzicht- en toepassingsvragen
+
+Versie 3 &mdash; Verdieping (voor leerlingen die meer uitdaging aankunnen):
+- Voeg een analyselaag of evaluatievraag toe
+- Gebruik een nieuwe of complexere situatie
+- Vraag om een persoonlijk standpunt met motivering
+
+Geef alle drie versies na elkaar, duidelijk gelabeld.</div></div><div style="background:var(--petrol-l);border-left:3px solid var(--petrol);padding:.9rem 1.3rem;border-radius:0 var(--r) var(--r) 0;margin:1.2rem 0" class="r"><div style="font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--petrol);margin-bottom:.3rem">Differentiatie zichtbaar maken voor leerlingen</div><p style="font-size:.88rem;color:var(--ink-2);line-height:1.75">Je hoeft niet te verbergen dat er drie versies zijn. Noem ze "Baan 1", "Baan 2" en "Baan 3" &mdash; net als in een zwembad. Leerlingen kiezen zelf hun baan of jij wijst hen. Het label "Baan 1" is minder stigmatiserend dan "makkelijk", en "Baan 3" motiveert sterkere leerlingen om de uitdaging aan te gaan.</p></div></section><section class="sect" id="feedback"><h2 class="sect-title">Feedbackteksten schrijven</h2><p class="sect-lead">Feedback op leerlingenwerk schrijven is tijdrovend &mdash; en hoe later in het schooljaar, hoe minder gevarieerd de formuleringen worden. AI helpt je feedback sneller en gevarieerder schrijven, zonder dat het generiek klinkt.</p><div class="narrative r"><p>Het principe: jij geeft de kernboodschap, AI formuleert ze op een constructieve, gevarieerde manier. Je hoeft niet de volledige feedbacktekst te delegeren &mdash; dat zou ook gevaarlijk zijn, want AI kent de leerling niet. Maar als je weet wat je wil zeggen, kan AI je helpen het beter te formuleren.</p></div><div style="background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--r);padding:1.4rem 1.8rem;margin-bottom:1.5rem" class="r"><p style="font-size:.75rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.9rem">Drie manieren om feedback te versnellen</p><div style="display:flex;flex-direction:column;gap:.8rem;font-size:.88rem;color:var(--ink-2)"><div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:.9rem 1.1rem"><strong style="color:var(--petrol)">1. Steekwoorden omzetten</strong><br>Jij noteert: "structuur ok, argumenten zwak, woordkeuze vaag." AI maakt daar drie volledige, constructieve feedbackzinnen van.</div><div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:.9rem 1.1rem"><strong style="color:var(--petrol)">2. Varianten genereren</strong><br>"Genereer tien manieren om te zeggen dat een leerling meer voorbeelden moet gebruiken, op een bemoedigende toon." Nooit meer dezelfde feedback twee keer schrijven.</div><div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:.9rem 1.1rem"><strong style="color:var(--petrol)">3. Rapport-stijl feedback</strong><br>Geef AI de rubricscores per criterium en vraag een samenhangende feedbacktekst van 80 woorden die de sterke punten benoemt en de prioriteit voor verbetering aangeeft.</div></div></div><div class="prompt-wrap r"><div class="prompt-head"><span class="prompt-head-label">Feedback-prompt &mdash; van steekwoorden naar tekst</span><button class="btn-copy" onclick="copy(this)">Kopiëren</button></div><div class="prompt-body">Schrijf constructieve feedback voor een leerling van <span class="pv">[graad]</span>,
+vak <span class="pv">[vak]</span>, op <span class="pv">[type opdracht]</span>.
+
+Scores op de rubric:
+- <span class="pv">[criterium 1]</span>: <span class="pv">[score en korte notitie]</span>
+- <span class="pv">[criterium 2]</span>: <span class="pv">[score en korte notitie]</span>
+- <span class="pv">[criterium 3]</span>: <span class="pv">[score en korte notitie]</span>
+
+Toon: bemoedigend maar eerlijk. Niet overdreven positief.
+Structuur:
+1. Twee zinnen over wat goed is
+2. Twee zinnen over het belangrijkste verbeterpunt
+3. &Eacute;&eacute;n concrete tip voor de volgende keer
+
+Max. 80 woorden. Geen opsomming &mdash; vloeiende tekst.
+Geef twee versies: &eacute;&eacute;n formeler, &eacute;&eacute;n warmer.</div></div><div class="callout r"><p><strong>Privacywaarschuwing:</strong> gebruik nooit de echte naam van de leerling in een AI-prompt. Gebruik "de leerling" of een anonieme beschrijving. Persoonsgegevens, cijfers en gedragsinformatie van leerlingen horen niet in een publieke AI-tool.</p></div></section><section class="sect" id="notebooklm"><h2 class="sect-title">NotebookLM &mdash; evalueren op basis van jouw eigen cursus</h2><p class="sect-lead">NotebookLM is de krachtigste tool voor leraren die evaluatiemateriaal willen maken op basis van hun eigen cursus. Je uploadt je materiaal en AI genereert vragen, samenvattingen en studiegidsen die naadloos aansluiten bij wat jij hebt gegeven.</p><div class="narrative r"><p>Het grote verschil met gewone AI-tools: NotebookLM antwoordt uitsluitend op basis van wat jij geüpload hebt. Het verzint niets, het vult niet aan met informatie van het internet, en het vermeldt telkens de exacte bron. Als je vraagt "maak examenvragen over hoofdstuk 4", genereert het vragen die letterlijk gebaseerd zijn op jouw tekst &mdash; niet op wat Google of Wikipedia zegt over het onderwerp.</p></div><ul class="steps r"><li><span class="n">01</span><span>Ga naar <strong>notebooklm.google.com</strong> en maak een nieuw notitieboek.</span></li><li><span class="n">02</span><span>Upload je cursus als PDF of Word, of voeg de URL van een Google Doc toe. Je kunt meerdere bronnen combineren.</span></li><li><span class="n">03</span><span>Wacht tot NotebookLM de bronnen heeft verwerkt &mdash; dit duurt 30-60 seconden.</span></li><li><span class="n">04</span><span>Stel vragen in het chatvenster: "Maak tien examenvragen over hoofdstuk 3 op inzichtsniveau" of "Genereer een studiegids met kernbegrippen en definities."</span></li><li><span class="n">05</span><span>Gebruik de <strong>Audio Overview</strong>-functie voor een gegenereerde podcast van je cursus &mdash; ideaal voor leerlingen die auditief leren.</span></li></ul><div class="prompt-wrap r"><div class="prompt-head"><span class="prompt-head-label">NotebookLM &mdash; examenvragen vanuit eigen cursus</span><button class="btn-copy" onclick="copy(this)">Kopiëren</button></div><div class="prompt-body">Genereer tien examenvragen voor het vak <span class="pv">[vak]</span>,
+gebaseerd uitsluitend op de geüploade cursustekst.
+
+Verdeling:
+- 4 meerkeuzevragen (4 opties elk)
+- 3 open vragen op inzichtsniveau
+- 2 toepassingsvragen in een nieuwe context
+- 1 integratievraag die meerdere hoofdstukken verbindt
+
+Voeg bij elke vraag toe:
+- Modelantwoord
+- Paginaverwijzing naar de cursus
+- Denkniveau (kennis / inzicht / toepassing)
+
+Gebruik alleen informatie uit de geüploade bronnen.
+Verzin geen extra feiten.</div></div><div style="background:var(--petrol-l);border-left:3px solid var(--petrol);padding:.9rem 1.3rem;border-radius:0 var(--r) var(--r) 0;margin:1.2rem 0" class="r"><div style="font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--petrol);margin-bottom:.3rem">Studiegids voor leerlingen</div><p style="font-size:.88rem;color:var(--ink-2);line-height:1.75">Vraag NotebookLM ook: "Genereer een studiegids met de twintig belangrijkste begrippen uit hoofdstuk 2, elk met een definitie en een voorbeeldzin uit de cursus." Die studiegids kost jou nul minuten en is volledig gebaseerd op jouw materiaal. Leerlingen kunnen die downloaden en gebruiken als voorbereiding op het examen.</p></div></section><nav class="page-nav r"><a href="deel4.html">&larr; Evaluatie &amp; Ethiek</a><a href="deel3.html">AI-tools &rarr;</a></nav></main>
+<footer>
+  <p><strong>Masterclass AI 2026</strong> · Secundair Onderwijs Vlaanderen · Don Bosco</p>
+</footer>
+<script>
+const ro=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting){en.target.classList.add('on');ro.unobserve(en.target);}});},{threshold:0.07});
+document.querySelectorAll('.r').forEach(el=>ro.observe(el));
+function copy(btn){
+  const text=btn.closest('.prompt-wrap').querySelector('.prompt-body').innerText;
+  navigator.clipboard.writeText(text).then(()=>{
+    btn.textContent='Gekopieerd ✓';btn.classList.add('ok');
+    setTimeout(()=>{btn.textContent='Kopiëren';btn.classList.remove('ok');},2000);
+  });
+}
+</script>
+</body>
+</html>

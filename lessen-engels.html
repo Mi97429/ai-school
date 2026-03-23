@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="nl-BE">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lessenreeks Engels — Masterclass AI 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+<style>
+:root{--bg:#f8f7f4;--bg-alt:#f0ede8;--white:#ffffff;--ink:#1a1a1a;--ink-2:#3d3d3d;--ink-3:#767676;--border:#e0dbd4;--petrol:#0f4c5c;--petrol-l:#e8f2f4;--petrol-m:#1a6b80;--serif:'Lora',Georgia,serif;--sans:system-ui,-apple-system,sans-serif;--mono:'Courier New',monospace;--r:6px;--ease:cubic-bezier(0.25,0,0,1);--content:720px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+:focus-visible{outline:2px solid var(--petrol);outline-offset:3px}
+a{color:var(--petrol)}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--white);border-bottom:1px solid var(--border);height:56px;display:flex;align-items:center;padding:0 5%;gap:0}
+.topbar-logo{font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol);text-decoration:none;white-space:nowrap;margin-right:2.5rem}
+.progress-steps{display:flex;align-items:center;flex:1;gap:0;overflow-x:auto;scrollbar-width:none}
+.progress-steps::-webkit-scrollbar{display:none}
+.ps-item{display:flex;align-items:center;text-decoration:none;flex-shrink:0}
+.ps-step{display:flex;align-items:center;gap:.45rem;padding:.3rem .7rem;border-radius:4px;font-size:.78rem;color:var(--ink-3);transition:color .15s,background .15s;white-space:nowrap}
+.ps-step .n{font-family:var(--serif);font-size:.7rem;font-weight:600;color:var(--petrol);opacity:.5}
+.ps-item:hover .ps-step{color:var(--petrol);background:var(--petrol-l)}
+.ps-item.active .ps-step{color:var(--petrol);font-weight:500;background:var(--petrol-l)}
+.ps-item.active .ps-step .n{opacity:1}
+.ps-arrow{color:var(--border);font-size:.8rem;margin:0 .1rem;flex-shrink:0}
+.page{margin-top:56px;max-width:var(--content);margin-left:auto;margin-right:auto;padding:0 5% 6rem}
+.page.wide{--content:900px}
+.page-head{padding:3.5rem 0 2.5rem;border-bottom:1px solid var(--border);margin-bottom:2.5rem}
+.page-kicker{font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--petrol);display:block;margin-bottom:.8rem}
+.page-title{font-family:var(--serif);font-size:clamp(2.2rem,4vw,3.4rem);font-weight:600;line-height:1.1;color:var(--ink);letter-spacing:-.02em;margin-bottom:1rem}
+.page-title em{font-style:italic}
+.page-intro{font-size:1.05rem;line-height:1.85;color:var(--ink-2);max-width:60ch}
+.toc{margin-bottom:3rem}
+.toc-label{font-size:.62rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:.8rem}
+.toc-items{display:flex;flex-wrap:wrap;gap:.5rem}
+.toc-link{display:inline-flex;align-items:center;padding:.42rem .9rem;background:var(--white);border:1px solid var(--border);border-radius:100px;font-size:.83rem;color:var(--ink-2);text-decoration:none;transition:all .18s var(--ease)}
+.toc-link:hover{background:var(--petrol);color:var(--white);border-color:var(--petrol)}
+.sect{padding:3rem 0;border-bottom:1px solid var(--border);scroll-margin-top:76px}
+.sect:last-of-type{border-bottom:none}
+.sect-label{font-size:.62rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--petrol);display:block;margin-bottom:.6rem}
+.sect-title{font-family:var(--serif);font-size:1.5rem;font-weight:600;color:var(--ink);letter-spacing:-.01em;margin-bottom:.5rem;line-height:1.25}
+.sect-lead{font-size:.97rem;color:var(--ink-2);line-height:1.8;max-width:66ch;margin-bottom:1.6rem}
+.steps{list-style:none;display:flex;flex-direction:column;gap:.8rem;margin-bottom:1.4rem}
+.steps li{display:flex;align-items:flex-start;gap:1rem;font-size:.95rem;color:var(--ink-2);line-height:1.7}
+.steps li .n{font-family:var(--serif);font-size:.85rem;font-weight:600;color:var(--petrol);flex-shrink:0;width:1.5rem;padding-top:.1rem}
+.steps li strong{color:var(--ink);font-weight:600}
+.callout{border-left:3px solid var(--petrol);padding:.9rem 1.3rem;background:var(--petrol-l);border-radius:0 var(--r) var(--r) 0;margin-bottom:1.5rem}
+.callout p{font-size:.9rem;color:var(--ink-2);line-height:1.75}
+.callout strong{color:var(--petrol);font-weight:600}
+.prompt-wrap{margin-top:1.8rem;margin-bottom:.5rem}
+.prompt-head{display:flex;align-items:center;justify-content:space-between;background:var(--petrol);padding:.55rem 1rem;border-radius:var(--r) var(--r) 0 0}
+.prompt-head-label{font-size:.68rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.75)}
+.btn-copy{font-family:var(--sans);font-size:.72rem;font-weight:500;background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:4px;padding:.2rem .65rem;cursor:pointer;transition:all .15s}
+.btn-copy:hover{background:rgba(255,255,255,.25)}
+.btn-copy.ok{background:rgba(255,255,255,.3)}
+.prompt-body{font-family:var(--mono);font-size:.83rem;line-height:1.85;color:#c8dce8;background:#0d1a24;border:1px solid #1e3040;border-top:none;border-radius:0 0 var(--r) var(--r);padding:1.2rem 1.3rem;white-space:pre-wrap}
+.pv{color:#7ecfe0;font-weight:600}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin-bottom:1.5rem}
+.card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.2rem 1.3rem;text-decoration:none;display:flex;flex-direction:column;transition:box-shadow .2s,border-color .2s,transform .2s}
+.card:hover{box-shadow:0 3px 16px rgba(15,76,92,.09);border-color:var(--petrol-m);transform:translateY(-1px)}
+.card-name{font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.2rem}
+.card-url{font-size:.75rem;color:var(--petrol);margin-bottom:.45rem;opacity:.8}
+.card-desc{font-size:.82rem;color:var(--ink-3);line-height:1.65;flex:1}
+.card-tags{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.7rem}
+.card-tag{font-size:.65rem;padding:.12rem .45rem;background:var(--bg-alt);color:var(--ink-3);border-radius:3px}
+.gem-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1.1rem;margin-bottom:1.4rem}
+.gem{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.3rem;transition:box-shadow .2s,border-color .2s}
+.gem:hover{box-shadow:0 2px 14px rgba(15,76,92,.08);border-color:var(--petrol-m)}
+.gem-head{display:flex;align-items:center;gap:.7rem;margin-bottom:.6rem}
+.gem-icon{width:32px;height:32px;border-radius:var(--r);background:var(--petrol-l);color:var(--petrol);display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0}
+.gem-name{font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--ink)}
+.gem-doel{font-size:.8rem;color:var(--ink-3);line-height:1.6;font-style:italic;margin-bottom:.8rem}
+.gem-instructie{font-family:var(--mono);font-size:.74rem;line-height:1.65;color:var(--ink-2);background:#0d1a24;color:#c8dce8;border-left:2px solid var(--petrol);padding:.6rem .8rem;white-space:pre-wrap;border-radius:0 4px 4px 0}
+.page-nav{display:flex;justify-content:space-between;align-items:center;padding-top:2.5rem;border-top:1px solid var(--border);margin-top:3rem;flex-wrap:wrap;gap:1rem}
+.page-nav a{display:flex;align-items:center;gap:.5rem;font-size:.88rem;color:var(--petrol);text-decoration:none;padding:.5rem .9rem;border:1px solid var(--border);border-radius:var(--r);transition:all .18s}
+.page-nav a:hover{background:var(--petrol-l);border-color:var(--petrol-m)}
+.deel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem}
+.deel-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.8rem 2rem;text-decoration:none;display:flex;flex-direction:column;position:relative;overflow:hidden;transition:box-shadow .2s,transform .2s,border-color .2s}
+.deel-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--petrol);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}
+.deel-card:hover{box-shadow:0 4px 24px rgba(15,76,92,.10);transform:translateY(-2px);border-color:transparent}
+.deel-card:hover::before{transform:scaleX(1)}
+.deel-num{font-family:var(--serif);font-size:.75rem;font-weight:600;color:var(--petrol);margin-bottom:.8rem;opacity:.6}
+.deel-title{font-family:var(--serif);font-size:1.2rem;font-weight:600;color:var(--ink);margin-bottom:.5rem;line-height:1.3}
+.deel-sub{font-size:.85rem;color:var(--ink-3);line-height:1.65;flex:1}
+.deel-arrow{margin-top:1.4rem;font-size:.8rem;color:var(--petrol);opacity:.4;transition:opacity .2s,transform .2s;align-self:flex-start}
+.deel-card:hover .deel-arrow{opacity:1;transform:translateX(4px)}
+.vak-groep{margin-bottom:2.2rem}
+.vak-groep-label{font-size:.68rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.7rem;display:block}
+.vak-pills{display:flex;flex-wrap:wrap;gap:.5rem}
+.vak-pill{display:inline-flex;align-items:center;gap:.5rem;padding:.45rem 1rem;background:var(--white);border:1px solid var(--border);border-radius:100px;font-size:.84rem;color:var(--ink-2);text-decoration:none;transition:all .18s var(--ease)}
+.vak-pill:hover{background:var(--petrol);color:#fff;border-color:var(--petrol)}
+.narrative{background:var(--petrol-l);border-left:4px solid var(--petrol);padding:1.4rem 1.8rem;border-radius:0 var(--r) var(--r) 0;margin-bottom:2rem}
+.narrative p{font-size:1rem;line-height:1.85;color:var(--ink-2);max-width:68ch}
+.narrative strong{color:var(--petrol)}
+.hl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:2rem}
+.hl{padding:1.6rem;background:var(--white);border:1px solid var(--border);border-radius:var(--r)}
+.hl-icon{width:38px;height:38px;border-radius:var(--r);background:var(--petrol-l);color:var(--petrol);display:flex;align-items:center;justify-content:center;font-size:1rem;margin-bottom:1rem}
+.hl-title{font-family:var(--serif);font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:.4rem}
+.hl-text{font-size:.88rem;color:var(--ink-3);line-height:1.7}
+.hero{background:var(--petrol);padding:7rem 0 6rem;position:relative;overflow:hidden;margin-top:56px}
+.hero::before{content:'';position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(circle,rgba(255,255,255,.04) 1px,transparent 1px);background-size:28px 28px}
+.hero-inner{max-width:900px;margin:0 auto;padding:0 5%;position:relative}
+.hero-kicker{display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:1.5rem}
+.hero-title{font-family:var(--serif);font-size:clamp(2.8rem,5.5vw,5rem);font-weight:600;line-height:1.1;color:#fff;letter-spacing:-.025em;margin-bottom:1.8rem;max-width:14ch}
+.hero-title em{font-style:italic;font-weight:400;color:rgba(255,255,255,.75)}
+.hero-sub{font-size:1.1rem;font-weight:400;line-height:1.8;color:rgba(255,255,255,.7);max-width:54ch;margin-bottom:2.5rem}
+.hero-cta{display:flex;gap:.75rem;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:.5rem;font-size:.9rem;font-weight:500;padding:.7rem 1.5rem;border-radius:var(--r);text-decoration:none;transition:all .2s var(--ease);cursor:pointer;border:none;font-family:var(--sans)}
+.btn-white{background:#fff;color:var(--petrol)}
+.btn-white:hover{background:var(--bg);transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,0,0,.15)}
+.btn-outline{background:transparent;color:rgba(255,255,255,.85);border:1px solid rgba(255,255,255,.3)}
+.btn-outline:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.5)}
+.section-block{padding:5rem 0;border-bottom:1px solid var(--border)}
+.section-block:last-of-type{border-bottom:none}
+.section-inner{max-width:900px;margin:0 auto;padding:0 5%}
+.section-label{font-size:.7rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--petrol);display:block;margin-bottom:.8rem}
+.section-title{font-family:var(--serif);font-size:clamp(1.7rem,2.8vw,2.6rem);font-weight:600;line-height:1.2;color:var(--ink);letter-spacing:-.02em;margin-bottom:.8rem}
+.section-title em{font-style:italic;font-weight:400}
+.section-lead{font-size:1.05rem;font-weight:400;line-height:1.8;color:var(--ink-2);max-width:62ch;margin-bottom:2.5rem}
+.yt-block{display:flex;align-items:center;gap:1rem;background:var(--white);border:1px solid var(--border);padding:1rem 1.3rem;border-radius:var(--r);margin-top:1rem}
+.yt-icon{width:36px;height:36px;background:#ff0000;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff;font-size:1rem}
+.yt-text{flex:1}
+.yt-text strong{display:block;font-size:.88rem;color:var(--ink)}
+.yt-text span{font-size:.78rem;color:var(--ink-3)}
+.yt-btn{background:var(--ink);color:#fff;font-family:var(--sans);font-size:.75rem;font-weight:600;padding:.4rem .8rem;border-radius:2px;text-decoration:none;flex-shrink:0;transition:background .15s}
+.yt-btn:hover{background:var(--petrol)}
+.r{opacity:0;transform:translateY(16px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.r.on{opacity:1;transform:none}
+.r.d1{transition-delay:.07s}.r.d2{transition-delay:.14s}.r.d3{transition-delay:.21s}.r.d4{transition-delay:.28s}.r.d5{transition-delay:.35s}
+footer{background:var(--petrol);padding:2rem 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+footer p{font-size:.8rem;color:rgba(255,255,255,.55)}
+footer strong{color:rgba(255,255,255,.85);font-weight:500}
+@media(max-width:860px){.hl-grid{grid-template-columns:1fr}.deel-grid{grid-template-columns:1fr}}
+@media(max-width:700px){.progress-steps{display:none}.card-grid,.gem-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <a class="topbar-logo" href="index.html">Masterclass AI</a>
+  <nav class="progress-steps" aria-label="Programmanavigatie">
+    <a class="ps-item" href="index.html"><div class="ps-step"><span class="n">Home</span></div></a>
+    <span class="ps-arrow">›</span>
+    <a class="ps-item" href="deel1.html"><div class="ps-step"><span class="n">01</span> Wat is AI?</div></a>
+    <span class="ps-arrow">›</span>
+    <a class="ps-item" href="deel2.html"><div class="ps-step"><span class="n">02</span> Prompting</div></a>
+    <span class="ps-arrow">›</span>
+    <a class="ps-item" href="deel3.html"><div class="ps-step"><span class="n">03</span> AI-tools</div></a>
+    <span class="ps-arrow">›</span>
+    <a class="ps-item" href="deel4.html"><div class="ps-step"><span class="n">04</span> Evaluatie</div></a>
+    <span class="ps-arrow">›</span>
+    <a class="ps-item active" href="vakken.html"><div class="ps-step"><span class="n">05</span> Vakken</div></a>
+    <span class="ps-arrow">›</span>
+    <a class="ps-item" href="deel6.html"><div class="ps-step"><span class="n">06</span> Geletterdheid</div></a>
+  </nav>
+</header>
+<main class="page" style="--content:800px"><header class="page-head r"><span class="page-kicker">Uitgewerkte lessenreeks</span><h1 class="page-title"><em>Engels</em> &mdash; vier lessen met AI</h1><p class="page-intro">Vier volledig uitgewerkte lessen van 50 minuten voor het vak Engels. Van spreekvaardigheid tot schrijven, van woordenschat tot cultuurverkenning &mdash; met kant-en-klare Gem-instructies en prompts.</p></header><nav class="toc r"><span class="toc-label">De vier lessen</span><div class="toc-items"><a class="toc-link" href="#en-les1">Les 1 &mdash; Spreekangst doorbreken</a><a class="toc-link" href="#en-les2">Les 2 &mdash; Schrijfvaardigheid</a><a class="toc-link" href="#en-les3">Les 3 &mdash; Woordenschat in context</a><a class="toc-link" href="#en-les4">Les 4 &mdash; Cultuur &amp; intercultureel</a></div></nav><section class="sect" id="en-les1"><div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.8rem 2rem;margin-bottom:2rem" class="r"><div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem"><div><div style="font-size:.65rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--petrol);margin-bottom:.3rem">Les 1 van 4</div><div style="font-family:var(--serif);font-size:1.4rem;font-weight:600;color:var(--ink);line-height:1.2;margin-bottom:.8rem">Spreekangst doorbreken &mdash; oefenen zonder publiek</div><div style="display:flex;flex-wrap:wrap;gap:.4rem"><span style="background:var(--petrol-l);color:var(--petrol);font-size:.72rem;font-weight:600;padding:.2rem .6rem;border-radius:3px">Engels</span><span style="background:var(--bg-alt);color:var(--ink-3);font-size:.72rem;padding:.2rem .6rem;border-radius:3px">2de graad</span><span style="background:var(--bg-alt);color:var(--ink-3);font-size:.72rem;padding:.2rem .6rem;border-radius:3px">50 minuten</span></div></div><div><div style="font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.4rem">Thema</div><div style="font-size:.9rem;color:var(--ink-2);margin-bottom:.9rem">Spreekvaardigheid &mdash; alledaagse conversatie</div><div style="font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.4rem">Leerdoelen</div><ul style="font-size:.85rem;color:var(--ink-2);line-height:1.7;padding-left:1rem"><li>De leerling voert een Engels gesprek van minstens 10 beurten.</li><li>De leerling past correcte werkwoordsvormen toe in een gesprek.</li><li>De leerling durft fouten te maken en te verbeteren.</li></ul></div></div><div style="border-top:1px solid var(--border);margin-top:1.2rem;padding-top:1rem"><div style="font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.5rem">Benodigdheden</div><ul style="font-size:.83rem;color:var(--ink-3);line-height:1.65;padding-left:1rem;columns:2"><li>Link naar de Conversation Partner-Gem</li><li>Toestel met internet</li><li>Google Doc voor rapport</li></ul></div></div><h3 style="font-family:var(--serif);font-size:1.1rem;font-weight:600;color:var(--ink);margin:1.5rem 0 .6rem">Lesverloop</h3><div style="border-top:1px solid var(--border);margin-bottom:1.5rem" class="r"><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start"><div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol)">5 min</div><div><div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Instap &mdash; Waarom spreek je geen Engels?</div><div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Klassikale vraag: wat weerhoudt je om in het Engels te spreken? Noteer op het bord.</div><div style="font-size:.82rem;color:var(--ink-3);line-height:1.6">Typische antwoorden: bang voor fouten, weet het woord niet, anderen lachen. De Gem biedt vandaag een veilige ruimte: hij lacht nooit, hij vergeet niet.</div></div></div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start"><div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol)">5 min</div><div><div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Demonstratie door de leraar</div><div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Leraar demonstreert zelf een kort gesprek met de Gem op het bord. Inclusief bewuste fouten &mdash; laat zien hoe de Gem corrigeert.</div><div style="font-size:.82rem;color:var(--ink-3);line-height:1.6">Cruciaal: leerlingen zien dat fouten bij het gesprek horen. De leraar die zelf fouten maakt en herstelt, geeft het beste voorbeeld.</div></div></div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start"><div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol)">20 min</div><div><div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Gespreksronde 1 &mdash; vrij thema</div><div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Leerlingen openen de Gem en kiezen zelf een thema: weekend, film, sport, hobby. Minstens 10 beurten.</div><div style="font-size:.82rem;color:var(--ink-3);line-height:1.6">Rondlopen en observeren. Leerlingen die in het Nederlands beginnen: wijs op de HELP-nooduitgang. Noteer wie goed reageert.</div></div></div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start"><div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol)">10 min</div><div><div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Gespreksronde 2 &mdash; opgedragen thema</div><div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Leraar geeft thema: "Talk about a place you would like to visit and why." Leerlingen wisselen van thema in hetzelfde gesprek.</div><div style="font-size:.82rem;color:var(--ink-3);line-height:1.6">Dit simuleert een examensituatie: een thema krijgen dat je niet zelf hebt gekozen. Dat is waar spreekangst piekt.</div></div></div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start"><div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol)">8 min</div><div><div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Nabespreking</div><div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Welk woord of uitdrukking leerde je van de Gem? Drie leerlingen delen een nieuwe uitdrukking.</div><div style="font-size:.82rem;color:var(--ink-3);line-height:1.6">Schrijf die op het bord. Dat is hun woordenschatwinst van de les.</div></div></div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start"><div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol)">2 min</div><div><div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">RAPPORT</div><div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Leerlingen typen RAPPORT en bewaren het overzicht.</div></div></div></div><div style="background:var(--petrol-l);border-left:3px solid var(--petrol);padding:.9rem 1.3rem;border-radius:0 var(--r) var(--r) 0;margin:1rem 0" class="r"><div style="font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--petrol);margin-bottom:.3rem">Differentiatie</div><p style="font-size:.88rem;color:var(--ink-2);line-height:1.75">Zwakkere leerlingen: geef vooraf tien basisvragen als houvast. Sterke leerlingen: voer een gesprek waarbij ze zelf minstens vijf vragen stellen aan de Gem.</p></div><div class="prompt-wrap r"><div class="prompt-head"><span class="prompt-head-label">Conversation Partner-Gem &mdash; instructie les 1</span><button class="btn-copy" onclick="copy(this)">Kopiëren</button></div><div class="prompt-body">You are a friendly English conversation partner
+for secondary school students (age 14-16).
+
+Have a natural conversation on any topic the student chooses.
+After every 3 exchanges:
+- Gently correct ONE grammar mistake: *(correction)*
+- Suggest ONE better vocabulary word: *(try: "..." instead)*
+- Ask a follow-up question
+
+Always stay in English.
+If the student writes in Dutch: respond in English first,
+then add difficult words in Dutch in brackets.
+Exception: if the student types HELP, briefly explain
+one word in Dutch, then continue in English immediately.
+
+If the student seems stuck: give a sentence starter.
+"You could say: 'I think that...' or 'In my opinion...'"
+
+Absolute rule: never switch permanently to Dutch.
+
+REPORT - when student types RAPPORT:
+---
+SPEAKING REPORT
+Topics: [list] | Exchanges: [number]
+Grammar corrected: [max. 3 points]
+New vocabulary suggested: [list]
+Strength: [what went well]
+Recommendation: [one specific practice tip]
+---</div></div></section><section class="sect" id="en-les2"><div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.8rem 2rem;margin-bottom:2rem" class="r"><div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem"><div><div style="font-size:.65rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--petrol);margin-bottom:.3rem">Les 2 van 4</div><div style="font-family:var(--serif);font-size:1.4rem;font-weight:600;color:var(--ink);line-height:1.2;margin-bottom:.8rem">Schrijfvaardigheid &mdash; formele e-mail en review</div><div style="display:flex;flex-wrap:wrap;gap:.4rem"><span style="background:var(--petrol-l);color:var(--petrol);font-size:.72rem;font-weight:600;padding:.2rem .6rem;border-radius:3px">Engels</span><span style="background:var(--bg-alt);color:var(--ink-3);font-size:.72rem;padding:.2rem .6rem;border-radius:3px">3de graad</span><span style="background:var(--bg-alt);color:var(--ink-3);font-size:.72rem;padding:.2rem .6rem;border-radius:3px">50 minuten</span></div></div><div><div style="font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.4rem">Thema</div><div style="font-size:.9rem;color:var(--ink-2);margin-bottom:.9rem">Schrijfvaardigheid &mdash; formele en informele tekstsoorten</div><div style="font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.4rem">Leerdoelen</div><ul style="font-size:.85rem;color:var(--ink-2);line-height:1.7;padding-left:1rem"><li>De leerling past de kenmerken van een formele e-mail correct toe.</li><li>De leerling herschrijft gericht op basis van AI-feedback.</li><li>De leerling herkent het verschil tussen formeel en informeel register.</li></ul></div></div><div style="border-top:1px solid var(--border);margin-top:1.2rem;padding-top:1rem"><div style="font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.5rem">Benodigdheden</div><ul style="font-size:.83rem;color:var(--ink-3);line-height:1.65;padding-left:1rem;columns:2"><li>Link naar de Writing Tutor-Gem</li><li>Google Docs &mdash; twee documenten per leerling</li><li>Voorbeeldteksten als referentie</li></ul></div></div><h3 style="font-family:var(--serif);font-size:1.1rem;font-weight:600;color:var(--ink);margin:1.5rem 0 .6rem">Lesverloop</h3><div style="border-top:1px solid var(--border);margin-bottom:1.5rem" class="r"><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start"><div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol)">5 min</div><div><div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Instap &mdash; Formeel vs informeel</div><div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Twee korte teksten op het bord: een SMS naar een vriend en een e-mail naar een werkgever over hetzelfde onderwerp. Welke verschillen zien leerlingen?</div><div style="font-size:.82rem;color:var(--ink-3);line-height:1.6">Leerlingen noemen: aanhef, afsluiting, woordkeuze, zinslengte, geen emoji. Dat is de kern van register.</div></div></div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start"><div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol)">10 min</div><div><div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Opdracht 1 &mdash; Formele e-mail</div><div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Scenario: leerling schrijft een e-mail naar een Engelstalige organisatie voor een vrijwilligersproject. Eerste versie zonder hulp.</div><div style="font-size:.82rem;color:var(--ink-3);line-height:1.6">Geef de context: naam organisatie, aard project, wat vermelden. Vijf minuten schrijven &mdash; geen perfectie, wel een eerste versie.</div></div></div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start"><div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol)">15 min</div><div><div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Feedbackfase &mdash; Writing Tutor-Gem</div><div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Leerlingen plakken e-mail in de Gem. Minstens twee feedbackronden over register, structuur en woordkeuze.</div><div style="font-size:.82rem;color:var(--ink-3);line-height:1.6">Aandachtspunt: vraag leerlingen de Gem expliciet te vragen naar aanhef en afsluiting. Die zijn in formeel Engels anders dan in het Nederlands.</div></div></div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start"><div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol)">10 min</div><div><div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Opdracht 2 &mdash; Review schrijven</div><div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Contrast: een informele review van een film op een fictief online platform. Andere toon, andere regels.</div><div style="font-size:.82rem;color:var(--ink-3);line-height:1.6">Leerlingen ervaren hoe register verschuift. Ze vragen ook hier Gem-feedback &mdash; nu op: is het overtuigend en levendig?</div></div></div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start"><div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol)">8 min</div><div><div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Nabespreking</div><div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Klassikaal: leraar toont een goede e-mail en review (anoniem). Wat maakt elk stuk sterk?</div><div style="font-size:.82rem;color:var(--ink-3);line-height:1.6">Verbind aan de instap: leerlingen zien de kenmerken die ze eerder noemden terug in hun eigen werk.</div></div></div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start"><div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol)">2 min</div><div><div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">RAPPORT</div><div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">RAPPORT typen en bewaren.</div></div></div></div><div style="background:var(--petrol-l);border-left:3px solid var(--petrol);padding:.9rem 1.3rem;border-radius:0 var(--r) var(--r) 0;margin:1rem 0" class="r"><div style="font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--petrol);margin-bottom:.3rem">Evaluatietip</div><p style="font-size:.88rem;color:var(--ink-2);line-height:1.75">Beoordeel de tweede versie na de Gem-feedback, niet de eerste. Vraag leerlingen in een andere kleur te markeren wat ze veranderd hebben.</p></div><div class="prompt-wrap r"><div class="prompt-head"><span class="prompt-head-label">Writing Tutor-Gem &mdash; instructie les 2</span><button class="btn-copy" onclick="copy(this)">Kopiëren</button></div><div class="prompt-body">You are an English writing tutor for secondary school students.
+
+When a student submits a text:
+1. Identify the text type (e-mail, review, essay...)
+2. Comment on register: formal or informal? Consistent?
+3. Point out ONE structural issue
+4. Suggest ONE vocabulary improvement
+5. Ask: "Now improve the opening or closing sentence."
+
+NEVER rewrite the text. Only questions and specific hints.
+
+For formal e-mails, always check:
+- Opening: Dear Mr/Ms [name] or Dear Sir/Madam
+- Closing: Yours sincerely / Yours faithfully
+- No contractions (don't = do not)
+- No slang or informal expressions
+
+REPORT - when student types RAPPORT:
+---
+WRITING REPORT
+Text type: [type] | Register: [formal/informal/mixed]
+Main strength: [one point]
+Main improvement: [one specific point]
+Vocabulary suggestion: [one word or phrase]
+Recommendation: [one exercise for next time]
+---</div></div></section><section class="sect" id="en-les3"><div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.8rem 2rem;margin-bottom:2rem" class="r"><div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem"><div><div style="font-size:.65rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--petrol);margin-bottom:.3rem">Les 3 van 4</div><div style="font-family:var(--serif);font-size:1.4rem;font-weight:600;color:var(--ink);line-height:1.2;margin-bottom:.8rem">Woordenschat &mdash; woorden leren in context</div><div style="display:flex;flex-wrap:wrap;gap:.4rem"><span style="background:var(--petrol-l);color:var(--petrol);font-size:.72rem;font-weight:600;padding:.2rem .6rem;border-radius:3px">Engels</span><span style="background:var(--bg-alt);color:var(--ink-3);font-size:.72rem;padding:.2rem .6rem;border-radius:3px">2de graad</span><span style="background:var(--bg-alt);color:var(--ink-3);font-size:.72rem;padding:.2rem .6rem;border-radius:3px">50 minuten</span></div></div><div><div style="font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.4rem">Thema</div><div style="font-size:.9rem;color:var(--ink-2);margin-bottom:.9rem">Woordenschat &mdash; thematische woordenschatuitbreiding</div><div style="font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.4rem">Leerdoelen</div><ul style="font-size:.85rem;color:var(--ink-2);line-height:1.7;padding-left:1rem"><li>De leerling gebruikt nieuwe woorden actief in zinnen en gesprekken.</li><li>De leerling herkent de collocaties van nieuwe woorden.</li><li>De leerling bouwt een persoonlijk woordenschatprofiel op via de Gem.</li></ul></div></div><div style="border-top:1px solid var(--border);margin-top:1.2rem;padding-top:1rem"><div style="font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.5rem">Benodigdheden</div><ul style="font-size:.83rem;color:var(--ink-3);line-height:1.65;padding-left:1rem;columns:2"><li>Link naar de Vocabulary Builder-Gem</li><li>Woordenschatlijst van het huidige thema (10-15 woorden)</li><li>Google Doc voor notities</li></ul></div></div><h3 style="font-family:var(--serif);font-size:1.1rem;font-weight:600;color:var(--ink);margin:1.5rem 0 .6rem">Lesverloop</h3><div style="border-top:1px solid var(--border);margin-bottom:1.5rem" class="r"><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start"><div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol)">5 min</div><div><div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Instap &mdash; Hoe onthoud jij woorden?</div><div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Korte rondvraag: wie schrijft woorden op? Wie gebruikt een app? Wie leert via context?</div><div style="font-size:.82rem;color:var(--ink-3);line-height:1.6">Woorden leren in context is effectiever dan lijstjes stampen. Vandaag doen we dat via de Gem.</div></div></div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start"><div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol)">10 min</div><div><div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Activering &mdash; woorden via de Gem</div><div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Leerlingen vragen de Gem voor elk woord: een voorbeeldzin, een collocatie en een anti-voorbeeld.</div><div style="font-size:.82rem;color:var(--ink-3);line-height:1.6">Het anti-voorbeeld is goud: "You can say 'exhausted' about people, NOT about weather." Leerlingen noteren in eigen woorden.</div></div></div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start"><div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol)">15 min</div><div><div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Verwerkingsfase &mdash; woordenschat in gesprek</div><div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Leerlingen voeren een gesprek met de Gem waarbij ze minstens vijf woorden van de lijst actief gebruiken.</div><div style="font-size:.82rem;color:var(--ink-3);line-height:1.6">De Gem registreert welke woorden gebruikt worden en geeft feedback op het gebruik.</div></div></div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start"><div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol)">10 min</div><div><div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Woordenschatspel &mdash; klassikaal</div><div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Leraar leest een zin met een fout gebruik van een van de woorden. Wie herkent de fout?</div><div style="font-size:.82rem;color:var(--ink-3);line-height:1.6">Gebruik zinnen die typische fouten bevatten. De Gem kan twintig van die zinnen genereren als voorbereiding.</div></div></div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start"><div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol)">8 min</div><div><div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Persoonlijk woordenschatprofiel</div><div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Leerlingen typen WOORDEN in de Gem. Ze krijgen een kleurcodering: goed gebruikt &mdash; deels correct &mdash; incorrect.</div><div style="font-size:.82rem;color:var(--ink-3);line-height:1.6">Dit is hun persoonlijke woordenschatstatus van die les. Bewaren in portfolio.</div></div></div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start"><div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol)">2 min</div><div><div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">RAPPORT</div><div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">RAPPORT typen en bewaren.</div></div></div></div><div style="background:var(--petrol-l);border-left:3px solid var(--petrol);padding:.9rem 1.3rem;border-radius:0 var(--r) var(--r) 0;margin:1rem 0" class="r"><div style="font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--petrol);margin-bottom:.3rem">Huiswerktip</div><p style="font-size:.88rem;color:var(--ink-2);line-height:1.75">Leerlingen schrijven thuis drie zinnen met woorden die "deels correct" of "incorrect" waren. Ze sturen die naar de Gem voor feedback. Volgende les vergelijken ze hun verbeterde versies.</p></div><div class="prompt-wrap r"><div class="prompt-head"><span class="prompt-head-label">Vocabulary Builder-Gem &mdash; instructie les 3</span><button class="btn-copy" onclick="copy(this)">Kopiëren</button></div><div class="prompt-body">You are a vocabulary coach for English learners.
+
+For each new word the student asks about:
+1. Give ONE example sentence in context
+2. Explain ONE collocation: "We say 'make a decision', not 'do a decision'"
+3. Give ONE anti-example: how NOT to use this word
+4. Ask: "Now use this word in your own sentence."
+
+When a student uses a word in conversation:
+- Correct usage: confirm briefly and continue
+- Incorrect usage: say "Almost! Try: '...'" then continue
+
+When student types WOORDEN - generate a status:
+- Words used correctly: [list]
+- Words in wrong context: [list + brief note]
+- Words not yet used: [list]
+
+REPORT - when student types RAPPORT:
+---
+VOCABULARY REPORT
+Words practised: [number]
+Best used: [word + student example sentence]
+Needs practice: [word + the error made]
+Recommendation: [one exercise for these words]
+---</div></div></section><section class="sect" id="en-les4"><div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.8rem 2rem;margin-bottom:2rem" class="r"><div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem"><div><div style="font-size:.65rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--petrol);margin-bottom:.3rem">Les 4 van 4</div><div style="font-family:var(--serif);font-size:1.4rem;font-weight:600;color:var(--ink);line-height:1.2;margin-bottom:.8rem">Cultuur &mdash; interculturele vergelijking</div><div style="display:flex;flex-wrap:wrap;gap:.4rem"><span style="background:var(--petrol-l);color:var(--petrol);font-size:.72rem;font-weight:600;padding:.2rem .6rem;border-radius:3px">Engels</span><span style="background:var(--bg-alt);color:var(--ink-3);font-size:.72rem;padding:.2rem .6rem;border-radius:3px">3de graad</span><span style="background:var(--bg-alt);color:var(--ink-3);font-size:.72rem;padding:.2rem .6rem;border-radius:3px">50 minuten</span></div></div><div><div style="font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.4rem">Thema</div><div style="font-size:.9rem;color:var(--ink-2);margin-bottom:.9rem">Interculturele communicatie &mdash; Engelstalige culturen</div><div style="font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.4rem">Leerdoelen</div><ul style="font-size:.85rem;color:var(--ink-2);line-height:1.7;padding-left:1rem"><li>De leerling vergelijkt culturele gebruiken met de Belgische context.</li><li>De leerling formuleert genuanceerde standpunten over culturele verschillen.</li><li>De leerling schrijft een kort reflectiestuk in het Engels.</li></ul></div></div><div style="border-top:1px solid var(--border);margin-top:1.2rem;padding-top:1rem"><div style="font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.5rem">Benodigdheden</div><ul style="font-size:.83rem;color:var(--ink-3);line-height:1.65;padding-left:1rem;columns:2"><li>Link naar de Culture Coach-Gem</li><li>Vier scenario-kaartjes (zie lesverloop)</li><li>Google Doc voor reflectiestuk</li></ul></div></div><h3 style="font-family:var(--serif);font-size:1.1rem;font-weight:600;color:var(--ink);margin:1.5rem 0 .6rem">Lesverloop</h3><div style="border-top:1px solid var(--border);margin-bottom:1.5rem" class="r"><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start"><div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol)">5 min</div><div><div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Instap &mdash; Wat weet je over Engelstalige culturen?</div><div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Brainstorm: wat weten leerlingen over dagelijks leven in UK, USA, Australi&euml; of Ierland?</div><div style="font-size:.82rem;color:var(--ink-3);line-height:1.6">Bewaar de lijst &mdash; aan het einde vergelijken ze wat ze dachten te weten met wat ze geleerd hebben.</div></div></div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start"><div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol)">15 min</div><div><div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Verkenningsfase &mdash; cultuurscenario's via de Gem</div><div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Elk scenario-kaartje beschrijft een situatie. Leerlingen beschrijven dit aan de Culture Coach-Gem.</div><div style="font-size:.82rem;color:var(--ink-3);line-height:1.6">Scenario's: (1) In the UK, people queue strictly everywhere. (2) In the US, "How are you?" expects no real answer. (3) In Australia, understatement is key in humour. (4) In Ireland, making tea for every visitor is hospitality.</div></div></div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start"><div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol)">15 min</div><div><div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Schrijffase &mdash; reflectiestuk 100-150 woorden</div><div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Structuur: "One cultural difference that surprised me was... because... In Belgium, we tend to... This shows that..."</div><div style="font-size:.82rem;color:var(--ink-3);line-height:1.6">Ze mogen de Gem raadplegen voor schrijffeedback, niet voor de inhoud &mdash; die moeten ze zelf hebben ontdekt.</div></div></div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start"><div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol)">10 min</div><div><div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Klassikale uitwisseling</div><div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Vier leerlingen (een per scenario) presenteren in twee zinnen. Klasgenoten reageren.</div><div style="font-size:.82rem;color:var(--ink-3);line-height:1.6">Rijkste moment van de les: leerlingen vergelijken hun cultureel perspectief. Dat is interculturele communicatie in de praktijk.</div></div></div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start"><div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol)">3 min</div><div><div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Terugkijk</div><div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Keer terug naar de instaplijst. Wat was correct? Wat was een stereotiep? Wat was nieuw?</div><div style="font-size:.82rem;color:var(--ink-3);line-height:1.6">Leerlingen zien concreet hoe hun begrip in 50 minuten is veranderd.</div></div></div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start"><div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol)">2 min</div><div><div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">RAPPORT</div><div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">RAPPORT typen en bewaren.</div></div></div></div><div style="background:var(--petrol-l);border-left:3px solid var(--petrol);padding:.9rem 1.3rem;border-radius:0 var(--r) var(--r) 0;margin:1rem 0" class="r"><div style="font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--petrol);margin-bottom:.3rem">Verdieping</div><p style="font-size:.88rem;color:var(--ink-2);line-height:1.75">Gevorderde leerlingen vragen de Gem naar een vijfde cultuur &mdash; bijv. South Africa of Singapore &mdash; en bedenken zelf een scenario. Dat is een hogere-orde denkopdracht.</p></div><div class="prompt-wrap r"><div class="prompt-head"><span class="prompt-head-label">Culture Coach-Gem &mdash; instructie les 4</span><button class="btn-copy" onclick="copy(this)">Kopiëren</button></div><div class="prompt-body">You are a cultural guide for English-speaking cultures.
+
+When a student presents a cultural scenario:
+1. Explain the cultural background briefly (2-3 sentences)
+2. Ask: "What surprises you about this?"
+3. Ask: "How would this be different in Belgium?"
+4. Ask: "What does this tell us about the values here?"
+
+Always encourage comparison, not judgement.
+Use: "In general...", "Many people tend to..."
+Never: "All British people..."
+
+Stay in English. Add key words in Dutch in brackets if needed.
+
+REPORT - when student types RAPPORT:
+---
+CULTURE REPORT
+Culture explored: [country]
+Key insight: [main discovery]
+Comparison: [how student connected to Belgium]
+New perspective: [something that challenged a stereotype]
+Recommendation: [one resource to explore further]
+---</div></div></section><nav class="page-nav r"><a href="lessen-nederlands.html">&larr; Lessen Nederlands</a><a href="lessen-frans.html">Lessen Frans &rarr;</a></nav></main>
+<footer>
+  <p><strong>Masterclass AI 2026</strong> · Secundair Onderwijs Vlaanderen · Don Bosco</p>
+</footer>
+<script>
+const ro=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting){en.target.classList.add('on');ro.unobserve(en.target);}});},{threshold:0.07});
+document.querySelectorAll('.r').forEach(el=>ro.observe(el));
+function copy(btn){
+  const text=btn.closest('.prompt-wrap').querySelector('.prompt-body').innerText;
+  navigator.clipboard.writeText(text).then(()=>{
+    btn.textContent='Gekopieerd ✓';btn.classList.add('ok');
+    setTimeout(()=>{btn.textContent='Kopiëren';btn.classList.remove('ok');},2000);
+  });
+}
+</script>
+</body>
+</html>

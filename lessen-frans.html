@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="nl-BE">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lessenreeks Frans — Masterclass AI 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+<style>
+:root{--bg:#f8f7f4;--bg-alt:#f0ede8;--white:#ffffff;--ink:#1a1a1a;--ink-2:#3d3d3d;--ink-3:#767676;--border:#e0dbd4;--petrol:#0f4c5c;--petrol-l:#e8f2f4;--petrol-m:#1a6b80;--serif:'Lora',Georgia,serif;--sans:system-ui,-apple-system,sans-serif;--mono:'Courier New',monospace;--r:6px;--ease:cubic-bezier(0.25,0,0,1);--content:720px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+:focus-visible{outline:2px solid var(--petrol);outline-offset:3px}
+a{color:var(--petrol)}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--white);border-bottom:1px solid var(--border);height:56px;display:flex;align-items:center;padding:0 5%;gap:0}
+.topbar-logo{font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol);text-decoration:none;white-space:nowrap;margin-right:2.5rem}
+.progress-steps{display:flex;align-items:center;flex:1;gap:0;overflow-x:auto;scrollbar-width:none}
+.progress-steps::-webkit-scrollbar{display:none}
+.ps-item{display:flex;align-items:center;text-decoration:none;flex-shrink:0}
+.ps-step{display:flex;align-items:center;gap:.45rem;padding:.3rem .7rem;border-radius:4px;font-size:.78rem;color:var(--ink-3);transition:color .15s,background .15s;white-space:nowrap}
+.ps-step .n{font-family:var(--serif);font-size:.7rem;font-weight:600;color:var(--petrol);opacity:.5}
+.ps-item:hover .ps-step{color:var(--petrol);background:var(--petrol-l)}
+.ps-item.active .ps-step{color:var(--petrol);font-weight:500;background:var(--petrol-l)}
+.ps-item.active .ps-step .n{opacity:1}
+.ps-arrow{color:var(--border);font-size:.8rem;margin:0 .1rem;flex-shrink:0}
+.page{margin-top:56px;max-width:var(--content);margin-left:auto;margin-right:auto;padding:0 5% 6rem}
+.page.wide{--content:900px}
+.page-head{padding:3.5rem 0 2.5rem;border-bottom:1px solid var(--border);margin-bottom:2.5rem}
+.page-kicker{font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--petrol);display:block;margin-bottom:.8rem}
+.page-title{font-family:var(--serif);font-size:clamp(2.2rem,4vw,3.4rem);font-weight:600;line-height:1.1;color:var(--ink);letter-spacing:-.02em;margin-bottom:1rem}
+.page-title em{font-style:italic}
+.page-intro{font-size:1.05rem;line-height:1.85;color:var(--ink-2);max-width:60ch}
+.toc{margin-bottom:3rem}
+.toc-label{font-size:.62rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:.8rem}
+.toc-items{display:flex;flex-wrap:wrap;gap:.5rem}
+.toc-link{display:inline-flex;align-items:center;padding:.42rem .9rem;background:var(--white);border:1px solid var(--border);border-radius:100px;font-size:.83rem;color:var(--ink-2);text-decoration:none;transition:all .18s var(--ease)}
+.toc-link:hover{background:var(--petrol);color:var(--white);border-color:var(--petrol)}
+.sect{padding:3rem 0;border-bottom:1px solid var(--border);scroll-margin-top:76px}
+.sect:last-of-type{border-bottom:none}
+.sect-label{font-size:.62rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--petrol);display:block;margin-bottom:.6rem}
+.sect-title{font-family:var(--serif);font-size:1.5rem;font-weight:600;color:var(--ink);letter-spacing:-.01em;margin-bottom:.5rem;line-height:1.25}
+.sect-lead{font-size:.97rem;color:var(--ink-2);line-height:1.8;max-width:66ch;margin-bottom:1.6rem}
+.steps{list-style:none;display:flex;flex-direction:column;gap:.8rem;margin-bottom:1.4rem}
+.steps li{display:flex;align-items:flex-start;gap:1rem;font-size:.95rem;color:var(--ink-2);line-height:1.7}
+.steps li .n{font-family:var(--serif);font-size:.85rem;font-weight:600;color:var(--petrol);flex-shrink:0;width:1.5rem;padding-top:.1rem}
+.steps li strong{color:var(--ink);font-weight:600}
+.callout{border-left:3px solid var(--petrol);padding:.9rem 1.3rem;background:var(--petrol-l);border-radius:0 var(--r) var(--r) 0;margin-bottom:1.5rem}
+.callout p{font-size:.9rem;color:var(--ink-2);line-height:1.75}
+.callout strong{color:var(--petrol);font-weight:600}
+.prompt-wrap{margin-top:1.8rem;margin-bottom:.5rem}
+.prompt-head{display:flex;align-items:center;justify-content:space-between;background:var(--petrol);padding:.55rem 1rem;border-radius:var(--r) var(--r) 0 0}
+.prompt-head-label{font-size:.68rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.75)}
+.btn-copy{font-family:var(--sans);font-size:.72rem;font-weight:500;background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:4px;padding:.2rem .65rem;cursor:pointer;transition:all .15s}
+.btn-copy:hover{background:rgba(255,255,255,.25)}
+.btn-copy.ok{background:rgba(255,255,255,.3)}
+.prompt-body{font-family:var(--mono);font-size:.83rem;line-height:1.85;color:#c8dce8;background:#0d1a24;border:1px solid #1e3040;border-top:none;border-radius:0 0 var(--r) var(--r);padding:1.2rem 1.3rem;white-space:pre-wrap}
+.pv{color:#7ecfe0;font-weight:600}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin-bottom:1.5rem}
+.card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.2rem 1.3rem;text-decoration:none;display:flex;flex-direction:column;transition:box-shadow .2s,border-color .2s,transform .2s}
+.card:hover{box-shadow:0 3px 16px rgba(15,76,92,.09);border-color:var(--petrol-m);transform:translateY(-1px)}
+.card-name{font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.2rem}
+.card-url{font-size:.75rem;color:var(--petrol);margin-bottom:.45rem;opacity:.8}
+.card-desc{font-size:.82rem;color:var(--ink-3);line-height:1.65;flex:1}
+.card-tags{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.7rem}
+.card-tag{font-size:.65rem;padding:.12rem .45rem;background:var(--bg-alt);color:var(--ink-3);border-radius:3px}
+.gem-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1.1rem;margin-bottom:1.4rem}
+.gem{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.3rem;transition:box-shadow .2s,border-color .2s}
+.gem:hover{box-shadow:0 2px 14px rgba(15,76,92,.08);border-color:var(--petrol-m)}
+.gem-head{display:flex;align-items:center;gap:.7rem;margin-bottom:.6rem}
+.gem-icon{width:32px;height:32px;border-radius:var(--r);background:var(--petrol-l);color:var(--petrol);display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0}
+.gem-name{font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--ink)}
+.gem-doel{font-size:.8rem;color:var(--ink-3);line-height:1.6;font-style:italic;margin-bottom:.8rem}
+.gem-instructie{font-family:var(--mono);font-size:.74rem;line-height:1.65;color:var(--ink-2);background:#0d1a24;color:#c8dce8;border-left:2px solid var(--petrol);padding:.6rem .8rem;white-space:pre-wrap;border-radius:0 4px 4px 0}
+.page-nav{display:flex;justify-content:space-between;align-items:center;padding-top:2.5rem;border-top:1px solid var(--border);margin-top:3rem;flex-wrap:wrap;gap:1rem}
+.page-nav a{display:flex;align-items:center;gap:.5rem;font-size:.88rem;color:var(--petrol);text-decoration:none;padding:.5rem .9rem;border:1px solid var(--border);border-radius:var(--r);transition:all .18s}
+.page-nav a:hover{background:var(--petrol-l);border-color:var(--petrol-m)}
+.deel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem}
+.deel-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.8rem 2rem;text-decoration:none;display:flex;flex-direction:column;position:relative;overflow:hidden;transition:box-shadow .2s,transform .2s,border-color .2s}
+.deel-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--petrol);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}
+.deel-card:hover{box-shadow:0 4px 24px rgba(15,76,92,.10);transform:translateY(-2px);border-color:transparent}
+.deel-card:hover::before{transform:scaleX(1)}
+.deel-num{font-family:var(--serif);font-size:.75rem;font-weight:600;color:var(--petrol);margin-bottom:.8rem;opacity:.6}
+.deel-title{font-family:var(--serif);font-size:1.2rem;font-weight:600;color:var(--ink);margin-bottom:.5rem;line-height:1.3}
+.deel-sub{font-size:.85rem;color:var(--ink-3);line-height:1.65;flex:1}
+.deel-arrow{margin-top:1.4rem;font-size:.8rem;color:var(--petrol);opacity:.4;transition:opacity .2s,transform .2s;align-self:flex-start}
+.deel-card:hover .deel-arrow{opacity:1;transform:translateX(4px)}
+.vak-groep{margin-bottom:2.2rem}
+.vak-groep-label{font-size:.68rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.7rem;display:block}
+.vak-pills{display:flex;flex-wrap:wrap;gap:.5rem}
+.vak-pill{display:inline-flex;align-items:center;gap:.5rem;padding:.45rem 1rem;background:var(--white);border:1px solid var(--border);border-radius:100px;font-size:.84rem;color:var(--ink-2);text-decoration:none;transition:all .18s var(--ease)}
+.vak-pill:hover{background:var(--petrol);color:#fff;border-color:var(--petrol)}
+.narrative{background:var(--petrol-l);border-left:4px solid var(--petrol);padding:1.4rem 1.8rem;border-radius:0 var(--r) var(--r) 0;margin-bottom:2rem}
+.narrative p{font-size:1rem;line-height:1.85;color:var(--ink-2);max-width:68ch}
+.narrative strong{color:var(--petrol)}
+.hl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:2rem}
+.hl{padding:1.6rem;background:var(--white);border:1px solid var(--border);border-radius:var(--r)}
+.hl-icon{width:38px;height:38px;border-radius:var(--r);background:var(--petrol-l);color:var(--petrol);display:flex;align-items:center;justify-content:center;font-size:1rem;margin-bottom:1rem}
+.hl-title{font-family:var(--serif);font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:.4rem}
+.hl-text{font-size:.88rem;color:var(--ink-3);line-height:1.7}
+.hero{background:var(--petrol);padding:7rem 0 6rem;position:relative;overflow:hidden;margin-top:56px}
+.hero::before{content:'';position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(circle,rgba(255,255,255,.04) 1px,transparent 1px);background-size:28px 28px}
+.hero-inner{max-width:900px;margin:0 auto;padding:0 5%;position:relative}
+.hero-kicker{display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:1.5rem}
+.hero-title{font-family:var(--serif);font-size:clamp(2.8rem,5.5vw,5rem);font-weight:600;line-height:1.1;color:#fff;letter-spacing:-.025em;margin-bottom:1.8rem;max-width:14ch}
+.hero-title em{font-style:italic;font-weight:400;color:rgba(255,255,255,.75)}
+.hero-sub{font-size:1.1rem;font-weight:400;line-height:1.8;color:rgba(255,255,255,.7);max-width:54ch;margin-bottom:2.5rem}
+.hero-cta{display:flex;gap:.75rem;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:.5rem;font-size:.9rem;font-weight:500;padding:.7rem 1.5rem;border-radius:var(--r);text-decoration:none;transition:all .2s var(--ease);cursor:pointer;border:none;font-family:var(--sans)}
+.btn-white{background:#fff;color:var(--petrol)}
+.btn-white:hover{background:var(--bg);transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,0,0,.15)}
+.btn-outline{background:transparent;color:rgba(255,255,255,.85);border:1px solid rgba(255,255,255,.3)}
+.btn-outline:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.5)}
+.section-block{padding:5rem 0;border-bottom:1px solid var(--border)}
+.section-block:last-of-type{border-bottom:none}
+.section-inner{max-width:900px;margin:0 auto;padding:0 5%}
+.section-label{font-size:.7rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--petrol);display:block;margin-bottom:.8rem}
+.section-title{font-family:var(--serif);font-size:clamp(1.7rem,2.8vw,2.6rem);font-weight:600;line-height:1.2;color:var(--ink);letter-spacing:-.02em;margin-bottom:.8rem}
+.section-title em{font-style:italic;font-weight:400}
+.section-lead{font-size:1.05rem;font-weight:400;line-height:1.8;color:var(--ink-2);max-width:62ch;margin-bottom:2.5rem}
+.yt-block{display:flex;align-items:center;gap:1rem;background:var(--white);border:1px solid var(--border);padding:1rem 1.3rem;border-radius:var(--r);margin-top:1rem}
+.yt-icon{width:36px;height:36px;background:#ff0000;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff;font-size:1rem}
+.yt-text{flex:1}
+.yt-text strong{display:block;font-size:.88rem;color:var(--ink)}
+.yt-text span{font-size:.78rem;color:var(--ink-3)}
+.yt-btn{background:var(--ink);color:#fff;font-family:var(--sans);font-size:.75rem;font-weight:600;padding:.4rem .8rem;border-radius:2px;text-decoration:none;flex-shrink:0;transition:background .15s}
+.yt-btn:hover{background:var(--petrol)}
+.r{opacity:0;transform:translateY(16px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.r.on{opacity:1;transform:none}
+.r.d1{transition-delay:.07s}.r.d2{transition-delay:.14s}.r.d3{transition-delay:.21s}.r.d4{transition-delay:.28s}.r.d5{transition-delay:.35s}
+footer{background:var(--petrol);padding:2rem 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+footer p{font-size:.8rem;color:rgba(255,255,255,.55)}
+footer strong{color:rgba(255,255,255,.85);font-weight:500}
+@media(max-width:860px){.hl-grid{grid-template-columns:1fr}.deel-grid{grid-template-columns:1fr}}
+@media(max-width:700px){.progress-steps{display:none}.card-grid,.gem-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <a class="topbar-logo" href="index.html">Masterclass AI</a>
+  <nav class="progress-steps" aria-label="Programmanavigatie">
+    <a class="ps-item" href="index.html"><div class="ps-step"><span class="n">Home</span></div></a>
+    <span class="ps-arrow">›</span>
+    <a class="ps-item" href="deel1.html"><div class="ps-step"><span class="n">01</span> Wat is AI?</div></a>
+    <span class="ps-arrow">›</span>
+    <a class="ps-item" href="deel2.html"><div class="ps-step"><span class="n">02</span> Prompting</div></a>
+    <span class="ps-arrow">›</span>
+    <a class="ps-item" href="deel3.html"><div class="ps-step"><span class="n">03</span> AI-tools</div></a>
+    <span class="ps-arrow">›</span>
+    <a class="ps-item" href="deel4.html"><div class="ps-step"><span class="n">04</span> Evaluatie</div></a>
+    <span class="ps-arrow">›</span>
+    <a class="ps-item active" href="vakken.html"><div class="ps-step"><span class="n">05</span> Vakken</div></a>
+    <span class="ps-arrow">›</span>
+    <a class="ps-item" href="deel6.html"><div class="ps-step"><span class="n">06</span> Geletterdheid</div></a>
+  </nav>
+</header>
+<main class="page" style="--content:800px"><header class="page-head r"><span class="page-kicker">Uitgewerkte lessenreeks</span><h1 class="page-title"><em>Frans</em> &mdash; quatre le&ccedil;ons avec l'IA</h1><p class="page-intro">Vier volledig uitgewerkte lessen van 50 minuten voor het vak Frans. Van spreekvaardigheid en rollenspel tot schrijfvaardigheid, grammatica en cultuurverkenning &mdash; met kant-en-klare Gem-instructies, prompts en leraarsnotities bij elke fase.</p></header><nav class="toc r"><span class="toc-label">De vier lessen</span><div class="toc-items"><a class="toc-link" href="#fr-les1">Les 1 &mdash; Spreekangst doorbreken</a><a class="toc-link" href="#fr-les2">Les 2 &mdash; Rollenspel situaties</a><a class="toc-link" href="#fr-les3">Les 3 &mdash; Schrijven &amp; grammatica</a><a class="toc-link" href="#fr-les4">Les 4 &mdash; La Francophonie</a></div></nav><section class="sect" id="fr-les1"><div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.8rem 2rem;margin-bottom:2rem" class="r"><div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem"><div><div style="font-size:.65rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--petrol);margin-bottom:.3rem">Les 1 van 4</div><div style="font-family:var(--serif);font-size:1.4rem;font-weight:600;color:var(--ink);line-height:1.2;margin-bottom:.8rem">Spreekangst doorbreken &mdash; veilig Frans oefenen</div><div style="display:flex;flex-wrap:wrap;gap:.4rem"><span style="background:var(--petrol-l);color:var(--petrol);font-size:.72rem;font-weight:600;padding:.2rem .6rem;border-radius:3px">Frans</span><span style="background:var(--bg-alt);color:var(--ink-3);font-size:.72rem;padding:.2rem .6rem;border-radius:3px">2de graad</span><span style="background:var(--bg-alt);color:var(--ink-3);font-size:.72rem;padding:.2rem .6rem;border-radius:3px">50 minuten</span></div></div><div><div style="font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.4rem">Thema</div><div style="font-size:.9rem;color:var(--ink-2);margin-bottom:.9rem">Expression orale &mdash; alledaagse conversatie</div><div style="font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.4rem">Leerdoelen</div><ul style="font-size:.85rem;color:var(--ink-2);line-height:1.7;padding-left:1rem"><li>De leerling voert een Franstalig gesprek van minstens 8 beurten.</li><li>De leerling herkent en verbetert een grammaticafout na feedback van de Gem.</li><li>De leerling durft in het Frans te schrijven zonder eerst alles te controleren.</li></ul></div></div><div style="border-top:1px solid var(--border);margin-top:1.2rem;padding-top:1rem"><div style="font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.5rem">Benodigdheden</div><ul style="font-size:.83rem;color:var(--ink-3);line-height:1.65;padding-left:1rem;columns:2"><li>Link naar Le Partenaire de Conversation-Gem</li><li>Toestel met internet per leerling</li><li>Google Doc voor gesprek en rapport</li><li>Optioneel: lijst van thema's op het bord</li></ul></div></div><h3 style="font-family:var(--serif);font-size:1.1rem;font-weight:600;color:var(--ink);margin:1.5rem 0 .6rem">Lesverloop</h3><div class="narrative r"><p>Frans is voor veel leerlingen de drempelervaring: ze begrijpen het redelijk, maar spreken het niet. Die kloof ontstaat niet door gebrek aan kennis &mdash; ze is ontstaan door angst. Een fout maken voor dertig klasgenoten is iets anders dan een fout maken in een gesprek met een machine die nooit lacht. Deze les gebruikt die veiligheid als startpunt.</p></div><div style="border-top:1px solid var(--border);margin-bottom:1.5rem" class="r"><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start"><div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol)">5 min</div><div><div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Instap &mdash; Qu'est-ce qui te bloque?</div><div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Leraar stelt in het Nederlands: wat weerhoudt je om Frans te spreken? Noteer antwoorden op het bord.</div><div style="font-size:.82rem;color:var(--ink-3);line-height:1.6">Typische antwoorden: ik ken het woord niet, ik verbuig het fout, anderen lachen. Leg uit: de Gem reageert altijd in het Frans, corrigeert vriendelijk &eacute;&eacute;n fout per beurt, en geeft je een nuttige uitdrukking. Hij lacht nooit.</div></div></div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start"><div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol)">5 min</div><div><div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Demonstratie &mdash; de leraar maakt fouten</div><div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Leraar demonstreert een gesprek met de Gem op het bord &mdash; inclusief bewuste, herkenbare fouten.</div><div style="font-size:.82rem;color:var(--ink-3);line-height:1.6">Essentieel moment: als de leraar zelf "J'ai all&eacute; au cin&eacute;ma" typt en de Gem dat vriendelijk corrigeert naar "je suis all&eacute;", zien leerlingen dat fouten normaal zijn en dat correctie niet pijnlijk is.</div></div></div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start"><div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol)">20 min</div><div><div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Gespreksronde 1 &mdash; vrij thema</div><div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Leerlingen openen de Gem via de link in Smartschool en kiezen zelf een thema: weekend, muziek, sport, eten, vakanties. Minstens 8 beurten.</div><div style="font-size:.82rem;color:var(--ink-3);line-height:1.6">Circuleer door de klas. Leerlingen die in het Nederlands beginnen: wijs op de AIDE-nooduitgang. Let op wie terughoudend is &mdash; zit er naast en stel voor: "Begin gewoon met Bonjour, je m'appelle..." Dat is genoeg om te starten.</div></div></div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start"><div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol)">10 min</div><div><div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Gespreksronde 2 &mdash; opgedragen thema</div><div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Leraar geeft een thema: "Parle de ta routine du matin." Leerlingen wisselen van onderwerp maar werken verder in hetzelfde gesprek.</div><div style="font-size:.82rem;color:var(--ink-3);line-height:1.6">De overgang van vrij naar opgedragen thema is bewust: dat is precies de situatie in een mondeling examen. Leerlingen ervaren hoe het voelt &mdash; in een veilige omgeving.</div></div></div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start"><div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol)">8 min</div><div><div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Nabespreking &mdash; qu'est-ce que tu as appris?</div><div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Drie leerlingen delen &eacute;&eacute;n uitdrukking die ze geleerd hebben van de Gem. Leraar schrijft die op het bord.</div><div style="font-size:.82rem;color:var(--ink-3);line-height:1.6">Vraag ook: wie gebruikte de AIDE-uitgang? Hoe hielp dat? Ontmystificeer de hulpvraag &mdash; hulp zoeken is een vaardigheid.</div></div></div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start"><div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol)">2 min</div><div><div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">RAPPORT</div><div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Leerlingen typen RAPPORT en bewaren het overzicht in hun Google Doc.</div></div></div></div><div style="background:var(--petrol-l);border-left:3px solid var(--petrol);padding:.9rem 1.3rem;border-radius:0 var(--r) var(--r) 0;margin:1rem 0" class="r"><div style="font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--petrol);margin-bottom:.3rem">Differentiatie</div><p style="font-size:.88rem;color:var(--ink-2);line-height:1.75">Zwakkere leerlingen: geef vooraf een kaartje met vijf startzinnen: "J'aime...", "Le week-end, je...", "Mon plat pr&eacute;f&eacute;r&eacute; est...", "J'habite &agrave;...", "Ma mati&egrave;re pr&eacute;f&eacute;r&eacute;e est...". Sterke leerlingen: vraag hen minstens vijf vragen te stellen aan de Gem &mdash; niet alleen te antwoorden.</p></div><div class="prompt-wrap r"><div class="prompt-head"><span class="prompt-head-label">Le Partenaire de Conversation &mdash; instructie les 1</span><button class="btn-copy" onclick="copy(this)">Kopiëren</button></div><div class="prompt-body">Tu es un partenaire de conversation français
+pour des élèves néerlandophones du secondaire.
+
+PARLE naturellement du sujet choisi par l'élève.
+Après chaque échange:
+- Un compliment court et sincere
+- UNE correction de grammaire ou conjugaison:
+  *(On dit: "..." plutôt que "...")*
+- UNE expression utile à retenir
+
+TOUJOURS en français.
+Si l'élève écrit en néerlandais:
+Réponds d'abord en français, puis traduis
+les mots difficiles entre parenthèses.
+Exception: si l'élève écrit AIDE en majuscules,
+explique UN mot en néerlandais, puis continue
+immédiatement en français.
+
+Règle absolue: ne passe JAMAIS au néerlandais
+de façon permanente.
+Si l'élève insiste:
+"Mon rôle est de t'aider à pratiquer le français.
+Continuons &mdash; je te soutiens avec des indices!"
+
+RAPPORT - quand l'élève écrit RAPPORT:
+---
+RAPPORT DE CONVERSATION
+Sujets: [liste] | Échanges: [nombre]
+Corrections grammaticales: [max. 3 points]
+Expressions suggérées: [liste]
+Point fort: [ce qui s'est bien passé]
+Conseil: [un exercice spécifique pour la prochaine fois]
+---</div></div></section><section class="sect" id="fr-les2"><div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.8rem 2rem;margin-bottom:2rem" class="r"><div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem"><div><div style="font-size:.65rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--petrol);margin-bottom:.3rem">Les 2 van 4</div><div style="font-family:var(--serif);font-size:1.4rem;font-weight:600;color:var(--ink);line-height:1.2;margin-bottom:.8rem">Rollenspel &mdash; alledaagse situaties in het Frans</div><div style="display:flex;flex-wrap:wrap;gap:.4rem"><span style="background:var(--petrol-l);color:var(--petrol);font-size:.72rem;font-weight:600;padding:.2rem .6rem;border-radius:3px">Frans</span><span style="background:var(--bg-alt);color:var(--ink-3);font-size:.72rem;padding:.2rem .6rem;border-radius:3px">2de &amp; 3de graad</span><span style="background:var(--bg-alt);color:var(--ink-3);font-size:.72rem;padding:.2rem .6rem;border-radius:3px">50 minuten</span></div></div><div><div style="font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.4rem">Thema</div><div style="font-size:.9rem;color:var(--ink-2);margin-bottom:.9rem">Expression orale &mdash; rollenspel en situatiegesprekken</div><div style="font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.4rem">Leerdoelen</div><ul style="font-size:.85rem;color:var(--ink-2);line-height:1.7;padding-left:1rem"><li>De leerling oefent een authentieke Franstalige situatie via rollenspel.</li><li>De leerling gebruikt situatiegebonden woordenschat correct.</li><li>De leerling reflecteert op zijn taalgebruik na het rollenspel.</li></ul></div></div><div style="border-top:1px solid var(--border);margin-top:1.2rem;padding-top:1rem"><div style="font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.5rem">Benodigdheden</div><ul style="font-size:.83rem;color:var(--ink-3);line-height:1.65;padding-left:1rem;columns:2"><li>Link naar Le Jeu de R&ocirc;le-Gem</li><li>Situatiekaartjes (zie lesverloop)</li><li>Google Doc voor reflectie en rapport</li><li>Optioneel: woordenschatlijst per situatie</li></ul></div></div><h3 style="font-family:var(--serif);font-size:1.1rem;font-weight:600;color:var(--ink);margin:1.5rem 0 .6rem">Lesverloop</h3><div class="narrative r"><p>Een rollenspel is de dichtstbijzijnde benadering van echte communicatie in de klas. Het probleem is dat klassikale rollenspellen oncomfortabel zijn &mdash; leerlingen spelen voor dertig klasgenoten en dat verhoogt de drempel. Met de Gem speelt elke leerling tegelijk zijn eigen rollenspel, in zijn eigen tempo, zonder publiek. De leraar circuleert en observeert &mdash; en heeft voor het eerst een volledig beeld van hoe elke leerling presteert.</p></div><div style="border-top:1px solid var(--border);margin-bottom:1.5rem" class="r"><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start"><div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol)">5 min</div><div><div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Instap &mdash; Welke situaties ken je al?</div><div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Klassikale brainstorm: in welke Franstalige situaties kom je terecht als toerist of stagiair? Noteer op het bord.</div><div style="font-size:.82rem;color:var(--ink-3);line-height:1.6">Typische antwoorden: restaurant, trein, hotel, winkel, dokter, telefoongesprek. Leg uit dat we er vandaag vier oefenen &mdash; iedereen kiest er &eacute;&eacute;n en verdiept daarin.</div></div></div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start"><div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol)">5 min</div><div><div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Situatiekaartjes uitdelen</div><div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Elke leerling kiest &eacute;&eacute;n kaartje. Op elk kaartje staat de situatie, de rol van de Gem en drie sleutelzinnen als houvast.</div><div style="font-size:.82rem;color:var(--ink-3);line-height:1.6">Kaartje 1: Au restaurant &mdash; Gem speelt serveur. Kaartje 2: &Agrave; la gare &mdash; Gem speelt guichetmedewerker. Kaartje 3: Chez le m&eacute;decin &mdash; Gem speelt arts. Kaartje 4: Dans un magasin &mdash; Gem speelt verkoper.</div></div></div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start"><div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol)">20 min</div><div><div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Rollenspelfase &mdash; gesprek met de Gem</div><div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Leerlingen beschrijven hun situatie aan de Gem en starten het gesprek. Minstens 10 beurten. De Gem blijft in zijn rol en corrigeert discreet &eacute;&eacute;n fout per beurt.</div><div style="font-size:.82rem;color:var(--ink-3);line-height:1.6">Rondlopen en luisteren. Noteer wie welke situatie kiest &mdash; interessant voor differentiatie. Als een leerling snel klaar is: vraag hem de situatie opnieuw te beginnen met een complicatie ("Je n'ai pas r&eacute;serv&eacute;" of "Je suis allergique aux noix").</div></div></div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start"><div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol)">10 min</div><div><div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Reflectiefase &mdash; wat ging goed, wat was moeilijk?</div><div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Leerlingen typen RAPPORT en lezen het overzicht. Ze noteren in hun Google Doc: &eacute;&eacute;n zin die ze nu zeker kennen en &eacute;&eacute;n woord dat ze de volgende keer nodig hebben.</div><div style="font-size:.82rem;color:var(--ink-3);line-height:1.6">Dit is metacognitie in actie: leerlingen worden bewust van hun eigen leerproces. Die bewustwording is minstens zo waardevol als de conversatieoefening zelf.</div></div></div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start"><div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol)">8 min</div><div><div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Nabespreking &mdash; moeilijkste moment</div><div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Klassikaal: welke situatie was het moeilijkst? Welke zin zat niet in je hoofd maar had je nodig?</div><div style="font-size:.82rem;color:var(--ink-3);line-height:1.6">Schrijf die zinnen op het bord. Herhaal ze klassikaal. Dat zijn de authentieke lacunes van je klas &mdash; beter dan wat een handboek je vertelt dat moeilijk is.</div></div></div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start"><div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol)">2 min</div><div><div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">RAPPORT</div><div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Leerlingen bewaren hun rapport. Inleveren via Classroom.</div></div></div></div><div style="background:var(--petrol-l);border-left:3px solid var(--petrol);padding:.9rem 1.3rem;border-radius:0 var(--r) var(--r) 0;margin:1rem 0" class="r"><div style="font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--petrol);margin-bottom:.3rem">Evaluatietip</div><p style="font-size:.88rem;color:var(--ink-2);line-height:1.75">Vraag leerlingen bij inlevering twee dingen te markeren in hun Google Doc: in blauw elke zin die ze zelf hebben bedacht, in groen elke zin die ze hebben overgenomen of aangepast na Gem-feedback. Zo zie jij onmiddellijk hoeveel ze zelfstandig hebben geproduceerd.</p></div><div class="prompt-wrap r"><div class="prompt-head"><span class="prompt-head-label">Le Jeu de R&ocirc;le-Gem &mdash; instructie les 2</span><button class="btn-copy" onclick="copy(this)">Kopiëren</button></div><div class="prompt-body">Tu joues un rôle dans une situation de la vie quotidienne.
+Situations possibles: serveur, employé de gare,
+médecin, vendeur.
+
+L'élève choisit la situation et décrit son rôle.
+Tu réponds comme un natif: naturel, réaliste, poli.
+
+Pendant le jeu de rôle:
+- Reste dans le rôle du début à la fin
+- Corrige discrètement UNE erreur par échange:
+  *(On dit plutôt: "...")*
+- Si l'élève est bloqué: donne une amorce:
+  "Tu pourrais dire: 'Je voudrais...' ou 'Avez-vous...' "
+
+Après 10 échanges minimum, si l'élève écrit FIN:
+Résume les 3 points linguistiques à améliorer
+et les 2 expressions les plus utiles de la situation.
+
+Toujours en français.
+Exception AIDE: explique UN mot en néerlandais,
+puis continue immédiatement en français.
+
+RAPPORT - quand l'élève écrit RAPPORT:
+---
+RAPPORT DE JEU DE RÔLE
+Situation: [situation] | Échanges: [nombre]
+Expressions maîtrisées: [liste]
+Points à améliorer: [max. 3]
+Phrase de la situation: [la phrase clé à retenir]
+Conseil: [un exercice pour la prochaine fois]
+---</div></div></section><section class="sect" id="fr-les3"><div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.8rem 2rem;margin-bottom:2rem" class="r"><div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem"><div><div style="font-size:.65rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--petrol);margin-bottom:.3rem">Les 3 van 4</div><div style="font-family:var(--serif);font-size:1.4rem;font-weight:600;color:var(--ink);line-height:1.2;margin-bottom:.8rem">Schrijfvaardigheid &amp; grammatica &mdash; een tekst verfijnen</div><div style="display:flex;flex-wrap:wrap;gap:.4rem"><span style="background:var(--petrol-l);color:var(--petrol);font-size:.72rem;font-weight:600;padding:.2rem .6rem;border-radius:3px">Frans</span><span style="background:var(--bg-alt);color:var(--ink-3);font-size:.72rem;padding:.2rem .6rem;border-radius:3px">3de graad</span><span style="background:var(--bg-alt);color:var(--ink-3);font-size:.72rem;padding:.2rem .6rem;border-radius:3px">50 minuten</span></div></div><div><div style="font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.4rem">Thema</div><div style="font-size:.9rem;color:var(--ink-2);margin-bottom:.9rem">Expression &eacute;crite &mdash; brief, mail of artikel</div><div style="font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.4rem">Leerdoelen</div><ul style="font-size:.85rem;color:var(--ink-2);line-height:1.7;padding-left:1rem"><li>De leerling schrijft een tekst van 120-150 woorden in correct Frans.</li><li>De leerling herkent en verbetert fouten in werkwoordsvervoeging en woordgeslacht.</li><li>De leerling herschrijft gericht op basis van feedback van de Gem.</li></ul></div></div><div style="border-top:1px solid var(--border);margin-top:1.2rem;padding-top:1rem"><div style="font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.5rem">Benodigdheden</div><ul style="font-size:.83rem;color:var(--ink-3);line-height:1.65;padding-left:1rem;columns:2"><li>Link naar Le Correcteur de Style-Gem</li><li>Google Docs per leerling</li><li>Grammaticaoverzicht van het huidige hoofdstuk als referentie</li><li>Optioneel: BonPatron (bonpatron.com) als aanvulling</li></ul></div></div><h3 style="font-family:var(--serif);font-size:1.1rem;font-weight:600;color:var(--ink);margin:1.5rem 0 .6rem">Lesverloop</h3><div class="narrative r"><p>Schrijfvaardigheid Frans lijdt onder een paradox: leerlingen willen goede teksten schrijven, maar ze zijn zo bang voor fouten dat ze alleen wat ze zeker weten opschrijven. Dat levert eenvoudige, foutarme maar inhoudelijk arme teksten op. Deze les doorbreekt die reflex: eerst schrijven wat je wil zeggen, dan verfijnen met de Gem.</p></div><div style="border-top:1px solid var(--border);margin-bottom:1.5rem" class="r"><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start"><div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol)">5 min</div><div><div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Instap &mdash; De twee stappen van goed schrijven</div><div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Klassikaal: wat doe jij als je een Franse tekst schrijft? Leerlingen beschrijven hun aanpak.</div><div style="font-size:.82rem;color:var(--ink-3);line-height:1.6">Typisch: eerst woordenboek raadplegen, elke zin controleren voor je verdergaat. Leg uit dat dat averechts werkt: je schrijft dan voor de woordenschat die je kent, niet voor de gedachte die je wil uitdrukken. Vandaag draaien we het om: eerst schrijven, dan corrigeren.</div></div></div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start"><div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol)">10 min</div><div><div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Schrijffase &mdash; eerste versie zonder hulp</div><div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Opdracht: schrijf een informele brief aan een Franstalige penvriendin of -vriend. Vertel iets over je school, je vrienden en je plannen voor de zomer. Geen woordenboek, geen vertaalapp. Schrijven wat je wil zeggen.</div><div style="font-size:.82rem;color:var(--ink-3);line-height:1.6">Vijftien minuten klinkt kort maar is bewust: leerlingen schrijven zonder te filteren. De tekst mag fouten bevatten &mdash; dat is de bedoeling. Rondlopen en aanmoedigen: "Schrijf gewoon verder, we corrigeren daarna."</div></div></div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start"><div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol)">15 min</div><div><div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Feedbackfase &mdash; Le Correcteur de Style-Gem</div><div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Leerlingen plakken hun brief in de Gem. Minstens twee feedbackronden. De Gem geeft nooit de gecorrigeerde versie &mdash; hij stelt vragen en geeft gerichte hints.</div><div style="font-size:.82rem;color:var(--ink-3);line-height:1.6">Specifieke aandachtspunten voor deze les: vraag leerlingen de Gem expliciet te vragen naar werkwoordsvervoeging (pass&eacute; compos&eacute; vs imparfait) en woordgeslacht. Die twee zijn het meest hardnekkig.</div></div></div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start"><div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol)">10 min</div><div><div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Herschrijffase &mdash; tweede versie</div><div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Leerlingen herschrijven hun brief op basis van de Gem-feedback. Ze markeren in een andere kleur wat ze veranderd hebben.</div><div style="font-size:.82rem;color:var(--ink-3);line-height:1.6">Beide versies blijven bewaard in hetzelfde document. Jij leest straks de markering &mdash; niet het volledige transcript &mdash; om de leerwinst te beoordelen.</div></div></div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start"><div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol)">8 min</div><div><div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Nabespreking &mdash; meest gemaakte fout</div><div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Klassikaal: welke fout heeft de Gem het vaakst gecorrigeerd? Wat was de moeilijkste verbetering?</div><div style="font-size:.82rem;color:var(--ink-3);line-height:1.6">Noteer de top drie fouten op het bord. Dat is jouw prioriteitenlijst voor de volgende grammaticales.</div></div></div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start"><div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol)">2 min</div><div><div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">RAPPORT</div><div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Leerlingen typen RAPPORT en leveren beide versies in via Classroom.</div></div></div></div><div style="background:var(--petrol-l);border-left:3px solid var(--petrol);padding:.9rem 1.3rem;border-radius:0 var(--r) var(--r) 0;margin:1rem 0" class="r"><div style="font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--petrol);margin-bottom:.3rem">Huiswerkvariante</div><p style="font-size:.88rem;color:var(--ink-2);line-height:1.75">Leerlingen schrijven thuis een tweede brief over een ander thema en voeren opnieuw het volledige feedbackproces uit. Ze leveren de twee versies + het rapport in. Zo oefen je schrijfvaardigheid buiten de klas zonder extra correctiewerk voor jou.</p></div><div class="prompt-wrap r"><div class="prompt-head"><span class="prompt-head-label">Le Correcteur de Style-Gem &mdash; instructie les 3</span><button class="btn-copy" onclick="copy(this)">Kopiëren</button></div><div class="prompt-body">Tu es un correcteur de style français
+pour des élèves néerlandophones du secondaire.
+
+Quand un élève soumet un texte:
+1. Identifie le type de texte et son registre
+2. Signale UNE erreur de conjugaison ou d'accord
+   avec une explication brève:
+   "(Le passé composé avec être: je SUIS allé, pas j'AI allé)"
+3. Propose UNE amélioration de vocabulaire
+4. Pose UNE question de structure:
+   "Est-ce que ta conclusion répond à ta question de départ?"
+
+Ne RÉÉCRIS JAMAIS le texte complet.
+Guide uniquement avec des questions et des exemples.
+Demande toujours: "Maintenant, essaie de corriger
+cette partie toi-même."
+
+Si l'élève demande la version corrigée:
+"C'est ton texte — tu es l'écrivain.
+Essaie une phrase à la fois. Je t'attends."
+
+RAPPORT - quand l'élève écrit RAPPORT:
+---
+RAPPORT D'ÉCRITURE
+Type de texte: [type]
+Erreur principale: [description]
+Amélioration vocabulaire: [mot ou expression]
+Point fort: [ce qui a bien fonctionné]
+Conseil: [un exercice spécifique pour la prochaine fois]
+---</div></div></section><section class="sect" id="fr-les4"><div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.8rem 2rem;margin-bottom:2rem" class="r"><div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem"><div><div style="font-size:.65rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--petrol);margin-bottom:.3rem">Les 4 van 4</div><div style="font-family:var(--serif);font-size:1.4rem;font-weight:600;color:var(--ink);line-height:1.2;margin-bottom:.8rem">La Francophonie &mdash; Frans als wereldtaal ontdekken</div><div style="display:flex;flex-wrap:wrap;gap:.4rem"><span style="background:var(--petrol-l);color:var(--petrol);font-size:.72rem;font-weight:600;padding:.2rem .6rem;border-radius:3px">Frans</span><span style="background:var(--bg-alt);color:var(--ink-3);font-size:.72rem;padding:.2rem .6rem;border-radius:3px">2de &amp; 3de graad</span><span style="background:var(--bg-alt);color:var(--ink-3);font-size:.72rem;padding:.2rem .6rem;border-radius:3px">50 minuten</span></div></div><div><div style="font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.4rem">Thema</div><div style="font-size:.9rem;color:var(--ink-2);margin-bottom:.9rem">Culture &mdash; la Francophonie et ses diversit&eacute;s</div><div style="font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.4rem">Leerdoelen</div><ul style="font-size:.85rem;color:var(--ink-2);line-height:1.7;padding-left:1rem"><li>De leerling situeert minstens vier Franstalige regio's in de wereld.</li><li>De leerling vergelijkt culturele gebruiken tussen Franstalige regio's en Belgi&euml;.</li><li>De leerling schrijft een kort Franstalig reflectiestuk van 80-100 woorden.</li></ul></div></div><div style="border-top:1px solid var(--border);margin-top:1.2rem;padding-top:1rem"><div style="font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.5rem">Benodigdheden</div><ul style="font-size:.83rem;color:var(--ink-3);line-height:1.65;padding-left:1rem;columns:2"><li>Link naar Le Guide Francophone-Gem</li><li>Wereldkaart (digitaal of op papier)</li><li>Google Doc voor reflectie en rapport</li><li>Optioneel: korte video's van RFI of TV5Monde als instap</li></ul></div></div><h3 style="font-family:var(--serif);font-size:1.1rem;font-weight:600;color:var(--ink);margin:1.5rem 0 .6rem">Lesverloop</h3><div class="narrative r"><p>Frans is de tweede meest gesproken taal ter wereld qua geografische verspreiding &mdash; maar de meeste leerlingen associeren het uitsluitend met Frankrijk. Deze les opent die wereld: Quebec, Senegal, de Maghreb, Martinique, Zwitserland. Leerlingen ontdekken dat Frans veel meer is dan een taal &mdash; het is een platform voor miljoenen verschillende culturen.</p></div><div style="border-top:1px solid var(--border);margin-bottom:1.5rem" class="r"><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start"><div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol)">5 min</div><div><div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Instap &mdash; Waar spreekt men Frans?</div><div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Leerlingen noemen alle landen en regio's die ze kennen waar Frans gesproken wordt. Leraar duidt aan op de kaart.</div><div style="font-size:.82rem;color:var(--ink-3);line-height:1.6">Typisch worden Belgium, France en Zwitserland snel genoemd. Congo, Qu&eacute;bec en Senegal verrassen vaak. Sluit af: "Vandaag verkennen we vier van die werelden via een Gem die elke regio van binnenuit kent."</div></div></div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start"><div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol)">5 min</div><div><div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Regio-kaartjes uitdelen</div><div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Elk kaartje beschrijft een regio en een cultureel thema. Leerlingen kiezen er &eacute;&eacute;n en gaan ermee aan de slag.</div><div style="font-size:.82rem;color:var(--ink-3);line-height:1.6">Kaartje 1: Qu&eacute;bec &mdash; taal en identity (joual, fr. quebecois vs fr. standard). Kaartje 2: S&eacute;n&eacute;gal &mdash; hospitalit&eacute; en teranga. Kaartje 3: Maroc &mdash; meertaligheid en code-switching. Kaartje 4: Belgique &mdash; het verschil met Parijs Frans.</div></div></div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start"><div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol)">15 min</div><div><div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Verkenningsfase &mdash; gesprek met Le Guide Francophone-Gem</div><div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Leerlingen beschrijven hun regio aan de Gem en gaan in gesprek over de culturele kenmerken, vergelijkingen met Belgi&euml; en verrassende elementen.</div><div style="font-size:.82rem;color:var(--ink-3);line-height:1.6">De Gem stelt altijd drie vragen: wat verbaast je, hoe is dat anders in Belgi&euml;, en wat zegt dit over de waarden van die regio. Laat leerlingen hun antwoorden noteren in hun Google Doc &mdash; dat wordt de basis voor hun reflectiestuk.</div></div></div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start"><div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol)">15 min</div><div><div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Schrijffase &mdash; Franstalig reflectiestuk</div><div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Leerlingen schrijven 80-100 woorden in het Frans: "Ce qui m'a surpris dans la culture [regio] c'est... Parce que... En Belgique, on a tendance &agrave;... Cela montre que..."</div><div style="font-size:.82rem;color:var(--ink-3);line-height:1.6">Ze mogen de Gem raadplegen voor taalfeedback, niet voor de inhoud &mdash; die moeten ze zelf uit de verkenningsfase hebben gehaald. Zo is de schrijfopdracht tegelijk een taaltest en een kennisverwerking.</div></div></div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start"><div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol)">8 min</div><div><div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">Klassikale uitwisseling</div><div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Vier leerlingen (een per regio) presenteren hun belangrijkste ontdekking in twee zinnen in het Frans.</div><div style="font-size:.82rem;color:var(--ink-3);line-height:1.6">Klasgenoten stellen &eacute;&eacute;n vraag in het Frans. Dit is het rijkste moment van de les: authentieke communicatie over echte inhoud, in de doeltaal.</div></div></div><div style="display:grid;grid-template-columns:4rem 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:start"><div style="font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--petrol)">2 min</div><div><div style="font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:.25rem">RAPPORT</div><div style="font-size:.88rem;color:var(--ink-2);line-height:1.65;margin-bottom:.3rem">Leerlingen typen RAPPORT en leveren alles in via Classroom.</div></div></div></div><div style="background:var(--petrol-l);border-left:3px solid var(--petrol);padding:.9rem 1.3rem;border-radius:0 var(--r) var(--r) 0;margin:1rem 0" class="r"><div style="font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--petrol);margin-bottom:.3rem">Verdieping</div><p style="font-size:.88rem;color:var(--ink-2);line-height:1.75">Sterke leerlingen kiezen een vijfde regio zelf &mdash; bijv. Ha&iuml;ti, la R&eacute;union of Madagascar &mdash; en stellen zelf de drie Gem-vragen. Dat is een hogere-orde denkopdracht: ze reproduceren niet wat ze leerden maar passen de analysetechniek toe op een onbekende context.</p></div><div class="prompt-wrap r"><div class="prompt-head"><span class="prompt-head-label">Le Guide Francophone &mdash; instructie les 4</span><button class="btn-copy" onclick="copy(this)">Kopiëren</button></div><div class="prompt-body">Tu es un guide culturel de la Francophonie.
+Tu connais la vie quotidienne au Québec,
+en Belgique, au Sénégal, au Maroc et dans
+d'autres régions francophones.
+
+Quand un élève présente une région:
+1. Présente un aspect culturel concret (2-3 phrases)
+2. Demande: "Qu'est-ce qui te surprend?"
+3. Demande: "Comment c'est différent en Belgique?"
+4. Demande: "Qu'est-ce que ça révèle sur les valeurs
+   de cette culture?"
+
+Utilise un français accessible (niveau B1).
+Encourage la comparaison, pas le jugement.
+Jamais: "Tous les Sénégalais..." &mdash;
+Toujours: "En général, beaucoup de personnes..."
+
+Toujours en français.
+Ajoute les mots difficiles entre parenthèses
+en néerlandais si nécessaire.
+
+RAPPORT - quand l'élève écrit RAPPORT:
+---
+RAPPORT FRANCOPHONIE
+Région explorée: [région]
+Découverte principale: [ce que l'élève a appris]
+Comparaison: [lien avec la Belgique]
+Nouvel angle: [ce qui a changé une idée reçue]
+Conseil: [une ressource pour aller plus loin]
+---</div></div></section><nav class="page-nav r"><a href="lessen-engels.html">&larr; Lessen Engels</a><a href="gems-vaktalen.html">Gems voor taalvakken &rarr;</a></nav></main>
+<footer>
+  <p><strong>Masterclass AI 2026</strong> · Secundair Onderwijs Vlaanderen · Don Bosco</p>
+</footer>
+<script>
+const ro=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting){en.target.classList.add('on');ro.unobserve(en.target);}});},{threshold:0.07});
+document.querySelectorAll('.r').forEach(el=>ro.observe(el));
+function copy(btn){
+  const text=btn.closest('.prompt-wrap').querySelector('.prompt-body').innerText;
+  navigator.clipboard.writeText(text).then(()=>{
+    btn.textContent='Gekopieerd ✓';btn.classList.add('ok');
+    setTimeout(()=>{btn.textContent='Kopiëren';btn.classList.remove('ok');},2000);
+  });
+}
+</script>
+</body>
+</html>
