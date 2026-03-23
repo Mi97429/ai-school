@@ -65,6 +65,31 @@ footer{background:var(--petrol);padding:2rem 5%;display:flex;align-items:center;
 footer p{font-size:.8rem;color:rgba(255,255,255,.55)}
 footer strong{color:rgba(255,255,255,.85);font-weight:500}
 @media(max-width:700px){.progress-steps{display:none}.tool-grid{grid-template-columns:1fr}}
+
+/* ── Dropdown navigation ── */
+.ps-item{position:relative}
+.ps-dropdown{
+  display:none;position:absolute;top:100%;left:0;
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--r);min-width:220px;z-index:200;
+  box-shadow:0 4px 20px rgba(0,0,0,.08);padding:.4rem 0
+}
+.ps-item:hover .ps-dropdown{display:block}
+.ps-dropdown a{
+  display:block;padding:.52rem 1rem;font-size:.8rem;
+  color:var(--ink-2);text-decoration:none;white-space:nowrap;
+  transition:background .12s
+}
+.ps-dropdown a:hover{background:var(--petrol-l);color:var(--petrol)}
+.ps-dropdown-label{
+  display:block;padding:.35rem 1rem .2rem;
+  font-size:.6rem;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-3)
+}
+.ps-has-dropdown .ps-step::after{
+  content:"\25BE";margin-left:.3rem;font-size:.65rem;color:var(--ink-3)
+}
+
 </style>
 </head>
 <body>
